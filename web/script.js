@@ -1,56 +1,56 @@
 const cardData = [
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
     {
-        image: "tyler.jpeg",
+        image: "images/tyler.jpeg",
         name: "Tyler The Creator",
         score: 8.5,
     },
@@ -92,6 +92,15 @@ function createCard(cardData) {
 
     return card;
 }
+<div class="col-md-auto mb-4">
+    <div class="card mx-auto">
+        <img class="card-img-top" alt="mages/tyler.jpeg"></img>
+        <div class="card-body">
+            <h5 class="card-title">Tyler, The Creator</h5>
+            <p class="card-text">Average Score: 8/10</p>
+        </div>
+    </div>
+</div>;
 
 function showMoreCards() {
     const startIndex = numCardsShown;

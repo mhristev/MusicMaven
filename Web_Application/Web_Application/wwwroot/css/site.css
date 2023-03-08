@@ -1,0 +1,56 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+
+
+.topCardImage {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+}
+/*AAAAAAAAAA
+.card {
+    width: 300px;
+}*/
+
+.reviewImg {
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    
+}
+.reviewCardTop {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.navbar-brand {
+    font-size: 2.5rem;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+#see-more {
+    outline: none !important;
+    background-color: white !important;
+    box-shadow: none !important;
+}

@@ -1,0 +1,111 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<!--
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+-->
+
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h1 class="display-4 text-purple">MusicMaven</h1>
+        <p class="lead">
+            A web-based social platform for music lovers to share
+            opinions and thoughts on the latest album releases,
+            songs, and artists.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Top 100 Artists</h1>
+
+    <div class="row" id="card-row">
+        <div class="col-md-auto mb-4">
+            <div class="card mx-auto">
+                <img class="card-img-top topCardImage" src="images/tyler.jpeg"></img>
+                <div class="card-body">
+                    <h5 class="card-title">Tyler, 1The Creator</h5>
+                    <p class="card-text">Average Score: 8/10</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-auto mb-4">
+            <div class="card mx-auto">
+                <img class="card-img-top topCardImage" src="images/tyler.jpeg"></img>
+                <div class="card-body">
+                    <h5 class="card-title">Tyler, 1The Creator</h5>
+                    <p class="card-text">Average Score: 8/10</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <button id="see-more" class="btn btn-light">
+                See More
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Most recent reviews:</h1>
+
+        <div class="row">
+            <div class="card">
+
+                <div class="row reviewCardTop">
+
+                    <div class="col-md-auto">
+                        <img src="images/tyler.jpeg"
+                             class="img-fluid rounded-start reviewImg"
+                             alt="Album cover image"
+                             id="test-image" />
+                    </div>
+
+                    <div class="col-md-auto">
+                        <div class="row">
+                            <p class="card-subtitle mb-1 text-muted">
+                                Created by Username
+                            </p>
+                        </div>
+                        <h5 class="card-title">
+                            My beautiful Dark Twisted Fantasy
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            Kanye West
+                        </h6>
+                    </div>
+                    <div class="col">
+                        <div class="card-text d-flex align-items-center h-100 justify-content-end text-end">
+                            4.511/10
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-auto">
+                    <div class="card-body">
+                        <p class="card-text" id="long-text">
+                            So much text here!
+                        </p>
+
+                        <p class="card-text">
+                            <small class="text-muted">45 Likes</small>
+                        </p>
+                        <a href="#" class="btn btn-primary">Like</a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- add more cards here -->
+        </div>
+    </div>
+</div>
