@@ -2,6 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+/*
 const cardData = [
     {
         image: "images/tyler.jpeg",
@@ -139,3 +140,4 @@ if (fullText.length > maxChars) {
 
     paragraph.insertAdjacentElement("afterend", seeMoreButton);
 }
+*/

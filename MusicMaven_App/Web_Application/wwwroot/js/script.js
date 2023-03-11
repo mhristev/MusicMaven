@@ -1,4 +1,4 @@
-﻿const cardData = [
+﻿/*const cardData = [
     {
         image: "images/tyler.jpeg",
         name: "Tyler The Creator",
@@ -135,3 +135,4 @@ if (fullText.length > maxChars) {
 
     paragraph.insertAdjacentElement("afterend", seeMoreButton);
 }
+*/

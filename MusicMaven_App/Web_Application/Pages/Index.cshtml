@@ -23,30 +23,32 @@
 
 <div class="container">
     <h1>Top 100 Artists</h1>
-
-    <div class="row" id="card-row">
-        <div class="col-md-auto mb-4">
-            <div class="card mx-auto">
-                <img class="card-img-top topCardImage" src="images/tyler.jpeg"></img>
-                <div class="card-body">
-                    <h5 class="card-title">Tyler, 1The Creator</h5>
-                    <p class="card-text">Average Score: 8/10</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="row">
-        <div class="col-md-auto mb-4">
-            <div class="card mx-auto">
-                <img class="card-img-top topCardImage" src="images/tyler.jpeg"></img>
-                <div class="card-body">
-                    <h5 class="card-title">Tyler, 1The Creator</h5>
-                    <p class="card-text">Average Score: 8/10</p>
+        @foreach (var artist in Model.Artists)
+        {
+            
+            <div class="col-sm-3">
+                <div class="row" id="card-row">
+                    <div class="col-md-auto mb-4">
+                        <div class="card mx-auto">
+                            <a class="text-decoration-none text-dark" asp-page="/SingleArtist">
+                            <img class="card-img-top topCardImage" src="@artist.Image"></img>
+                            <div class="card-body">
+                                <h5 class="card-title">@artist.Name</h5>
+                                <p class="card-text">Average Score: 8/10</p>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            
+        }
+        
+        
     </div>
+
+    
 
 
     <div class="row">

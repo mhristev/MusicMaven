@@ -1,13 +1,14 @@
 ﻿using Business_Logic.Enums;
 
-namespace Web_Application.DTOs
+namespace Web_Application.DTOs.MusicUnitDTOs
 {
     public class MusicUnitDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
-        public string Type { get; set; } // "Album", "Song", or "Artist"
+        public MUSIC_UNIT_TYPE Type { get; set; } // "Album", "Song", or "Artist"
+        public List<ReviewDTO>? Reviews { get; set; }
 
         // properties specific to AlbumDTO
         public GENRE_TYPE? Genre { get; set; }
