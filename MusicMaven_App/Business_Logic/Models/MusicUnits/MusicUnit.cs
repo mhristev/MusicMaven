@@ -9,14 +9,14 @@ namespace Business_Logic.Models.MusicUnits
 {
     public class MusicUnit
     {
-        private int id;
+        private string id;
         private string name;
         private string image;
         private double avgRating;
         private MUSIC_UNIT_TYPE type;
         private List<Review> reviews = new List<Review>();
 
-        public MusicUnit(int id, string name, string image, double avrgRating, List<Review> reviews)
+        public MusicUnit(string id, string name, string image, double avrgRating, List<Review> reviews)
         {
             this.id = id;
             this.name = name;
@@ -25,7 +25,7 @@ namespace Business_Logic.Models.MusicUnits
             Reviews = reviews;
         }
 
-        public int Id { get => id; private set => id = value; }
+        public string Id { get => id; private set => id = value; }
         public string Name { get => name; private set => name = value; }
         public string Image { get => image; private set => image = value; }
         public double AvrgRating { get => avgRating; private set => avgRating = value; }

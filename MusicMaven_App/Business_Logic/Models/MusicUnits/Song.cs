@@ -11,7 +11,7 @@ namespace Business_Logic.Models.MusicUnits
         private string duration;
         private Artist artist;
 
-        public Song(int id,
+        public Song(string id,
                     string name,
                     string image,
                     string duration,

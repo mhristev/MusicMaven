@@ -9,7 +9,7 @@ namespace Business_Logic.Models
 {
     public class Review
     {
-        private int id;
+        private string id;
         private string title;
         private string content;
         private DateTime creationDate;
@@ -18,7 +18,7 @@ namespace Business_Logic.Models
         private User creator;
         private List<User> likedBy;
 
-        public Review(int id,
+        public Review(string id,
                       string title,
                       string content,
                       DateTime creationDate,
@@ -37,7 +37,7 @@ namespace Business_Logic.Models
             this.likedBy = likedBy;
         }
 
-        public int Id { get => id; private set => id = value; }
+        public string Id { get => id; private set => id = value; }
         public string Title { get => title; private set => title = value; }
         public string Content { get => content; private set => content = value; }
         public DateTime CreationDate { get => creationDate; private set => creationDate = value; }

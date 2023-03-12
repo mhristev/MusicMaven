@@ -12,7 +12,7 @@ namespace Business_Logic.Models.MusicUnits
         private ARTIST_TYPE artistType;
         private List<Album> albums;
 
-        public Artist(int id,
+        public Artist(string id,
                       string name,
                       string image,
                       ARTIST_TYPE artistType,

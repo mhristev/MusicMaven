@@ -4,7 +4,7 @@ namespace Web_Application.DTOs.MusicUnitDTOs
 {
     public class MusicUnitDTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public MUSIC_UNIT_TYPE Type { get; set; } // "Album", "Song", or "Artist"

@@ -13,7 +13,7 @@ namespace Business_Logic.Models.MusicUnits
         private Artist artist;
         private List<Song> songs;
 
-        public Album(int id,
+        public Album(string id,
                      string name,
                      string image,
                      GENRE_TYPE genre,
