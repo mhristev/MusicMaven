@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business_Logic.Enums
+namespace Business_Logic.Models.Enums
 {
-    public enum GENRE_TYPE
+    public enum USER_TYPE
     {
-        UNKNOWN, 
-        ROCK,
-        POP,
-        HIP_HOP,
-        JAZZ
+        NORMAL,
+        ADMIN
     }
 }

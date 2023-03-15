@@ -10,27 +10,23 @@ namespace Business_Logic.Models.MusicUnits
     public class Album : MusicUnit
     {
         private GENRE_TYPE genre;
-        private Artist artist;
-        private List<Song> songs;
+        private List<Artist> artists;  
 
         public Album(string id,
                      string name,
                      string image,
+                     MUSIC_UNIT_TYPE type,
                      GENRE_TYPE genre,
-                     Artist artist,
-                     List<Song> songs,
-                     double avgRating,
-                     List<Review> reviews) : base(id, name, image, avgRating, reviews)
+                     List<Artist> artists,
+                     double avgRating) : base(id, name, image, avgRating, type)
         {
             this.genre = genre;
-            this.artist = artist;
-            this.songs = songs;
+            this.artists = artists;
 
         }
 
         public GENRE_TYPE Genre { get => genre; private set => genre = value; }
-        public Artist Artist { get => artist; private set => artist = value; }
-        public List<Song> Songs { get => songs; private set => songs = value; }
+        public List<Artist> Artist { get => artists; private set => artists = value; }
 
     }
 }

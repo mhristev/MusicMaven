@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model Web_Application.Pages.SingleArtistModel
 @{
 }
@@ -14,7 +14,7 @@
 			<div class="col d-flex flex-column">
 			
 					<div class="mt-auto" >
-						<h2>Tyler,The Creator</h2>
+						<h2>@Model.CurrMusicUnit.Name</h2>
 					</div>
 				
 			</div>
@@ -23,7 +23,7 @@
 					<h4>Average rating:</h4>
 				</div>
 				<div class="row">
-					<h2>8/10 *</h2>
+					<h2>@Model.CurrMusicUnit.AvrgRating/10 *</h2>
 				</div>
 				<div class="row">
 					<h3>Total reviews: 1289</h3>
@@ -46,15 +46,16 @@
                                 </div>
                                 <div class="modal-body text-start">
                                     <form method="post">
+                                        <input type="hidden" asp-for="@Model.CurrMusicUnit.Id" />
                                         <div class="mb-3">
                                             <label asp-for="ReviewDTO.Title" class="form-label">Title</label>
                                             <input asp-for="ReviewDTO.Title" type="text" class="form-control" id="reviewTitle">
                                             <span asp-validation-for="ReviewDTO.Title" class="text text-danger"></span>
                                         </div>
                                         <div class="mb-3">
-                                            <label asp-for="ReviewDTO.Content" class="form-label">Description</label>
-                                            <textarea asp-for="ReviewDTO.Content" class="form-control" id="reviewDescription" rows="3"></textarea>
-                                            <span asp-validation-for="ReviewDTO.Content" class="text text-danger"></span>
+                                            <label asp-for="ReviewDTO.Description" class="form-label">Description</label>
+                                            <textarea asp-for="ReviewDTO.Description" class="form-control" id="reviewDescription" rows="3"></textarea>
+                                            <span asp-validation-for="ReviewDTO.Description" class="text text-danger"></span>
                                         </div>
                                         <div class="mb-3">
                                             <label asp-for="ReviewDTO.Rating" class="form-label">Rating</label>

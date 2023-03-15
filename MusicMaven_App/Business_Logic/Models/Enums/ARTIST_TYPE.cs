@@ -8,6 +8,7 @@ namespace Business_Logic.Enums
 {
     public enum ARTIST_TYPE
     {
+        UNKNOWN,
         BAND,
         SOLO
     }

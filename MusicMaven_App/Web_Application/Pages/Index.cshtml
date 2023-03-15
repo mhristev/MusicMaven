@@ -24,18 +24,18 @@
 <div class="container">
     <h1>Top 100 Artists</h1>
     <div class="row">
-        @foreach (var artist in Model.Artists)
+        @foreach (var unit in Model.MusicUnits)
         {
             
             <div class="col-sm-3">
                 <div class="row" id="card-row">
                     <div class="col-md-auto mb-4">
                         <div class="card mx-auto">
-                            <a class="text-decoration-none text-dark" asp-page="/SingleArtist">
-                            <img class="card-img-top topCardImage" src="@artist.Image"></img>
+                            <a class="text-decoration-none text-dark" asp-page="/SingleArtist" asp-route-id="@unit.Id">
+                            <img class="card-img-top topCardImage" src="@unit.Image"></img>
                             <div class="card-body">
-                                <h5 class="card-title">@artist.Name</h5>
-                                <p class="card-text">Average Score: 8/10</p>
+                                <h5 class="card-title">@unit.Name</h5>
+                                <p class="card-text">Average Score: @unit.AvrgRating/10</p>
                             </div>
                             </a>
                         </div>

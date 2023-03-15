@@ -11,7 +11,7 @@ namespace Business_Logic.Models
     {
         private string id;
         private string title;
-        private string content;
+        private string description;
         private DateTime creationDate;
         private double rating;
         private MusicUnit musicUnit;
@@ -29,7 +29,7 @@ namespace Business_Logic.Models
         {
             this.id = id;
             this.title = title;
-            this.content = content;
+            this.description = content;
             this.creationDate = creationDate;
             this.rating = rating;
             this.musicUnit = musicUnit;
@@ -37,9 +37,11 @@ namespace Business_Logic.Models
             this.likedBy = likedBy;
         }
 
+
+
         public string Id { get => id; private set => id = value; }
         public string Title { get => title; private set => title = value; }
-        public string Content { get => content; private set => content = value; }
+        public string Description { get => description; private set => description = value; }
         public DateTime CreationDate { get => creationDate; private set => creationDate = value; }
         public double Rating { get => rating; private set => rating = value; }
 

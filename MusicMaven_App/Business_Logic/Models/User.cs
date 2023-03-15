@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business_Logic.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,16 @@ namespace Business_Logic.Models
         private string email;
         private string password;
         private List<User> following;
+        private USER_TYPE type;
 
-        public User(string id, string username, string email, string password, List<User> following)
+        public User(string id, string username, string email, string password, List<User> following, USER_TYPE type)
         {
             this.id = id;
             this.username = username;
             this.email = email;
             this.password = password;
             this.following = following;
+            this.type = type;
         }
 
         public string Id { get => id; private set => id = value; }
@@ -29,5 +32,7 @@ namespace Business_Logic.Models
         public string Password { get => password; private set => password = value; }
 
         public List<User> Following { get => following; private set => following = value; }
+
+        public USER_TYPE Type { get => type; private set => type = value; }
     }
 }

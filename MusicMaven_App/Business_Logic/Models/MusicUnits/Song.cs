@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business_Logic.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +9,23 @@ namespace Business_Logic.Models.MusicUnits
 {
     public class Song : MusicUnit
     {
-        private string duration;
-        private Artist artist;
+        private int durationInSeconds;
+        private Album album;
 
         public Song(string id,
                     string name,
                     string image,
-                    string duration,
-                    Artist artist,
-                    double avgRating,
-                    List<Review> reviews) : base(id, name, image, avgRating, reviews)
+                    MUSIC_UNIT_TYPE type,
+                    int duration,
+                    Album album,
+                    double avgRating) : base(id, name, image, avgRating, type)
         {
-            this.artist = artist;
-            this.duration = duration;
+            this.album = album;
+            this.durationInSeconds = duration;
         }
 
-        public string Duration { get => duration; private set => duration = value; }
-        public Artist Artist { get => artist; private set => artist = value; }
+        public int DurationInSeconds { get => durationInSeconds; private set => durationInSeconds = value; }
+        public Album Album { get => album; private set => album = value; }
     }
 
 }

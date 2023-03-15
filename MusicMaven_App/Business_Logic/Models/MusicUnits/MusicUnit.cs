@@ -14,15 +14,14 @@ namespace Business_Logic.Models.MusicUnits
         private string image;
         private double avgRating;
         private MUSIC_UNIT_TYPE type;
-        private List<Review> reviews = new List<Review>();
 
-        public MusicUnit(string id, string name, string image, double avrgRating, List<Review> reviews)
+        public MusicUnit(string id, string name, string image, double avrgRating, MUSIC_UNIT_TYPE type)
         {
             this.id = id;
             this.name = name;
             this.image = image;
             this.avgRating = avrgRating;
-            Reviews = reviews;
+            this.type = type;
         }
 
         public string Id { get => id; private set => id = value; }
@@ -30,6 +29,5 @@ namespace Business_Logic.Models.MusicUnits
         public string Image { get => image; private set => image = value; }
         public double AvrgRating { get => avgRating; private set => avgRating = value; }
         public MUSIC_UNIT_TYPE Type { get => type; private set => type = value; }
-        public List<Review> Reviews { get => reviews; private set => reviews = value; }
     }
 }

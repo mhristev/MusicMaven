@@ -9,10 +9,8 @@ namespace Web_Application.DTOs.MusicUnitDTOs
         public string Image { get; set; }
         public MUSIC_UNIT_TYPE Type { get; set; }
         public GENRE_TYPE Genre { get; set; }
-        public ArtistDTO Artist { get; set; }
-        public List<SongDTO> Songs { get; set; }
-        public double AvrgRating { get; set; }
-        public List<ReviewDTO>? Reviews { get; set; }
+        public List<ArtistDTO> Artists { get; set; }
+        public double AvgRating { get; set; }
 
     }
 }
