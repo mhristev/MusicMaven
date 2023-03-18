@@ -18,14 +18,11 @@ body {
 }
 
 
-
-
-.topCardImage {
-    max-width: 300px;
-    max-height: 300px;
-    width: auto;
-    height: auto;
+.custom-link-nav {
+    color:white !important;
+    font-size: 18px;
 }
+
 
 .singleUnitImage {
     max-width: 300px;
@@ -56,8 +53,62 @@ body {
     padding: 0.5rem;
     border-radius: 0.25rem;
 }
-#see-more {
-    outline: none !important;
-    background-color: white !important;
-    box-shadow: none !important;
+
+
+
+/* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+/*
+body {
+    background-color: #1a1a1a;
+    color: #ffffff; 
 }
+ */
+
+/* Navbar Colors 
+.navbar-dark {
+    background-color: #1c1e20;
+}
+*/
+
+  /* card index artists
+  
+.card {
+    background-color: #242527;
+    color: #FFFFFF;
+}
+
+.card {
+    border-width: 2px;
+    border-color: #424242;
+}
+.card-musicUnit:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    outline: solid;
+    outline-width: 2px;
+    outline-color: #9c27b0;
+}
+      */
+/* Set color for card titles 
+.card-title {
+    color: #FFFFFF;
+}*/
+
+/* Set color for card text 
+.card-text {
+    color: #FFFFFF;
+}
+*/
+
+/* Set color for like button 
+.btn-primary {
+    background-color: #6C5B7B;
+    border-color: #6C5B7B;
+}*/
+
+    /* Set color for like button on hover 
+    .btn-primary:hover {
+        background-color: #563d7c;
+        border-color: #563d7c;
+    }*/
+

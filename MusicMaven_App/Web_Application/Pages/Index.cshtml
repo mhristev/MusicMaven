@@ -26,11 +26,10 @@
     <div class="row">
         @foreach (var unit in Model.MusicUnits)
         {
-            
             <div class="col-sm-3">
                 <div class="row" id="card-row">
                     <div class="col-md-auto mb-4">
-                        <div class="card mx-auto">
+                        <div class="card mx-auto card-musicUnit">
                             <a class="text-decoration-none text-dark" asp-page="/SingleArtist" asp-route-id="@unit.Id">
                             <img class="card-img-top topCardImage" src="@unit.Image"></img>
                             <div class="card-body">
@@ -42,7 +41,6 @@
                     </div>
                 </div>
             </div>
-            
         }
         
         
