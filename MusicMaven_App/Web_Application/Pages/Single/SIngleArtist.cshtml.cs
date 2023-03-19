@@ -7,11 +7,14 @@ using Web_Application.DTOs.MusicUnitDTOs;
 
 namespace Web_Application.Pages
 {
-    public class SingleArtistModel : PageModel
+    public class SingleArtist : PageModel
     {
         private ReviewService reviewService = ReviewService.Instance;
         private MusicUnitService musicUnitService = MusicUnitService.Instance;
-        public MusicUnitDTO CurrMusicUnit { get; set; }
+        public ArtistDTO Artist { get; private set; }
+        public List<AlbumDTO> Albums { get; private set; }
+        public List<ReviewDTO> Reviews { get; private set; }
+        
 
         [BindProperty]
         public ReviewDTO ReviewDTO { get; set; }
@@ -19,21 +22,23 @@ namespace Web_Application.Pages
         {
             try
             {
-                CurrMusicUnit = MusicUnitDTO.FromMusicUnit(musicUnitService.GetMusicUnitWithId(id));
+                Artist = ArtistDTO.FromArtist((Artist)musicUnitService.GetMusicUnitWithId(id));
+                Albums = musicUnitService.GetAlbumsForArtistId(id).Select(album => AlbumDTO.FromAlbum(album)).ToList();
+                Reviews = reviewService.GetReviewsForMusicUnit(id).Select(review => ReviewDTO.FromReview(review)).ToList();
+
             } catch (ArgumentException ex)
             {
                 
             }
 
         }
-        public IActionResult OnPost(string id)
+        public void OnPost(string id)
         {
             if (ModelState.IsValid)
             {
                 reviewService.AddReview(ReviewDTO.Title, ReviewDTO.Description, ReviewDTO.Rating, id, "creatorId");
-                return RedirectToPage("/Reviews");
             }
-            return Page();
+            OnGet(id);
         }
     }
 }

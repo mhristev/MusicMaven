@@ -1,4 +1,5 @@
 ﻿using Business_Logic.Enums;
+using Business_Logic.Models.MusicUnits;
 
 namespace Web_Application.DTOs.MusicUnitDTOs
 {
@@ -11,6 +12,20 @@ namespace Web_Application.DTOs.MusicUnitDTOs
         public GENRE_TYPE Genre { get; set; }
         public List<ArtistDTO> Artists { get; set; }
         public double AvgRating { get; set; }
+
+        public static AlbumDTO FromAlbum(Album a)
+        {
+            return new AlbumDTO()
+            {
+                Id = a.Id,
+                Name = a.Name,
+                Image = a.Image,
+                Type = a.Type,
+                Genre = a.Genre,
+                AvgRating = a.AvrgRating,
+                Artists = a.Artists.Select(artist => ArtistDTO.FromArtist(artist)).ToList()
+            };
+        }
 
     }
 }

@@ -24,13 +24,13 @@
 <div class="container">
     <h1>Top 100 Artists</h1>
     <div class="row">
-        @foreach (var unit in Model.MusicUnits)
+        @foreach (var unit in Model.Artists)
         {
             <div class="col-sm-3">
                 <div class="row" id="card-row">
                     <div class="col-md-auto mb-4">
                         <div class="card mx-auto card-musicUnit">
-                            <a class="text-decoration-none text-dark" asp-page="/SingleArtist" asp-route-id="@unit.Id">
+                            <a class="text-decoration-none text-dark" asp-page="Single/SingleArtist" asp-route-id="@unit.Id">
                             <img class="card-img-top topCardImage" src="@unit.Image"></img>
                             <div class="card-body">
                                 <h5 class="card-title">@unit.Name</h5>
@@ -60,51 +60,56 @@
         <h1>Most recent reviews:</h1>
 
         <div class="row">
-            <div class="card">
+            @foreach (var r in Model.Reviews)
+            {
+                <div class="card">
 
-                <div class="row reviewCardTop">
+                    <div class="row reviewCardTop">
 
-                    <div class="col-md-auto">
-                        <img src="images/tyler.jpeg"
-                             class="img-fluid rounded-start reviewImg"
-                             alt="Album cover image"
-                             id="test-image" />
+                        <div class="col-md-auto">
+                            <img src="/@r.MusicUnit.Image"
+                                 class="img-fluid rounded-start reviewImg"
+                                 alt="Album cover image"
+                                 id="test-image" />
+                        </div>
+
+                        <div class="col-md-auto">
+                            <div class="row">
+                                <p class="card-subtitle mb-1 text-muted">
+                                    @r.Creator.Username
+                                </p>
+                            </div>
+                            <h5 class="card-title">
+                                @r.Title
+                            </h5>
+                            <!-- <h6 class="card-subtitle mb-2 text-muted">
+                        Kanye West
+                    </h6>-->
+                        </div>
+                        <div class="col">
+                            <div class="card-text d-flex align-items-center h-100 justify-content-end text-end">
+                                @r.Rating/10
+                            </div>
+                        </div>
+
                     </div>
-
                     <div class="col-md-auto">
-                        <div class="row">
-                            <p class="card-subtitle mb-1 text-muted">
-                                Created by Username
+                        <div class="card-body">
+                            <p class="card-text" id="long-text">
+                                @r.Description
                             </p>
-                        </div>
-                        <h5 class="card-title">
-                            My beautiful Dark Twisted Fantasy
-                        </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Kanye West
-                        </h6>
-                    </div>
-                    <div class="col">
-                        <div class="card-text d-flex align-items-center h-100 justify-content-end text-end">
-                            4.511/10
+
+                            <p class="card-text">
+                                <small class="text-muted">45 Likes</small>
+                            </p>
+                            <a href="#" class="btn btn-primary">Like</a>
+
                         </div>
                     </div>
-
                 </div>
-                <div class="col-md-auto">
-                    <div class="card-body">
-                        <p class="card-text" id="long-text">
-                            So much text here!
-                        </p>
 
-                        <p class="card-text">
-                            <small class="text-muted">45 Likes</small>
-                        </p>
-                        <a href="#" class="btn btn-primary">Like</a>
 
-                    </div>
-                </div>
-            </div>
+            }
             <!-- add more cards here -->
         </div>
     </div>

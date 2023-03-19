@@ -26,7 +26,7 @@ namespace Business_Logic.Models.MusicUnits
         }
 
         public GENRE_TYPE Genre { get => genre; private set => genre = value; }
-        public List<Artist> Artist { get => artists; private set => artists = value; }
+        public List<Artist> Artists { get => artists; private set => artists = value; }
 
     }
 }

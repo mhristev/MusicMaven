@@ -23,15 +23,17 @@ namespace Business_Logic.Services
         {
             // Private constructor to prevent instantiation from outside the class
             reviewFactory = new ReviewFactory();
+            MusicUnitService musicUnitService = MusicUnitService.Instance;
+            Artist tyler = (Artist)musicUnitService.GetAllMusicUnits().First();
             
-            Artist artist = new Artist(Guid.NewGuid().ToString(), "Tyler the Creator", "images/tyler", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 9);
+            //Artist artist = new Artist(Guid.NewGuid().ToString(), "Tyler the Creator", "images/tyler", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 9);
 
         //    User johnDoe = new User("1", "johndoe", "JohnDoe@gmail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
         //    User janeDoe = new User("2", "janedoe", "JaneDoe@mail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
 
             reviews = new List<Review>() {
-                reviewFactory.CreateReview("Great Album","I loved this album so much.", artist, currUser, 8.3),
-                reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", artist, currUser, 4.1)
+                reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, currUser, 8.3),
+                reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, currUser, 4.1)
             };
 
                                
@@ -68,5 +70,12 @@ namespace Business_Logic.Services
         }
 
         public User CurrUser { get => currUser;}
+
+
+
+        public List<Review> GetReviewsForMusicUnit(string id)
+        {
+            return reviews.Where(review => review.MusicUnit.Id == id).OrderByDescending(r => r.CreationDate).ToList();
+        }
     }
 }
