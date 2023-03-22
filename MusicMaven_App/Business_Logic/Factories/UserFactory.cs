@@ -10,9 +10,9 @@ namespace Business_Logic.Factories
 {
     public  class UserFactory
     {
-        public User CreateUser(string username, string email, string password)
+        public User CreateUser(string username, string email, string password, USER_TYPE type = USER_TYPE.NORMAL)
         {
-            return new User(Guid.NewGuid().ToString(), email, username, password, new List<User>(), USER_TYPE.NORMAL);
+            return new User(Guid.NewGuid().ToString(), username, email, password, new List<User>(), type);
         }
     }
 }

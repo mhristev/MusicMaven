@@ -165,10 +165,12 @@
                         </p>
 
                         <p class="card-text">
-                            <small class="text-muted">45 Likes</small>
+                            <small class="text-muted">@r.LikedBy.Count Likes</small>
                         </p>
-                        <a href="#" class="btn btn-primary">Like</a>
-
+                        
+                        <form method="post" asp-page-handler="Like" asp-route-reviewId="@r.Id" asp-route-artistId="@Model.Artist.Id">
+                            <button class="btn btn-primary" type="submit">Like</button>
+                        </form>
                     </div>
                 </div>
             </div>

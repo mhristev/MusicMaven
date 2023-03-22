@@ -16,24 +16,22 @@ namespace Business_Logic.Services
         private static ReviewService instance;
         private List<Review> reviews;
         private ReviewFactory reviewFactory;
-        private User currUser = new User("0", "admin40", "admin@gmail.com", "adminPassword", new List<User>(), USER_TYPE.ADMIN);
+        private UserService userService = UserService.Instance;
         
 
         private ReviewService()
         {
-            // Private constructor to prevent instantiation from outside the class
             reviewFactory = new ReviewFactory();
             MusicUnitService musicUnitService = MusicUnitService.Instance;
             Artist tyler = (Artist)musicUnitService.GetAllMusicUnits().First();
-            
             //Artist artist = new Artist(Guid.NewGuid().ToString(), "Tyler the Creator", "images/tyler", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 9);
 
         //    User johnDoe = new User("1", "johndoe", "JohnDoe@gmail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
         //    User janeDoe = new User("2", "janedoe", "JaneDoe@mail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
 
             reviews = new List<Review>() {
-                reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, currUser, 8.3),
-                reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, currUser, 4.1)
+                reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, userService.GetCurrentUser(), 8.3),
+                reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, userService.GetCurrentUser(), 4.1)
             };
 
                                
@@ -65,17 +63,30 @@ namespace Business_Logic.Services
         public void AddReview(string title, string description, double rating, string musicUnitId, string creatorId)
         {
             MusicUnit unit = MusicUnitService.Instance.GetMusicUnitWithId(musicUnitId);
-            Review r = reviewFactory.CreateReview(title, description, unit, currUser, rating);
+            Review r = reviewFactory.CreateReview(title, description, unit, userService.GetCurrentUser(), rating);
             reviews.Add(r);
         }
-
-        public User CurrUser { get => currUser;}
-
 
 
         public List<Review> GetReviewsForMusicUnit(string id)
         {
             return reviews.Where(review => review.MusicUnit.Id == id).OrderByDescending(r => r.CreationDate).ToList();
+        }
+
+        public void AddLikeToReviewFromCurrentUser(string reviewId, string userId)
+        {
+            Review r = reviews.Where(review => review.Id == reviewId).First();
+            foreach (User u in r.LikedBy) {
+                if (u.Id == userService.GetCurrentUser().Id)
+                {
+                    r.LikedBy.Remove(u);
+                    return;
+                }
+            }
+            User? user = userService.GetUserById(userService.GetCurrentUser().Id);
+            if (user != null) {
+                r.LikedBy.Add(user);
+            }
         }
     }
 }

@@ -79,7 +79,7 @@ namespace Business_Logic.Services
             #endregion
 
             #region GKMC
-            var album3 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "IGOR", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit1 });
+            var album3 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "good kid, m.A.A.d city", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit2 });
             var sherane = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.SONG, "Sherane a.k.a Master Splinter's Daughter", "images/song.png", 1, durationInSeconds: 294, songAlbum: (Album)album3);
 
             var bIgPoWeR = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.SONG, "Bitch, Don't Kill My Vibe", "images/song.png", 2, durationInSeconds: 336, songAlbum: (Album)album3);
@@ -140,16 +140,9 @@ namespace Business_Logic.Services
             return musicUnits;
         }
 
-        public MusicUnit GetMusicUnitWithId(string id)
+        public MusicUnit? GetMusicUnitWithId(string id)
         {
-            MusicUnit musicUnit = musicUnits.FirstOrDefault(u => u.Id == id);
-
-            if (musicUnit == null)
-            {
-                throw new ArgumentException("Music unit not found", nameof(id));
-            }
-
-            return musicUnit;
+            return musicUnits.FirstOrDefault(u => u.Id == id);
         }
 
         public List<Album> GetAlbumsForArtistId(string id)

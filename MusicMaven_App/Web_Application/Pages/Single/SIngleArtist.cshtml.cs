@@ -22,9 +22,13 @@ namespace Web_Application.Pages
         {
             try
             {
-                Artist = ArtistDTO.FromArtist((Artist)musicUnitService.GetMusicUnitWithId(id));
-                Albums = musicUnitService.GetAlbumsForArtistId(id).Select(album => AlbumDTO.FromAlbum(album)).ToList();
-                Reviews = reviewService.GetReviewsForMusicUnit(id).Select(review => ReviewDTO.FromReview(review)).ToList();
+                Artist? artist = (Artist?)musicUnitService.GetMusicUnitWithId(id);
+                if (artist != null)
+                {
+                    Artist = ArtistDTO.FromArtist(artist);
+                    Albums = musicUnitService.GetAlbumsForArtistId(id).Select(album => AlbumDTO.FromAlbum(album)).ToList();
+                    Reviews = reviewService.GetReviewsForMusicUnit(id).Select(review => ReviewDTO.FromReview(review)).ToList();
+                }
 
             } catch (ArgumentException ex)
             {
@@ -39,6 +43,13 @@ namespace Web_Application.Pages
                 reviewService.AddReview(ReviewDTO.Title, ReviewDTO.Description, ReviewDTO.Rating, id, "creatorId");
             }
             OnGet(id);
+        }
+
+        public void OnPostLike(string reviewId, string artistId)
+        {
+            reviewService.AddLikeToReviewFromCurrentUser(reviewId, "userId");
+            // TODO AJAX file to refresh only the Likes
+            OnGet(artistId);
         }
     }
 }

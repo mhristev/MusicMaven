@@ -23,8 +23,12 @@ namespace Web_Application.Pages.Single
 
         public void OnGet(string id)
         {
-            Song = SongDTO.FromSong((Song)musicUnitService.GetMusicUnitWithId(id));
-            Reviews = reviewService.GetReviewsForMusicUnit(id).Select(r => ReviewDTO.FromReview(r)).ToList();
+            Song? song = (Song?)musicUnitService.GetMusicUnitWithId(id);
+            if (song != null)
+            {
+                Song = SongDTO.FromSong(song);
+                Reviews = reviewService.GetReviewsForMusicUnit(id).Select(r => ReviewDTO.FromReview(r)).ToList();
+            }
         }
 
         public void OnPost(string id)
@@ -34,6 +38,13 @@ namespace Web_Application.Pages.Single
                 reviewService.AddReview(ReviewDTO.Title, ReviewDTO.Description, ReviewDTO.Rating, id, "creatorId");
             }
             OnGet(id);
+        }
+
+        public void OnPostLike(string reviewId, string songId)
+        {
+            reviewService.AddLikeToReviewFromCurrentUser(reviewId, "userId");
+            // TODO AJAX file to refresh only the Likes
+            OnGet(songId);
         }
     }
 }
