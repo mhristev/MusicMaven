@@ -21,12 +21,12 @@ namespace Business_Logic.Factories
             this.songFactory = new SongFactory();
         }
 
-        public MusicUnit CreateMusicUnit(MUSIC_UNIT_TYPE type, string name, string img, double avgRating, GENRE_TYPE albumGenre = GENRE_TYPE.UNKNOWN, List<Artist> albumCreators = null, ARTIST_TYPE artistType = ARTIST_TYPE.UNKNOWN, int durationInSeconds = 0, Album songAlbum = null)
+        public MusicUnit CreateMusicUnit(MUSIC_UNIT_TYPE type, string name, string img, double avgRating, GENRE_TYPE albumGenre = GENRE_TYPE.UNKNOWN, List<Artist> albumCreators = null, ARTIST_TYPE artistType = ARTIST_TYPE.UNKNOWN, int durationInSeconds = 0, Album songAlbum = null, DateTime albumReleaseDate = new DateTime())
         {
             switch (type)
             {
                 case MUSIC_UNIT_TYPE.ALBUM: 
-                    return albumFactory.CreateAlbum(name, img, avgRating, type, albumGenre, albumCreators);
+                    return albumFactory.CreateAlbum(name, img, avgRating, type, albumGenre, albumCreators, albumReleaseDate);
                 case MUSIC_UNIT_TYPE.ARTIST: 
                     return artistFactory.CreateArtist(name, img, avgRating, type, artistType);
                 case MUSIC_UNIT_TYPE.SONG:

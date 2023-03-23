@@ -14,27 +14,22 @@ namespace Web_Application.Pages
         public ArtistDTO Artist { get; private set; }
         public List<AlbumDTO> Albums { get; private set; }
         public List<ReviewDTO> Reviews { get; private set; }
-        
+        public List<SongDTO> Songs { get; private set; }
+
 
         [BindProperty]
         public ReviewDTO ReviewDTO { get; set; }
         public void OnGet(string id)
         {
-            try
-            {
-                Artist? artist = (Artist?)musicUnitService.GetMusicUnitWithId(id);
-                if (artist != null)
-                {
-                    Artist = ArtistDTO.FromArtist(artist);
-                    Albums = musicUnitService.GetAlbumsForArtistId(id).Select(album => AlbumDTO.FromAlbum(album)).ToList();
-                    Reviews = reviewService.GetReviewsForMusicUnit(id).Select(review => ReviewDTO.FromReview(review)).ToList();
-                }
 
-            } catch (ArgumentException ex)
+            Artist? artist = (Artist?)musicUnitService.GetMusicUnitWithId(id);
+            if (artist != null)
             {
-                
+                Artist = ArtistDTO.FromArtist(artist);
+                Albums = musicUnitService.GetAlbumsForArtistId(id).Select(album => AlbumDTO.FromAlbum(album)).ToList();
+                Reviews = reviewService.GetReviewsForMusicUnit(id).Select(review => ReviewDTO.FromReview(review)).ToList();
+                Songs = musicUnitService.GetMostPopularSongsForArtistId(id).Select(song => SongDTO.FromSong(song)).ToList();
             }
-
         }
         public void OnPost(string id)
         {

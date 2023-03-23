@@ -10,7 +10,8 @@ namespace Business_Logic.Models.MusicUnits
     public class Album : MusicUnit
     {
         private GENRE_TYPE genre;
-        private List<Artist> artists;  
+        private List<Artist> artists;
+        private DateTime releaseDate;
 
         public Album(string id,
                      string name,
@@ -18,7 +19,8 @@ namespace Business_Logic.Models.MusicUnits
                      MUSIC_UNIT_TYPE type,
                      GENRE_TYPE genre,
                      List<Artist> artists,
-                     double avgRating) : base(id, name, image, avgRating, type)
+                     double avgRating,
+                     DateTime releaseDate) : base(id, name, image, avgRating, type)
         {
             this.genre = genre;
             this.artists = artists;
@@ -27,6 +29,7 @@ namespace Business_Logic.Models.MusicUnits
 
         public GENRE_TYPE Genre { get => genre; private set => genre = value; }
         public List<Artist> Artists { get => artists; private set => artists = value; }
+        public DateTime ReleaseDate { get => releaseDate; private set => releaseDate = value; }
 
     }
 }

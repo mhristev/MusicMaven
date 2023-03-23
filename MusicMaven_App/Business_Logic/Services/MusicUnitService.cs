@@ -25,7 +25,7 @@ namespace Business_Logic.Services
             var unit4 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, "Joeyy Bada$$", "images/artist.png", 8, artistType: ARTIST_TYPE.SOLO);
 
             #region IgorAlbum
-            var album1 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "IGOR", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit1 });
+            var album1 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "IGOR", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit1 }, albumReleaseDate: DateTime.Now);
 
             var igorsTheme = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.SONG, "IGOR'S THEME", "images/song.png", 8, durationInSeconds: 120, songAlbum: (Album)album1);
 
@@ -50,7 +50,7 @@ namespace Business_Logic.Services
             #endregion
 
             #region FlowerBoyAlbum
-            var album2 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "Flower boy", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit1 });
+            var album2 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "Flower boy", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit1 }, albumReleaseDate: DateTime.Now);
             var foreword = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.SONG, "Foreword", "images/song.png", 1, durationInSeconds: 180, songAlbum: (Album)album2);
 
             var whereThisFlowerBlooms = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.SONG, "Where This Flower Blooms", "images/song.png", 2, durationInSeconds: 213, songAlbum: (Album)album2);
@@ -79,7 +79,7 @@ namespace Business_Logic.Services
             #endregion
 
             #region GKMC
-            var album3 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "good kid, m.A.A.d city", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit2 });
+            var album3 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "good kid, m.A.A.d city", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit2 }, albumReleaseDate: DateTime.Now); ;
             var sherane = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.SONG, "Sherane a.k.a Master Splinter's Daughter", "images/song.png", 1, durationInSeconds: 294, songAlbum: (Album)album3);
 
             var bIgPoWeR = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.SONG, "Bitch, Don't Kill My Vibe", "images/song.png", 2, durationInSeconds: 336, songAlbum: (Album)album3);
@@ -167,6 +167,22 @@ namespace Business_Logic.Services
         public List<Artist> GetArtists()
         {
             return musicUnits.Where(u => u.Type == MUSIC_UNIT_TYPE.ARTIST).Cast<Artist>().ToList();
+        }
+
+        public List<Song> GetMostPopularSongsForArtistId(string id)
+        {
+            List<Album> albums = GetAlbumsForArtistId(id);
+            List<Song> songs = new List<Song>();
+            foreach (Album album in albums)
+            {
+                songs.AddRange(GetSongsInAlbumId(album.Id));
+            }
+            return songs.OrderByDescending(s => s.AvrgRating).ToList();
+        }
+
+        public List<Album> GetNewReleases()
+        {
+            return musicUnits.Where(u => u.Type == MUSIC_UNIT_TYPE.ALBUM).Cast<Album>().OrderByDescending(a => a.ReleaseDate).ToList();
         }
 
     }
