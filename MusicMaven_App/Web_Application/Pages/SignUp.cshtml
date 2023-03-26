@@ -1,0 +1,53 @@
+﻿@page
+@model Web_Application.Pages.SignUpModel
+@{
+}
+
+
+
+<div class="d-flex justify-content-center">
+    <div class="container" style="max-width: 400px;">
+        @if (ViewData.ModelState.TryGetValue("Exist", out var modelStateEntry) && modelStateEntry.Errors.Count > 0)
+        {
+            <div class="alert alert-danger" role="alert">
+                @modelStateEntry.Errors[0].ErrorMessage
+            </div>
+        }
+        <form method="post">
+            <div class="text-center mb-3">
+                <h5>Sign Up</h5>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" asp-for="@Model.RegisterModel.Email"> Email </label>
+                <input type="email" id="registerEmail\" class="form-control" asp-for="@Model.RegisterModel.Email" />
+                <span asp-validation-for="@Model.RegisterModel.Email" class="text text-danger"></span>
+            </div>
+
+            <!-- Username input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" asp-for="@Model.RegisterModel.Username"> Username </label>
+                <input id="registerUsername\" class="form-control" asp-for="@Model.RegisterModel.Username" />
+                <span asp-validation-for="@Model.RegisterModel.Username" class="text text-danger"></span>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" asp-for="@Model.RegisterModel.Password"> Password </label>
+                <input type="password" id="registerPassword" class="form-control" asp-for="@Model.RegisterModel.Password" />
+                <span asp-validation-for="@Model.RegisterModel.Password" class="text text-danger"></span>
+            </div>
+
+            <!-- Repeat Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" asp-for="@Model.RegisterModel.RepeatPassword"> Repeat Password </label>
+                <input type="password" id="registerRepeatPassword" class="form-control" asp-for="@Model.RegisterModel.RepeatPassword" />
+                <span asp-validation-for="@Model.RegisterModel.RepeatPassword" class="text text-danger"></span>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+        </form>
+    </div>
+</div>

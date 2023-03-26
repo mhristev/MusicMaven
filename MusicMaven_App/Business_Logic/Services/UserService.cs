@@ -54,5 +54,26 @@ namespace Business_Logic.Services
         {
             return users.Where(user => user.Id == id).FirstOrDefault();
         }
+
+        public void CreateUser(string email, string username, string password) 
+        {
+            
+            if (users.Any(user => user.Email == email))
+            {
+                throw new ArgumentException("Email already exist");
+            }
+
+            if (users.Any(user => user.Username == username))
+            {
+                throw new ArgumentException("Username already exist");
+            }
+            // TODO hash password
+            users.Add(userFactory.CreateUser(username, email, password, USER_TYPE.NORMAL));
+        }
+
+        public User? GetUserByEmail(string email)
+        {
+            return users.FirstOrDefault(u => u.Email == email);
+        }
     }
 }

@@ -157,6 +157,7 @@ namespace Business_Logic.Services
 
         public List<Song> GetSongsInAlbumId(string id)
         {
+            //return musicunit cuz we need only name
             return musicUnits
                     .Where(u => u.Type == MUSIC_UNIT_TYPE.SONG)
                     .Cast<Song>()
@@ -165,12 +166,13 @@ namespace Business_Logic.Services
         }
 
         public List<Artist> GetArtists()
-        {
+        { // return musicunit and display only name
             return musicUnits.Where(u => u.Type == MUSIC_UNIT_TYPE.ARTIST).Cast<Artist>().ToList();
         }
 
         public List<Song> GetMostPopularSongsForArtistId(string id)
         {
+// RETURN MUSICUNIT CUZ WE USE ONLY NAME
             List<Album> albums = GetAlbumsForArtistId(id);
             List<Song> songs = new List<Song>();
             foreach (Album album in albums)

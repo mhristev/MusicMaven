@@ -77,13 +77,13 @@ namespace Business_Logic.Services
         {
             Review r = reviews.Where(review => review.Id == reviewId).First();
             foreach (User u in r.LikedBy) {
-                if (u.Id == userService.GetCurrentUser().Id)
+                if (u.Id == userId)
                 {
                     r.LikedBy.Remove(u);
                     return;
                 }
             }
-            User? user = userService.GetUserById(userService.GetCurrentUser().Id);
+            User? user = userService.GetUserById(userId);
             if (user != null) {
                 r.LikedBy.Add(user);
             }

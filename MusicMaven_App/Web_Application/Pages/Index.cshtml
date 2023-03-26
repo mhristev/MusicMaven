@@ -1,8 +1,10 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+
 <!--
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -18,6 +20,11 @@
             opinions and thoughts on the latest album releases,
             songs, and artists.
         </p>
+
+        @if (HttpContext.Session.GetString("Username") != null)
+        {
+            <p>Welcome, @HttpContext.Session.GetString("Username").ToString()</p>
+        }
     </div>
 </div>
 
@@ -28,63 +35,66 @@
             <h2>Reviews</h2>
             <div class="">
                 @foreach (var r in Model.Reviews)
-                {
-                    <div class="card">
+                    {
+                        @await Html.PartialAsync("_ReviewCard", new Pages._ReviewCardModel() { reviewDTO = r });
 
-                        <div class="row reviewCardTop">
 
-                            <div class="col-4 col-md-auto">
-                                <img src="/@r.MusicUnit.Image"
-                                     class="img-fluid rounded-start reviewImg"
-                                     alt="Album cover image"
-                                     id="test-image" />
-                            </div>
+                    @*<div class="card">
 
-                            <div class="col-8 col-md-auto">
-                                <div class="row">
-                                    <p class="card-subtitle mb-1 text-muted">
-                                        @r.Creator.Username
-                                    </p>
-                                </div>
-                                <h5 class="card-title">
-                                    @r.Title
-                                </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    @r.MusicUnit.Name
-                                </h6>
-                                <h7 class="card-subtitle mb-2 text-muted">
-                                    @r.MusicUnit.Type
-                                </h7>
-                            </div>
+                <div class="row reviewCardTop">
 
-                            <div class="col-12 mt-3">
-                                <div class="card-text d-flex align-items-center h-100 justify-content-end text-end">
-                                    @r.Rating/10
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="card-body">
-                                    <p class="card-text" id="long-text">
-                                        @r.Description
-                                    </p>
-
-                                    <p class="card-text">
-                                        <small class="text-muted">@r.LikedBy.Count Likes</small>
-                                    </p>
-                                    <form method="post" asp-page-handler="Like" asp-route-reviewId="@r.Id">
-                                        <button class="btn btn-primary" type="submit">Like</button>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="col-4 col-md-auto">
+                        <img src="/@r.MusicUnit.Image"
+                             class="img-fluid rounded-start reviewImg"
+                             alt="Album cover image"
+                             id="test-image" />
                     </div>
-                }
+
+                    <div class="col-8 col-md-auto">
+                        <div class="row">
+                            <p class="card-subtitle mb-1 text-muted">
+                                @r.Creator.Username
+                            </p>
+                        </div>
+                        <h5 class="card-title">
+                            @r.Title
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            @r.MusicUnit.Name
+                        </h6>
+                        <h7 class="card-subtitle mb-2 text-muted">
+                            @r.MusicUnit.Type
+                        </h7>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <div class="card-text d-flex align-items-center h-100 justify-content-end text-end">
+                            @r.Rating/10
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card-body">
+                            <p class="card-text" id="long-text">
+                                @r.Description
+                            </p>
+
+                            <p class="card-text">
+                                <small class="text-muted">@r.LikedBy.Count Likes</small>
+                            </p>
+                            <form method="post" asp-page-handler="Like" asp-route-reviewId="@r.Id">
+                                <button class="btn btn-primary" type="submit">Like</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>*@
+                    }
             </div>
         </div>
 
@@ -92,7 +102,7 @@
             <h2>Top Artists</h2>
             <div class="">
                 @foreach (var artist in Model.Artists)
-                    {
+                {
                     <div class="card">
                         <a class="text-decoration-none text-dark" asp-page="Single/SingleArtist" asp-route-id="@artist.Id">
                             <div class="row no-gutters">
@@ -108,10 +118,10 @@
                                 </div>
 
                             </div>
-                            </a>
+                        </a>
                     </div>
-                    }
-                </div>
+                }
+            </div>
 
             <h3>New releases</h3>
             <div>
@@ -135,10 +145,9 @@
                         </a>
                     </div>
                 }
-                
+
             </div>
         </div>
     </div>
 </div>
-
 
