@@ -20,7 +20,9 @@ namespace Web_Application.DTOs
         public DateTime? CreationDate { get; set; }
         
         [Required]
+        [Range(1, 10, ErrorMessage = "Please enter a number between 1 and 10.")]
         public double Rating { get; set; }
+
         public MusicUnitDTO? MusicUnit { get; set; }
         public UserDTO? Creator { get; set; }
         public List<UserDTO>? LikedBy { get; set; }

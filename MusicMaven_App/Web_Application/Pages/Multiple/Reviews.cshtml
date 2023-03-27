@@ -5,56 +5,9 @@
 <div class="container">
     <h1>Most recent reviews:</h1>
     <div class="card-deck">
-        @foreach (var review in Model.Reviews)
+        @foreach (var r in Model.Reviews)
         {
-                <div class="card">
-
-                <div class="row reviewCardTop">
-                    
-                            <div class="col-md-auto">
-                                <img src="images/tyler.jpeg"
-                                     class="img-fluid rounded-start reviewImg"
-                                     alt="Album cover image"
-                                     id="test-image" />
-                            </div>
-            
-                            <div class="col-md-auto">
-                                <div class="row">
-                                    <p class="card-subtitle mb-1 text-muted">
-                                        @review.Creator.Username
-                                    </p>
-                                </div>
-                                <h5 class="card-title">
-                                    @review.MusicUnit.Name
-                                </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    Kanye West
-                                </h6>
-                            </div>
-                    <div class="col">
-                        <div class="card-text d-flex align-items-center h-100 justify-content-end text-end">
-                            @review.Rating / 10
-                        </div>
-                    </div>
-                    
-                    </div>
-                    <div class="col-md-auto">
-                        <div class="card-body">
-                            <p class="card-text" id="long-text">
-                                @review.Description
-                            </p>
-                
-                            <p class="card-text">
-                                <small class="text-muted">@review.LikedBy.Count() Likes</small>
-                            </p>
-                            <a href="#" class="btn btn-primary">Like</a>
-
-                        </div>
-                    </div>
-                </div>
-            }
-            <!--Put cards here-->
-   
-       
+            @await Html.PartialAsync("_ReviewCardPartial", model: r);
+        }
     </div>
 </div>

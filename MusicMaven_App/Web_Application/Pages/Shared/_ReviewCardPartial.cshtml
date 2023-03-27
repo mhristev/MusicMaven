@@ -1,12 +1,10 @@
-﻿
-@model Web_Application.Pages._ReviewCardModel
-
+﻿@model DTOs.ReviewDTO
 <div class="card">
 
     <div class="row reviewCardTop">
 
         <div class="col-4 col-md-auto">
-            <img src="/@Model.reviewDTO.MusicUnit.Image"
+            <img src="/@Model.MusicUnit.Image"
                  class="img-fluid rounded-start reviewImg"
                  alt="Album cover image"
                  id="test-image" />
@@ -15,23 +13,23 @@
         <div class="col-8 col-md-auto">
             <div class="row">
                 <p class="card-subtitle mb-1 text-muted">
-                    @Model.reviewDTO.Creator.Username
+                    @Model.Creator.Username
                 </p>
             </div>
             <h5 class="card-title">
-                @Model.reviewDTO.Title
+                @Model.Title
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">
-                @Model.reviewDTO.MusicUnit.Name
+                @Model.MusicUnit.Name
             </h6>
             <h7 class="card-subtitle mb-2 text-muted">
-                @Model.reviewDTO.MusicUnit.Type
+                @Model.MusicUnit.Type
             </h7>
         </div>
 
         <div class="col-12 mt-3">
             <div class="card-text d-flex align-items-center h-100 justify-content-end text-end">
-                @Model.reviewDTO.Rating/10
+                @Model.Rating/10
             </div>
         </div>
 
@@ -41,13 +39,13 @@
         <div class="col">
             <div class="card-body">
                 <p class="card-text" id="long-text">
-                    @Model.reviewDTO.Description
+                    @Model.Description
                 </p>
 
                 <p class="card-text">
-                    <small class="text-muted">@Model.reviewDTO.LikedBy.Count Likes</small>
+                    <small class="text-muted">@Model.LikedBy.Count Likes</small>
                 </p>
-                <form method="post" asp-page-handler="Like" asp-route-reviewId="@Model.reviewDTO.Id">
+                <form method="post" asp-page-handler="LikeReview" asp-route-reviewId="@Model.Id">
                     <button class="btn btn-primary" type="submit">Like</button>
                 </form>
 
