@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Data_Access_Layer.Repositories
+namespace Business_Logic.Interfaces
 {
     public interface IRepository<T1> where T1 : class
     {
