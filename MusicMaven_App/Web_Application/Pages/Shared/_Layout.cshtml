@@ -149,7 +149,7 @@
                         </form>*@
                     
 
-                        @if (Context.Session.Get("IsAuthenticated") != null)
+                        @if (Context.User.FindFirst("Id") != null)
                         {
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">

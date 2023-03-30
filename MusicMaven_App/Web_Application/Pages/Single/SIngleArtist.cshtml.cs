@@ -7,7 +7,7 @@ using Web_Application.DTOs.MusicUnitDTOs;
 
 namespace Web_Application.Pages
 {
-    public class SingleArtist : MyBaseModel
+    public class SingleArtist : PageModel
     {
         private ReviewService reviewService = ReviewService.Instance;
         private MusicUnitService musicUnitService = MusicUnitService.Instance;
@@ -31,29 +31,6 @@ namespace Web_Application.Pages
                 Songs = musicUnitService.GetMostPopularSongsForArtistId(id).Select(song => SongDTO.FromSong(song)).ToList();
             }
         }
-        //public void OnPost(string id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        reviewService.AddReview(ReviewDTO.Title, ReviewDTO.Description, ReviewDTO.Rating, id, "creatorId");
-        //    }
-        //    OnGet(id);
-        //}
-
-        //public void OnPostCreateReview(string musicUnitId)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        reviewService.AddReview(ReviewDTO.Title, ReviewDTO.Description, ReviewDTO.Rating, musicUnitId, "creatorId");
-        //    }
-        //    OnGet(musicUnitId);
-        //}
-
-        //public void OnPostLike(string reviewId, string artistId)
-        //{
-        //    reviewService.AddLikeToReviewFromCurrentUser(reviewId, "userId");
-        //    // TODO AJAX file to refresh only the Likes
-        //    OnGet(artistId);
-        //}
+       
     }
 }

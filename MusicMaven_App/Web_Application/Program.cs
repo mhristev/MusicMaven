@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,16 @@ builder.Services.AddSession(options =>
 
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = new PathString("/SignIn");
+        options.LogoutPath = new PathString("/Logout");
+        options.AccessDeniedPath = new PathString("/LikeReview");
+        options.AccessDeniedPath = new PathString("/CreateReview");
+    });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +43,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();

@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data_Access_Layer\Data_Access_Layer.csproj" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
 </Project>

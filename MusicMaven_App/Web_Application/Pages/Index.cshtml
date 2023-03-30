@@ -21,9 +21,13 @@
             songs, and artists.
         </p>
 
-        @if (HttpContext.Session.GetString("Username") != null)
+        @if (@User.Identity.IsAuthenticated)
         {
-            <p>Welcome, @HttpContext.Session.GetString("Username").ToString()</p>
+            <p>Welcome, @User.Identity.Name!</p>
+        }
+        else
+        {
+            <p>Welcome, Anonymous!</p>
         }
     </div>
 </div>

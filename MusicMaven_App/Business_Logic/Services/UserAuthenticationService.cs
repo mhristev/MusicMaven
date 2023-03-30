@@ -3,9 +3,9 @@ using Business_Logic.Models;
 
 namespace Business_Logic.Services
 {
-	public class AuthService
+	public class UserAuthenticationService
 	{
-		public AuthService()
+		public UserAuthenticationService()
 		{
 		}
 

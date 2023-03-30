@@ -11,7 +11,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-start">
-                <form method="post" asp-page-handler="CreateReview" asp-route-musicUnitId="MusicUnitId" asp-route-reviewDTO="@Model.ReviewDTO">
+                <form method="post" asp-page="/CreateReview" asp-page-handler="CreateReview" asp-route-musicUnitId="MusicUnitId" asp-route-reviewDTO="@Model.ReviewDTO">
                     <input type="hidden" asp-for="MusicUnitId" />
                     <div class="mb-3">
                         <label asp-for="ReviewDTO.Title" class="form-label">Title</label>

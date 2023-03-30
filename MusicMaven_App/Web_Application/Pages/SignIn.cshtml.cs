@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Business_Logic.Models;
 using Business_Logic.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.DTOs;
@@ -15,7 +18,7 @@ namespace Web_Application.Pages
         [BindProperty]
         public LoginModel LoginModel { get; set; }
 
-        private AuthService authService = new AuthService();
+        private UserAuthenticationService authService = new UserAuthenticationService();
 
         public void OnGet()
         {
@@ -31,9 +34,16 @@ namespace Web_Application.Pages
                 {
                     UserDTO user = UserDTO.FromUser(result);
                     // store user data in session
-                    HttpContext.Session.Set("IsAuthenticated", BitConverter.GetBytes(true));
-                    HttpContext.Session.SetString("Username", user.Username);
-                    HttpContext.Session.SetString("UserId", user.Id);
+                    //HttpContext.Session.Set("IsAuthenticated", BitConverter.GetBytes(true));
+                    //HttpContext.Session.SetString("Username", user.Username);
+                    //HttpContext.Session.SetString("UserId", user.Id);
+
+                    List<Claim> claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Name, user.Username));
+                    claims.Add(new Claim("Id", user.Id));
+
+                    ClaimsIdentity cid = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    AuthenticationHttpContextExtensions.SignInAsync(HttpContext, CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(cid));
 
                     // redirect to home page or other authenticated page
                     return RedirectToPage("/Index");

@@ -8,7 +8,7 @@ using Web_Application.Pages.Shared;
 
 namespace Web_Application.Pages
 {
-    public class IndexModel : MyBaseModel
+    public class IndexModel : PageModel
     {
        // public Login2PartialModel Login2PartialModel { get; set; }
         private MusicUnitService musicUnitService = MusicUnitService.Instance;
@@ -25,20 +25,5 @@ namespace Web_Application.Pages
             Reviews = reviewService.GetAll().Select(r => ReviewDTO.FromReview(r)).ToList();
             NewAlbums = musicUnitService.GetNewReleases().Select(a => AlbumDTO.FromAlbum(a)).ToList();
         }
-
-        //public IActionResult OnPostLike(string reviewId)
-        //{
-        //    string? id = HttpContext.Session.GetString("UserId");
-        //    if (!string.IsNullOrEmpty(id))
-        //    {
-        //        reviewService.AddLikeToReviewFromCurrentUser(reviewId, userId: id);
-        //    } else
-        //    {
-        //        return RedirectToPage("/SignIn");
-        //    }
-
-        //    // TODO AJAX file to refresh only the Likes
-        //    return RedirectToPage("/Index");
-        //}
     }
 }

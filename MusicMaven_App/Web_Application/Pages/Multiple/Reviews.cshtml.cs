@@ -10,7 +10,7 @@ using Business_Logic.Models.Enums;
 
 namespace Web_Application.Pages
 {
-    public class ReviewsModel : MyBaseModel
+    public class ReviewsModel : PageModel
     {
         private ReviewService reviewService = ReviewService.Instance;
         public List<ReviewDTO> Reviews { get; set; } = new List<ReviewDTO>();
