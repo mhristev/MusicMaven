@@ -60,33 +60,35 @@ namespace Business_Logic.Services
             return reviews.OrderByDescending(r => r.CreationDate).ToList();
         }
 
-        public void AddReview(string title, string description, double rating, string musicUnitId, string creatorId)
+        public void AddReview(string title, string description, double rating, MusicUnit musicUnit, User creator)
         {
-            MusicUnit unit = MusicUnitService.Instance.GetMusicUnitWithId(musicUnitId);
-            Review r = reviewFactory.CreateReview(title, description, unit, userService.GetCurrentUser(), rating);
+            Review r = reviewFactory.CreateReview(title, description, musicUnit, creator, rating);
             reviews.Add(r);
         }
 
 
-        public List<Review> GetReviewsForMusicUnit(string id)
+        public List<Review> GetReviewsForMusicUnit(MusicUnit unit)
         {
-            return reviews.Where(review => review.MusicUnit.Id == id).OrderByDescending(r => r.CreationDate).ToList();
+            return reviews.Where(review => review.MusicUnit.Id == unit.Id).OrderByDescending(r => r.CreationDate).ToList();
         }
 
-        public void AddLikeToReviewFromCurrentUser(string reviewId, string userId)
+        public Review? GetReviewWithId(string id)
         {
-            Review r = reviews.Where(review => review.Id == reviewId).First();
-            foreach (User u in r.LikedBy) {
-                if (u.Id == userId)
+            return reviews.FirstOrDefault(r => r.Id == id);
+        }
+
+        public void AddLikeToReviewFromUser(Review review, User user)
+        {
+            foreach (User u in review.LikedBy)
+            {
+                if (u.Id == user.Id)
                 {
-                    r.LikedBy.Remove(u);
+                    review.LikedBy.Remove(u);
                     return;
                 }
             }
-            User? user = userService.GetUserById(userId);
-            if (user != null) {
-                r.LikedBy.Add(user);
-            }
+           
+            review.LikedBy.Add(user);   
         }
     }
 }

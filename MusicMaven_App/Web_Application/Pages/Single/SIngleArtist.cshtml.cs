@@ -26,9 +26,13 @@ namespace Web_Application.Pages
             if (artist != null)
             {
                 Artist = ArtistDTO.FromArtist(artist);
-                Albums = musicUnitService.GetAlbumsForArtistId(id).Select(album => AlbumDTO.FromAlbum(album)).ToList();
-                Reviews = reviewService.GetReviewsForMusicUnit(id).Select(review => ReviewDTO.FromReview(review)).ToList();
-                Songs = musicUnitService.GetMostPopularSongsForArtistId(id).Select(song => SongDTO.FromSong(song)).ToList();
+                Albums = musicUnitService.GetAlbumsForArtist(artist).Select(album => AlbumDTO.FromAlbum(album)).ToList();
+                MusicUnit? musicUnit = musicUnitService.GetMusicUnitWithId(id);
+                if (musicUnit != null)
+                {
+                    Reviews = reviewService.GetReviewsForMusicUnit(musicUnit).Select(review => ReviewDTO.FromReview(review)).ToList();
+                }
+                Songs = musicUnitService.GetMostPopularSongsForArtist(artist).Select(song => SongDTO.FromSong(song)).ToList();
             }
         }
        

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business_Logic.Models;
 using Business_Logic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +17,21 @@ namespace Web_Application.Pages
         {
             // Wont work if there is an active session because user session id is 1234
             // but in the test db now it generates random string and even though its the same name the users have different id
-            var currUser = HttpContext.User.FindFirst("Id");
-            if (currUser != null)
+            var user = HttpContext.User.FindFirst("Id");
+            if (user != null)
             {
-                string id = currUser.Value;
+                string id = user.Value;
                 ReviewService reviewService = ReviewService.Instance;
-                reviewService.AddLikeToReviewFromCurrentUser(reviewId, userId: id);
+                Review? review = reviewService.GetReviewWithId(reviewId);
+                if (review != null)
+                {
+                    UserService userService = UserService.Instance;
+                    User? currUser = userService.GetUserById(id);
+                    if (currUser != null)
+                    {
+                        reviewService.AddLikeToReviewFromUser(review, currUser);
+                    }
+                }
             }
             else
             {

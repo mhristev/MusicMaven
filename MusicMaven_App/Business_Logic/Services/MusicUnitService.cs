@@ -145,39 +145,39 @@ namespace Business_Logic.Services
             return musicUnits.FirstOrDefault(u => u.Id == id);
         }
 
-        public List<Album> GetAlbumsForArtistId(string id)
+        public List<Album> GetAlbumsForArtist(Artist artist)
         {
             return musicUnits
                     .Where(u => u.Type == MUSIC_UNIT_TYPE.ALBUM)
                     .Cast<Album>()
-                    .Where(a => a.Artists.Any(artist => artist.Id == id))
+                    .Where(album => album.Artists.Any(a => a.Id == artist.Id))
                     .ToList();
 
         }
 
-        public List<Song> GetSongsInAlbumId(string id)
+        public List<Song> GetSongsInAlbum(Album album)
         {
-            //return musicunit cuz we need only name
             return musicUnits
                     .Where(u => u.Type == MUSIC_UNIT_TYPE.SONG)
                     .Cast<Song>()
-                    .Where(s => s.Album.Id == id)
+                    .Where(s => s.Album.Id == album.Id)
                     .ToList();
         }
 
         public List<Artist> GetArtists()
-        { // return musicunit and display only name
+        {
+            // return musicunit and display only name ???
             return musicUnits.Where(u => u.Type == MUSIC_UNIT_TYPE.ARTIST).Cast<Artist>().ToList();
         }
 
-        public List<Song> GetMostPopularSongsForArtistId(string id)
+        public List<Song> GetMostPopularSongsForArtist(Artist artist)
         {
 // RETURN MUSICUNIT CUZ WE USE ONLY NAME
-            List<Album> albums = GetAlbumsForArtistId(id);
+            List<Album> albums = GetAlbumsForArtist(artist);
             List<Song> songs = new List<Song>();
             foreach (Album album in albums)
             {
-                songs.AddRange(GetSongsInAlbumId(album.Id));
+                songs.AddRange(GetSongsInAlbum(album));
             }
             return songs.OrderByDescending(s => s.AvrgRating).ToList();
         }
