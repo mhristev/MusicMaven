@@ -1,4 +1,5 @@
 ﻿@model DTOs.ReviewDTO
+@using Helpers 
 <div class="card">
 
     <div class="row reviewCardTop">
@@ -45,7 +46,7 @@
                 <p class="card-text">
                     <small class="text-muted">@Model.LikedBy.Count Likes</small>
                 </p>
-                <form method="post" asp-page="/LikeReview" asp-page-handler="LikeReview" asp-route-reviewId="@Model.Id">
+                <form method="post" asp-page="@PageRoutes.LikeReview" asp-page-handler="LikeReview" asp-route-reviewId="@Model.Id">
                     <button class="btn btn-primary" type="submit">Like</button>
                 </form>
 

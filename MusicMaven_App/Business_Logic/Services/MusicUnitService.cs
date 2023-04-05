@@ -22,7 +22,6 @@ namespace Business_Logic.Services
             var unit1 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, "Tyler, The Creator", "images/artist.png", 7, artistType: ARTIST_TYPE.SOLO);
             var unit2 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, "Kendrick Lamar", "images/artist.png", 8, artistType: ARTIST_TYPE.SOLO);
             var unit3 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, "Joeyy Bada$$", "images/artist.png", 8, artistType: ARTIST_TYPE.SOLO);
-            var unit4 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, "Joeyy Bada$$", "images/artist.png", 8, artistType: ARTIST_TYPE.SOLO);
 
             #region IgorAlbum
             var album1 = musicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, "IGOR", "images/album.png", 8, albumGenre: GENRE_TYPE.UNKNOWN, albumCreators: new List<Artist>() { (Artist)unit1 }, albumReleaseDate: DateTime.Now);
@@ -108,7 +107,7 @@ namespace Business_Logic.Services
 
             musicUnits = new List<MusicUnit>()
             {
-                unit1, unit2, unit3, unit4, album1, album2, album3,
+                unit1, unit2, unit3, album1, album2, album3,
                 igorsTheme, earfquake, iThink, exactlyWhatYouRunFrom, runningOutOfTime, newMagicWand, aBoyIsAGun, puppet, whatSGood, goneGoneThankYou,
                 foreword, whereThisFlowerBlooms, sometimes, seeYouAgain, whoDatBoy, pocket, gardenShed, boredom, iAintGotTime, s911MrLonely, droppinSeeds, november, glitter,
                 sherane, bIgPoWeR, bAcKsEaTfReEsTyLe, tHeArT, mOnEyTrEe, pOiSiOnTrEeS, gOoDkId, maadCiTy, sWiMmInGpOoLs, sInSiDeOuT, rEaLiTy, cOmPtOn

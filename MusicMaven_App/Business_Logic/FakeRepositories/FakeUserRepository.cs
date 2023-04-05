@@ -13,10 +13,10 @@ namespace Business_Logic.FakeRepositories
 		public FakeUserRepository()
 		{
             UserFactory userFactory = new UserFactory();
-            _users.Add(userFactory.CreateUser("admin", "admin@admin.com", "admin", type: USER_TYPE.ADMIN));
-            _users.Add(userFactory.CreateUser("testUser1", "testUser1@user.com", "user1"));
-            _users.Add(userFactory.CreateUser("testUser2", "testUser2@user.com", "user2"));
-            _users.Add(userFactory.CreateUser("testUser3", "testUser3@user.com", "user3"));
+            _users.Add(new User("1", "admin", "admin@admin.com", "admin", new List<User>(), type: USER_TYPE.ADMIN));
+            _users.Add(new User("2", "JohnSmith", "JohnSmith@app.com", "password", new List<User>(), type: USER_TYPE.NORMAL));
+            _users.Add(new User("3", "JaneDoe", "JaneDoe@admin.com", "password", new List<User>(), type: USER_TYPE.NORMAL));
+            _users.Add(new User("4", "AlexJohnson", "AlexJohnson@admin.com", "password", new List<User>(), type: USER_TYPE.NORMAL));
         }
 
         public void Delete(string id)
@@ -45,7 +45,7 @@ namespace Business_Logic.FakeRepositories
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            User? user = _users.FirstOrDefault(u => u.Id == entity.Id);            if (user != null)            {                user.Username = entity.Username;                user.Email = entity.Email;                user.Password = entity.Password;                user.Type = entity.Type;                user.Following = entity.Following;            }
         }
     }
 }

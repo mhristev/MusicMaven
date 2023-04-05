@@ -21,6 +21,6 @@ namespace Business_Logic.Models.MusicUnits
             this.artistType = artistType;
         }
 
-        public ARTIST_TYPE ArtistType { get => artistType; private set => artistType = value; }
+        public ARTIST_TYPE ArtistType { get => artistType; set => artistType = value; }
     }
 }

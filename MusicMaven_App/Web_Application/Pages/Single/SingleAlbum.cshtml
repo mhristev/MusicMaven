@@ -1,5 +1,6 @@
 ﻿@page
 @model Web_Application.Pages.Single.SingleAlbumModel
+@using Helpers
 @{
 }
 
@@ -105,7 +106,7 @@
         @foreach (var song in @Model.Songs)
         {
             <li>
-                <a class="text-decoration-none text-dark" asp-page="/Single/SingleSong" asp-route-id="@song.Id">
+                <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleSong" asp-route-id="@song.Id">
                     @song.Name
                 </a>
             </li>

@@ -1,5 +1,6 @@
 ﻿@page 
 @model Web_Application.Pages.SingleArtist
+@using Helpers 
 @{
 }
 
@@ -50,7 +51,7 @@
         @foreach (var song in Model.Songs.Take(5))
         {
             <div class="card">
-                <a class="text-decoration-none text-dark" asp-page="/Single/SingleSong" asp-route-id="@song.Id">
+                <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleSong" asp-route-id="@song.Id">
             <li> @song.Name </li>
                 </a>
 
@@ -89,7 +90,7 @@
 
 
         <div class="card" style="width: 13rem;">
-            <a class="text-decoration-none text-dark" asp-page="/Single/SingleAlbum" asp-route-id="@album.Id">
+            <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleAlbum" asp-route-id="@album.Id">
                 <img class="card-img-top" src="/@album.Image" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@album.Name</h5>

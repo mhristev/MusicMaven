@@ -39,15 +39,15 @@ namespace Business_Logic.Models
 
 
 
-        public string Id { get => id; private set => id = value; }
-        public string Title { get => title; private set => title = value; }
-        public string Description { get => description; private set => description = value; }
-        public DateTime CreationDate { get => creationDate; private set => creationDate = value; }
-        public double Rating { get => rating; private set => rating = value; }
+        public string Id { get => id; set => id = value; }
+        public string Title { get => title; set => title = value; }
+        public string Description { get => description; set => description = value; }
+        public DateTime CreationDate { get => creationDate; set => creationDate = value; }
+        public double Rating { get => rating; set => rating = value; }
 
-        public MusicUnit MusicUnit { get => musicUnit; private set => musicUnit = value; }
-        public User Creator { get => creator; private set => creator = value; }
+        public MusicUnit MusicUnit { get => musicUnit; set => musicUnit = value; }
+        public User Creator { get => creator; set => creator = value; }
 
-        public List<User> LikedBy { get => likedBy; private set => likedBy = value; }
+        public List<User> LikedBy { get => likedBy; set => likedBy = value; }
     }
 }

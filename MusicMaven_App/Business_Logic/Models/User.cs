@@ -26,13 +26,13 @@ namespace Business_Logic.Models
             this.type = type;
         }
 
-        public string Id { get => id; private set => id = value; }
-        public string Username { get => username; private set => username = value; }
-        public string Email { get => email; private set => email = value; }
-        public string Password { get => password; private set => password = value; }
+        public string Id { get => id; set => id = value; }
+        public string Username { get => username;  set => username = value; }
+        public string Email { get => email; set => email = value; }
+        public string Password { get => password; set => password = value; }
 
-        public List<User> Following { get => following; private set => following = value; }
+        public List<User> Following { get => following; set => following = value; }
 
-        public USER_TYPE Type { get => type; private set => type = value; }
+        public USER_TYPE Type { get => type; set => type = value; }
     }
 }

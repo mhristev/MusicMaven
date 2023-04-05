@@ -1,4 +1,5 @@
 ﻿@model Models.CreateReviewModel
+@using Helpers
 <!-- Review Modal -->
 <button type="button" class="btn btn-secondary btn-lg active" data-bs-toggle="modal" data-bs-target="#reviewModal">
     Write a Review
@@ -11,7 +12,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-start">
-                <form method="post" asp-page="/CreateReview" asp-page-handler="CreateReview" asp-route-musicUnitId="MusicUnitId" asp-route-reviewDTO="@Model.ReviewDTO">
+                <form method="post" asp-page="@PageRoutes.CreateReview" asp-page-handler="CreateReview" asp-route-musicUnitId="MusicUnitId" asp-route-reviewDTO="@Model.ReviewDTO">
                     <input type="hidden" asp-for="MusicUnitId" />
                     <div class="mb-3">
                         <label asp-for="ReviewDTO.Title" class="form-label">Title</label>

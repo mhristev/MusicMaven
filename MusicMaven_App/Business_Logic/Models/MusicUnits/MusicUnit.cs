@@ -24,10 +24,10 @@ namespace Business_Logic.Models.MusicUnits
             this.type = type;
         }
 
-        public string Id { get => id; set => id = value; }
-        public string Name { get => name; private set => name = value; }
-        public string Image { get => image; private set => image = value; }
-        public double AvrgRating { get => avgRating; private set => avgRating = value; }
+        public string Id { get => id; private set => id = value; }
+        public string Name { get => name; set => name = value; }
+        public string Image { get => image; set => image = value; }
+        public double AvrgRating { get => avgRating; set => avgRating = value; }
         public MUSIC_UNIT_TYPE Type { get => type; private set => type = value; }
     }
 }

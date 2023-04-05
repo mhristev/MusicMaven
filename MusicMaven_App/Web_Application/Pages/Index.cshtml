@@ -1,5 +1,6 @@
 ﻿@page
 @using Microsoft.AspNetCore.Http
+@using Helpers
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -51,7 +52,7 @@
                 @foreach (var artist in Model.Artists)
                 {
                     <div class="card">
-                        <a class="text-decoration-none text-dark" asp-page="Single/SingleArtist" asp-route-id="@artist.Id">
+                        <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleArtist" asp-route-id="@artist.Id">
                             <div class="row no-gutters">
 
                                 <div class="col-md-4">
@@ -75,7 +76,7 @@
                 @foreach (var album in Model.NewAlbums)
                 {
                     <div class="card">
-                        <a class="text-decoration-none text-dark" asp-page="Single/SingleAlbum" asp-route-id="@album.Id">
+                        <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleAlbum" asp-route-id="@album.Id">
                             <div class="row no-gutters">
 
                                 <div class="col-md-4">
