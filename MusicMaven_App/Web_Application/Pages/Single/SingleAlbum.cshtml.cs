@@ -16,7 +16,7 @@ namespace Web_Application.Pages.Single
     {
         MusicUnitService musicUnitService = MusicUnitService.Instance;
         ReviewService reviewService = ReviewService.Instance;
-        UserService userService = UserService.Instance;
+        UserService userService;
         public List<SongDTO> Songs { get; private set; } = new List<SongDTO>();
         public AlbumDTO Album { get; private set; } = new AlbumDTO();
         public List<ReviewDTO> Reviews { get; private set; } = new List<ReviewDTO>();
@@ -24,6 +24,11 @@ namespace Web_Application.Pages.Single
         [BindProperty]
         public ReviewDTO ReviewDTO { get; set; }
 
+
+        public SingleAlbumModel(UserService userService)
+        {
+            this.userService = userService; 
+        }
         public void OnGet(string id)
         {
             Album? album = (Album?)musicUnitService.GetMusicUnitWithId(id);

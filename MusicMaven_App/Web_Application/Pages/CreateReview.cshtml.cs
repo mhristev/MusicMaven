@@ -17,7 +17,12 @@ namespace Web_Application.Pages
     {
         private MusicUnitService musicUnitService = MusicUnitService.Instance;
         private ReviewService reviewService = ReviewService.Instance;
-        private UserService userService = UserService.Instance;
+        private UserService userService;
+
+        public CreateReviewModel(UserService us)
+        {
+            userService = us;
+        }
 
         public IActionResult OnPostCreateReview(string musicUnitId, ReviewDTO reviewDTO)
         {

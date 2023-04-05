@@ -1,4 +1,5 @@
 ﻿using System;
+using Business_Logic.Interfaces;
 using Business_Logic.Models;
 
 namespace Data_Access_Layer.Repositories

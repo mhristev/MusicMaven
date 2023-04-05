@@ -14,10 +14,16 @@ namespace Web_Application.Pages
         [BindProperty]
         public RegisterModel RegisterModel { get; set; }
 
-        private UserService userService = UserService.Instance;
+        private UserService userService;
+
+        public SignUpModel(UserService userService)
+        {
+            this.userService = userService;
+        }
+
         public void OnGet()
         {
-        }
+            }
 
         public IActionResult OnPost()
         {

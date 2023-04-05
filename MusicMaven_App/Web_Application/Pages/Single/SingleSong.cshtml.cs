@@ -16,12 +16,17 @@ namespace Web_Application.Pages.Single
     {
         private MusicUnitService musicUnitService = MusicUnitService.Instance;
         private ReviewService reviewService = ReviewService.Instance;
-        private UserService userService = UserService.Instance;
+        private UserService userService;
         public SongDTO Song { get; private set; } = new SongDTO();
         public List<ReviewDTO> Reviews { get; private set; } = new List<ReviewDTO>();
 
         [BindProperty]
         public ReviewDTO ReviewDTO { get; set; }
+
+        public SingleSongModel(UserService us)
+        {
+            userService = us;
+        }
 
         public void OnGet(string id)
         {

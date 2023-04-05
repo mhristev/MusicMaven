@@ -13,6 +13,11 @@ namespace Web_Application.Pages
     [Authorize]
 	public class LikeReviewModel : PageModel
     {
+        private readonly UserService userService;
+        public LikeReviewModel(UserService us)
+        {
+            userService = us;
+        }
         public IActionResult OnPostLikeReview(string reviewId)
         {
             // Wont work if there is an active session because user session id is 1234
@@ -25,7 +30,7 @@ namespace Web_Application.Pages
                 Review? review = reviewService.GetReviewWithId(reviewId);
                 if (review != null)
                 {
-                    UserService userService = UserService.Instance;
+                    //UserService userService = UserService.Instance;
                     User? currUser = userService.GetUserById(id);
                     if (currUser != null)
                     {

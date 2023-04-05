@@ -18,7 +18,14 @@ namespace Web_Application.Pages
         [BindProperty]
         public LoginModel LoginModel { get; set; }
 
-        private UserAuthenticationService authService = new UserAuthenticationService();
+        private UserAuthenticationService authService;
+
+
+        public SignInModel(UserService userService)
+        {
+            authService = new UserAuthenticationService(userService);
+        }
+
 
         public void OnGet()
         {

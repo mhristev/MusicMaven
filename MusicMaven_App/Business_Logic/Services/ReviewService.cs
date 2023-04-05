@@ -16,7 +16,7 @@ namespace Business_Logic.Services
         private static ReviewService instance;
         private List<Review> reviews;
         private ReviewFactory reviewFactory;
-        private UserService userService = UserService.Instance;
+       // private UserService userService = UserService.Instance;
         
 
         private ReviewService()
@@ -29,12 +29,16 @@ namespace Business_Logic.Services
         //    User johnDoe = new User("1", "johndoe", "JohnDoe@gmail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
         //    User janeDoe = new User("2", "janedoe", "JaneDoe@mail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
 
+            //reviews = new List<Review>() {
+            //    reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, userService.GetCurrentUser(), 8.3),
+            //    reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, userService.GetCurrentUser(), 4.1)
+            //};
             reviews = new List<Review>() {
-                reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, userService.GetCurrentUser(), 8.3),
-                reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, userService.GetCurrentUser(), 4.1)
+                reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, new User("1", "", "", "", new(), USER_TYPE.NORMAL) , 8.3),
+                reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, new User("1", "", "", "", new(), USER_TYPE.NORMAL), 4.1)
             };
 
-                               
+
         }
 
         public static ReviewService Instance

@@ -5,14 +5,16 @@ namespace Business_Logic.Services
 {
 	public class UserAuthenticationService
 	{
-		public UserAuthenticationService()
+		private readonly UserService userService;
+		public UserAuthenticationService(UserService us)
 		{
+			userService = us;
 		}
 
 		public User? AuthenticateUser(string email, string password)
 		{
 			//TODO propper auth
-			User? user = UserService.Instance.GetUserByEmail(email);
+			User? user = userService.GetUserByEmail(email);
 			if (user != null) {
 				if (user.Password == password)
 					return user;

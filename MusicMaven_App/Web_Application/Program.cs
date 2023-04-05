@@ -1,10 +1,14 @@
+using Business_Logic.FakeRepositories;
+using Business_Logic.Interfaces;
+using Business_Logic.Models;
+using Business_Logic.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-//builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IRepository<User>, FakeUserRepository>();
+builder.Services.AddScoped<UserService>();
 
 var mvcBuilder = builder.Services.AddRazorPages();
 
