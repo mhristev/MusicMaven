@@ -4,7 +4,7 @@ using Business_Logic.Models.MusicUnits;
 
 namespace Business_Logic.FakeRepositories
 {
-	public class FakeSongRepository: IRepository<Song>
+	public class FakeSongRepository: IRepository<Song>, ISongRepository
 	{
         private readonly List<Song> _songs = new List<Song>();        public FakeSongRepository()
 		{
@@ -30,9 +30,7 @@ namespace Business_Logic.FakeRepositories
         public Song? GetById(string id)
         {
             return _songs.FirstOrDefault(s => s.Id == id);
-        }
-
-        public void Insert(Song entity)
+        }        public void Insert(Song entity)
         {
             _songs.Add(entity);
         }
@@ -41,6 +39,8 @@ namespace Business_Logic.FakeRepositories
         {
             Song? song = _songs.FirstOrDefault(s => s.Id == entity.Id);            if (song != null)            {                song.Name = entity.Name;                song.Image = entity.Image;                song.DurationInSeconds = entity.DurationInSeconds;                song.AvrgRating = entity.AvrgRating;                song.Album = entity.Album;            }
         }
+
+        public List<Song> GetHighestRatedSongsForArtistId(string id, int songCount)        {            List<Song> result = _songs                .Where(s => s.Album.Artists.Any(a => a.Id == id))                .OrderByDescending(s => s.AvrgRating)                .ToList();            return result;        }        public List<Song> GetSongsInAlbumId(string id)        {            List<Song> result = _songs                .Where(s => s.Album.Id == id)                .ToList();            return result;        }
     }
 }
 

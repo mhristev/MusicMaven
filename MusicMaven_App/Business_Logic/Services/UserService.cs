@@ -13,34 +13,26 @@ namespace Business_Logic.Services
     public class UserService
     {
         private UserFactory userFactory;
-        private readonly IRepository<User> userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserService(IRepository<User> repository)
+        public UserService(IUserRepository repository)
         {
             userFactory = new UserFactory();
-            userRepository = repository;
-        }
-
-        public User GetCurrentUser()
-        {
-            return userRepository.GetAll().First();
-
+            _userRepository = repository;
         }
 
         public User? GetUserById(string id)
         {
-            return userRepository.GetById(id);
+            return _userRepository.GetById(id);
         }
 
         public void CreateUser(string email, string username, string password) 
         {
-            userRepository.Insert(userFactory.CreateUser(username, email, password, USER_TYPE.NORMAL));
+            _userRepository.Insert(userFactory.CreateUser(username, email, password, USER_TYPE.NORMAL));
         }
 
         public User? GetUserByEmail(string email)
-        {
-           
-            return userRepository.GetAll().FirstOrDefault(u => u.Email == email);
+        {            return _userRepository.GetUserByEmail(email);
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Web_Application.Pages
         [BindProperty]
         public RegisterModel RegisterModel { get; set; }
 
-        private UserService userService;
+        private UserService _userService;
 
         public SignUpModel(UserService userService)
         {
-            this.userService = userService;
+            this._userService = userService;
         }
 
         public void OnGet()
@@ -32,7 +32,7 @@ namespace Web_Application.Pages
             {
                 try
                 {
-                    userService.CreateUser(RegisterModel.Email, RegisterModel.Username, RegisterModel.Password);
+                    _userService.CreateUser(RegisterModel.Email, RegisterModel.Username, RegisterModel.Password);
                     return RedirectToPage("/SignIn");
                 } catch (ArgumentException ex) {
 

@@ -10,20 +10,24 @@ namespace Web_Application.Pages
 {
     public class IndexModel : PageModel
     {
-       // public Login2PartialModel Login2PartialModel { get; set; }
-        private MusicUnitService musicUnitService = MusicUnitService.Instance;
-        private ReviewService reviewService = ReviewService.Instance;
+        private MusicUnitService _musicUnitService;
+        private ReviewService _reviewService;
+
         public List<ArtistDTO> Artists { get; private set; }
         public List<ReviewDTO> Reviews { get; private set; }
         public List<AlbumDTO> NewAlbums { get; private set; }
 
-        public string Username { get; set; }
+        public IndexModel(MusicUnitService musicUnitService, ReviewService reviewService)        {
+            _musicUnitService = musicUnitService;
+            _reviewService = reviewService;
+        }
+
 
         public void OnGet()
         {
-            Artists = musicUnitService.GetArtists().Select(a => ArtistDTO.FromArtist(a)).ToList();
-            Reviews = reviewService.GetAll().Select(r => ReviewDTO.FromReview(r)).ToList();
-            NewAlbums = musicUnitService.GetNewReleases().Select(a => AlbumDTO.FromAlbum(a)).ToList();
+            Artists = _musicUnitService.GetArtists().Select(a => ArtistDTO.FromArtist(a)).ToList();
+            Reviews = _reviewService.GetAll().Select(r => ReviewDTO.FromReview(r)).ToList();
+            NewAlbums = _musicUnitService.GetNewReleasedAlbums(5).Select(a => AlbumDTO.FromAlbum(a)).ToList();
         }
     }
 }

@@ -7,7 +7,7 @@ using Business_Logic.Models.MusicUnits;
 
 namespace Business_Logic.FakeRepositories
 {
-	public class FakeArtistRepository: IRepository<Artist>
+	public class FakeArtistRepository: IArtistRepository
 	{
         private readonly List<Artist> _artists = new List<Artist>();
 

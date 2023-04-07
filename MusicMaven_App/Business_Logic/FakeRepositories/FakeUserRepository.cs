@@ -6,7 +6,7 @@ using Business_Logic.Models.Enums;
 
 namespace Business_Logic.FakeRepositories
 {
-	public class FakeUserRepository: IRepository<User>
+	public class FakeUserRepository: IUserRepository
     {
         private List<User> _users = new List<User>();
 
@@ -36,9 +36,7 @@ namespace Business_Logic.FakeRepositories
         public User? GetById(string id)
         {
             return _users.FirstOrDefault(user => user.Id == id);
-        }
-
-        public void Insert(User entity)
+        }        public User? GetUserByEmail(string email)        {            return _users.FirstOrDefault(user => user.Email == email);        }        public void Insert(User entity)
         {
             _users.Add(entity);
         }

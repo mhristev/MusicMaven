@@ -13,10 +13,10 @@ namespace Web_Application.Pages
     [Authorize]
 	public class LikeReviewModel : PageModel
     {
-        private readonly UserService userService;
-        public LikeReviewModel(UserService us)
+        private ReviewService _reviewService;
+        public LikeReviewModel(ReviewService reviewService)
         {
-            userService = us;
+            _reviewService = reviewService;
         }
         public IActionResult OnPostLikeReview(string reviewId)
         {
@@ -26,16 +26,10 @@ namespace Web_Application.Pages
             if (user != null)
             {
                 string id = user.Value;
-                ReviewService reviewService = ReviewService.Instance;
-                Review? review = reviewService.GetReviewWithId(reviewId);
+                Review? review = _reviewService.GetReviewWithId(reviewId);
                 if (review != null)
                 {
-                    //UserService userService = UserService.Instance;
-                    User? currUser = userService.GetUserById(id);
-                    if (currUser != null)
-                    {
-                        reviewService.AddLikeToReviewFromUser(review, currUser);
-                    }
+                        _reviewService.LikeReviewByCurrentUser(review);
                 }
             }
             else

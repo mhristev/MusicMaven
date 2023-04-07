@@ -15,13 +15,15 @@ namespace Web_Application.Pages
     [Authorize]
 	public class CreateReviewModel : PageModel
     {
-        private MusicUnitService musicUnitService = MusicUnitService.Instance;
-        private ReviewService reviewService = ReviewService.Instance;
-        private UserService userService;
+        private MusicUnitService _musicUnitService;
+        private ReviewService _reviewService;
+        private UserService _userService;
 
-        public CreateReviewModel(UserService us)
+        public CreateReviewModel(UserService us, MusicUnitService musicUnitService, ReviewService reviewService)
         {
-            userService = us;
+            _userService = us;
+            _reviewService = reviewService;
+            _musicUnitService = musicUnitService;
         }
 
         public IActionResult OnPostCreateReview(string musicUnitId, ReviewDTO reviewDTO)
@@ -32,13 +34,13 @@ namespace Web_Application.Pages
                 string? id = HttpContext.User.FindFirst("Id")?.Value;
                 if (!string.IsNullOrEmpty(id))
                 {
-                    MusicUnit? unit = musicUnitService.GetMusicUnitWithId(musicUnitId);
+                    MusicUnit? unit = _musicUnitService.GetMusicUnitWithId(musicUnitId);
                     if (id != null)
                     {
-                        User? user = userService.GetUserById(id);
+                        User? user = _userService.GetUserById(id);
                         if (user != null && unit != null)
                         {
-                            reviewService.AddReview(reviewDTO.Title, reviewDTO.Description, reviewDTO.Rating, unit, user);
+                            _reviewService.AddReview(reviewDTO.Title, reviewDTO.Description, reviewDTO.Rating, unit, user);
                         }
                     }
                     string previousUrl = Request.Headers["Referer"].ToString();

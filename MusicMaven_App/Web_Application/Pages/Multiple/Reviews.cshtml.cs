@@ -12,13 +12,16 @@ namespace Web_Application.Pages
 {
     public class ReviewsModel : PageModel
     {
-        private ReviewService reviewService = ReviewService.Instance;
+        private ReviewService _reviewService;
         public List<ReviewDTO> Reviews { get; set; } = new List<ReviewDTO>();
 
+        public ReviewsModel(ReviewService reviewService)        {
+            this._reviewService = reviewService;
+        }
         
         public void OnGet()
         {
-            Reviews = reviewService.GetAll().Select(r => ReviewDTO.FromReview(r)).ToList();
+            Reviews = _reviewService.GetAll().Select(r => ReviewDTO.FromReview(r)).ToList();
         }
 
         

@@ -9,30 +9,36 @@ namespace Web_Application.Pages
 {
     public class SingleArtist : PageModel
     {
-        private ReviewService reviewService = ReviewService.Instance;
-        private MusicUnitService musicUnitService = MusicUnitService.Instance;
+        private ReviewService _reviewService;
+        private MusicUnitService _musicUnitService;
+
         public ArtistDTO Artist { get; private set; }
         public List<AlbumDTO> Albums { get; private set; }
         public List<ReviewDTO> Reviews { get; private set; }
         public List<SongDTO> Songs { get; private set; }
 
-
         [BindProperty]
         public ReviewDTO ReviewDTO { get; set; }
+
+        public SingleArtist(ReviewService reviewService, MusicUnitService musicUnitService)        {
+            this._reviewService = reviewService;
+            this._musicUnitService = musicUnitService;
+        }
+
         public void OnGet(string id)
         {
 
-            Artist? artist = (Artist?)musicUnitService.GetMusicUnitWithId(id);
+            Artist? artist = (Artist?)_musicUnitService.GetMusicUnitWithId(id);
             if (artist != null)
             {
                 Artist = ArtistDTO.FromArtist(artist);
-                Albums = musicUnitService.GetAlbumsForArtist(artist).Select(album => AlbumDTO.FromAlbum(album)).ToList();
-                MusicUnit? musicUnit = musicUnitService.GetMusicUnitWithId(id);
+                Albums = _musicUnitService.GetAlbumsForArtist(artist).Select(album => AlbumDTO.FromAlbum(album)).ToList();
+                MusicUnit? musicUnit = _musicUnitService.GetMusicUnitWithId(id);
                 if (musicUnit != null)
                 {
-                    Reviews = reviewService.GetReviewsForMusicUnit(musicUnit).Select(review => ReviewDTO.FromReview(review)).ToList();
+                    Reviews = _reviewService.GetReviewsForMusicUnit(musicUnit).Select(review => ReviewDTO.FromReview(review)).ToList();
                 }
-                Songs = musicUnitService.GetMostPopularSongsForArtist(artist).Select(song => SongDTO.FromSong(song)).ToList();
+                Songs = _musicUnitService.GetHighestRatedSongsForArtist(artist, 5).Select(song => SongDTO.FromSong(song)).ToList();
             }
         }
        

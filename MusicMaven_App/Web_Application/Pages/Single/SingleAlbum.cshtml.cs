@@ -14,9 +14,10 @@ namespace Web_Application.Pages.Single
 {
 	public class SingleAlbumModel : PageModel
     {
-        MusicUnitService musicUnitService = MusicUnitService.Instance;
-        ReviewService reviewService = ReviewService.Instance;
-        UserService userService;
+        private MusicUnitService _musicUnitService;
+        private ReviewService _reviewService;
+        private UserService _userService;
+
         public List<SongDTO> Songs { get; private set; } = new List<SongDTO>();
         public AlbumDTO Album { get; private set; } = new AlbumDTO();
         public List<ReviewDTO> Reviews { get; private set; } = new List<ReviewDTO>();
@@ -25,20 +26,22 @@ namespace Web_Application.Pages.Single
         public ReviewDTO ReviewDTO { get; set; }
 
 
-        public SingleAlbumModel(UserService userService)
+        public SingleAlbumModel(UserService userService, MusicUnitService musicUnitService, ReviewService reviewService)
         {
-            this.userService = userService; 
+            this._userService = userService;
+            this._reviewService = reviewService;
+            this._musicUnitService = musicUnitService;
         }
         public void OnGet(string id)
         {
-            Album? album = (Album?)musicUnitService.GetMusicUnitWithId(id);
+            Album? album = (Album?)_musicUnitService.GetMusicUnitWithId(id);
             if (album != null) {
                 Album = AlbumDTO.FromAlbum(album);
-                Songs = musicUnitService.GetSongsInAlbum(album).Select(s => SongDTO.FromSong(s)).ToList();
-                MusicUnit? musicUnit = musicUnitService.GetMusicUnitWithId(id);
+                Songs = _musicUnitService.GetSongsInAlbum(album).Select(s => SongDTO.FromSong(s)).ToList();
+                MusicUnit? musicUnit = _musicUnitService.GetMusicUnitWithId(id);
                 if (musicUnit != null)
                 {
-                    Reviews = reviewService.GetReviewsForMusicUnit(musicUnit).Select(r => ReviewDTO.FromReview(r)).ToList();
+                    Reviews = _reviewService.GetReviewsForMusicUnit(musicUnit).Select(r => ReviewDTO.FromReview(r)).ToList();
                 }
             }
         }
@@ -51,32 +54,16 @@ namespace Web_Application.Pages.Single
                 string? currUserId = HttpContext.User.FindFirst("Id")?.Value;
                 if (currUserId != null)
                 {
-                    User? currUser = userService.GetUserById(currUserId);
-                    MusicUnit? unit = musicUnitService.GetMusicUnitWithId(id);
+                    User? currUser = _userService.GetUserById(currUserId);
+                    MusicUnit? unit = _musicUnitService.GetMusicUnitWithId(id);
                     if (currUser != null && unit != null)
                     {
-                        reviewService.AddReview(ReviewDTO.Title, ReviewDTO.Description, ReviewDTO.Rating, unit, currUser);
+                        _reviewService.AddReview(ReviewDTO.Title, ReviewDTO.Description, ReviewDTO.Rating, unit, currUser);
                     }
                 }
             }
             OnGet(id);
         }
 
-        public void OnPostLike(string reviewId, string albumId)
-        {
-            Review? review = reviewService.GetReviewWithId(reviewId);
-            string? currUserId = HttpContext.User.FindFirst("Id")?.Value;
-            User? currUser = null;
-            if (currUserId != null)
-            {
-                currUser = userService.GetUserById(currUserId);
-            }
-            if (currUser != null && review != null)
-            {
-                reviewService.AddLikeToReviewFromUser(review, currUser);
-            }
-            // TODO AJAX file to refresh only the Likes
-            OnGet(albumId);
-        }
     }
 }
