@@ -9,7 +9,7 @@ namespace Business_Logic.FakeRepositories
 {
 	public class FakeArtistRepository: IRepository<Artist>
 	{
-        private List<Artist> _artists = new List<Artist>();
+        private readonly List<Artist> _artists = new List<Artist>();
 
         public FakeArtistRepository()
 		{            _artists.Add(new Artist("1", "Tyler, The Creator", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5));            _artists.Add(new Artist("2", "Kendrick Lamar", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5));            _artists.Add(new Artist("3", "Joeyy Bada$$", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 8));        }

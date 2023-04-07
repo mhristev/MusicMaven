@@ -24,8 +24,8 @@ namespace Business_Logic.Models.MusicUnits
             this.durationInSeconds = duration;
         }
 
-        public int DurationInSeconds { get => durationInSeconds; private set => durationInSeconds = value; }
-        public Album Album { get => album; private set => album = value; }
+        public int DurationInSeconds { get => durationInSeconds; set => durationInSeconds = value; }
+        public Album Album { get => album; set => album = value; }
     }
 
 }
