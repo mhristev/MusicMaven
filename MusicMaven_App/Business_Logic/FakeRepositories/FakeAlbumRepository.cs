@@ -4,12 +4,16 @@ using Business_Logic.Models.MusicUnits;
 
 namespace Business_Logic.FakeRepositories
 {
-	public class FakeAlbumRepository: IRepository<Album>, IAlbumRepository
+	public class FakeAlbumRepository: IAlbumRepository
 	{
-        private readonly List<Album> _albums = new List<Album>();        public FakeAlbumRepository()
+        private readonly List<Album> _albums = new List<Album>();        private IArtistRepository _artistRepository;        public FakeAlbumRepository(IArtistRepository artistRepository)
 		{
-            _albums.Add(new Album("4", "IGOR", "images/album.png", MUSIC_UNIT_TYPE.ALBUM, GENRE_TYPE.UNKNOWN, new List<Artist>() { new Artist("1", "Tyler, The Creator", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5) }, 9, DateTime.Today));            _albums.Add(new Album("5", "Flower boy", "images/album.png", MUSIC_UNIT_TYPE.ALBUM, GENRE_TYPE.UNKNOWN, new List<Artist>() { new Artist("1", "Tyler, The Creator", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5) }, 8, DateTime.Today));
-            _albums.Add(new Album("6", "good kid, m.A.A.d city", "images/album.png", MUSIC_UNIT_TYPE.ALBUM, GENRE_TYPE.UNKNOWN, new List<Artist>() { new Artist("2", "Kendrick Lamar", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5) }, 8, DateTime.Today));        }
+            _artistRepository = artistRepository;
+            Artist? tyler = _artistRepository.GetById("1");
+            if (tyler != null)            {                _albums.Add(new Album("4", "IGOR", "images/album.png", MUSIC_UNIT_TYPE.ALBUM, GENRE_TYPE.UNKNOWN, new List<Artist>() { tyler }, 9, DateTime.Today));                _albums.Add(new Album("5", "Flower boy", "images/album.png", MUSIC_UNIT_TYPE.ALBUM, GENRE_TYPE.UNKNOWN, new List<Artist>() { tyler }, 8, DateTime.Today));            }
+            Artist? kendrick = _artistRepository.GetById("1");
+            if (kendrick != null)            {                _albums.Add(new Album("6", "good kid, m.A.A.d city", "images/album.png", MUSIC_UNIT_TYPE.ALBUM, GENRE_TYPE.UNKNOWN, new List<Artist>() { kendrick }, 8, DateTime.Today));            }
+        }
 
         public void Delete(string id)
         {

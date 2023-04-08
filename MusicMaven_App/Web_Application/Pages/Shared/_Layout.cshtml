@@ -157,6 +157,7 @@
                                     <form method="post" asp-page="@PageRoutes.Logout">
                                         <a class="nav-link custom-link-nav" onclick="this.closest('form').submit(); return false;" asp-area="">Logout</a>
                                     </form>
+                                    <a class="nav-link custom-link-nav" asp-area="" asp-page="@PageRoutes.Profile" asp-route-id="@Context.User.FindFirst("Id").Value">Profile</a>
                                 </li>
 
                             </ul>

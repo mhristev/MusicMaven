@@ -11,14 +11,15 @@ namespace Business_Logic.FakeRepositories
     public class FakeReviewRepository: IReviewRepository
     {
         private readonly List<Review> _reviews = new List<Review>();
+        private IArtistRepository _artistRepository;
         //private IMusicUnitRepository musicUnitRepository;
         private IUserRepository _userRepository;
 
-        public FakeReviewRepository(IUserRepository userRepository)
-        {            _userRepository = userRepository;            // this.musicUnitRepository = musicUnitRepository;            // this.userRepository = userRepository;            User creator = new User("2", "JohnSmith", "JohnSmith@app.com", "password", new List<User>(), type: USER_TYPE.NORMAL);
-            Artist artist = new Artist("1", "Tyler, The Creator", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, Enums.ARTIST_TYPE.SOLO, 8);
-            _reviews.Add(new Review("1", "Great Album", "I loved this album so much.", DateTime.Today, 8.1, artist, creator, new List<User>()));
-            _reviews.Add(new Review("2", "Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", DateTime.Today, 2.2, artist, creator, new List<User>()));
+        public FakeReviewRepository(IUserRepository userRepository, IArtistRepository artistRepository)
+        {            _userRepository = userRepository;            _artistRepository = artistRepository;
+            User? admin = _userRepository.GetById("1");
+            Artist? tyler = _artistRepository.GetById("1");
+            if (admin != null && tyler != null)            {                _reviews.Add(new Review("1", "Great Album", "I loved this album so much.", DateTime.Today, 8.1, tyler, admin, new List<User>()));                _reviews.Add(new Review("2", "Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", DateTime.Today, 2.2, tyler, admin, new List<User>()));            }
         }
 
         public void Delete(string id)
@@ -38,7 +39,7 @@ namespace Business_Logic.FakeRepositories
         public Review? GetById(string id)
         {
             return _reviews.FirstOrDefault(review => review.Id == id);
-        }        public List<Review> GetReviewsForMusicUnitId(string id)        {            return _reviews                .Where(review => review.MusicUnit.Id == id)                .OrderByDescending(r => r.CreationDate)                .ToList();        }        public void Insert(Review entity)
+        }        public List<Review> GetReviewsForMusicUnitId(string id)        {            return _reviews                .Where(review => review.MusicUnit.Id == id)                .OrderByDescending(r => r.CreationDate)                .ToList();        }        public List<Review> GetReviewsForuserId(string id)        {            return _reviews                .Where(review => review.Creator.Id == id)                .OrderByDescending(r => r.CreationDate)                .ToList();        }        public void Insert(Review entity)
         {
             _reviews.Add(entity);
         }        public void LikeReviewIdByUserId(string reviewId, string userId)        {            Review? review = _reviews.FirstOrDefault(r => r.Id == reviewId);            if (review != null)            {                User? user = _userRepository.GetById(userId);                if (user != null)                {                    if (review.LikedBy.Any(u => u.Id == userId))                    {                        review.LikedBy.RemoveAll(u => u.Id == userId);                    }                    else                    {                        review.LikedBy.Add(user);                    }                }            }        }        public void Update(Review entity)

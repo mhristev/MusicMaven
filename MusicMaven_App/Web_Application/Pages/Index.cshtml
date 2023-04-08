@@ -95,6 +95,30 @@
                 }
 
             </div>
+            <h3>Highest Rated</h3>
+            <div>
+                @foreach (var unit in Model.HighestRatedMusicUnits)
+                {
+                    <div class="card">
+                        <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleAlbum" asp-route-id="@unit.Id">
+                            <div class="row no-gutters">
+
+                                <div class="col-md-4">
+                                    <img src="/@unit.Image" class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@unit.Name</h5>
+                                        <p class="card-text">@unit.Type</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
         </div>
     </div>
 </div>

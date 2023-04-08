@@ -1,6 +1,6 @@
 ﻿using Business_Logic.Enums;
 using Business_Logic.Factories;
-using Business_Logic.Interfaces;using Business_Logic.Models.MusicUnits;
+using Business_Logic.Interfaces;using Business_Logic.Models;using Business_Logic.Models.MusicUnits;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -154,6 +154,19 @@ namespace Business_Logic.Services
         public List<Album> GetNewReleasedAlbums(int albumCount)
         {
             return _albumRepository.GetNewReleasedAlbums(albumCount);
+        }
+
+        public List<MusicUnit> GetLastReviewedMusicUnits(List<Review> reviews, int unitCount)        {
+            List<MusicUnit> units = new List<MusicUnit>();
+
+            List<Review> lastNReviews = reviews.OrderByDescending(r => r.CreationDate).Take(unitCount).ToList();            // Get the unique music units from the reviews            List<MusicUnit> uniqueMusicUnits = lastNReviews.Select(r => r.MusicUnit).Distinct().ToList();
+            foreach (MusicUnit musicUnit in uniqueMusicUnits)            {                units.Add(musicUnit);            }
+
+            return units;
+        }
+
+        public List<MusicUnit> GetHighestRatedMusicUnits(int unitCount)        {
+            return _musicUnitRepository.GetHighestRatedUnits(unitCount);
         }
 
     }

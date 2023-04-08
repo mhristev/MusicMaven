@@ -1,6 +1,7 @@
 ﻿using Business_Logic.Enums;
 using Business_Logic.Factories;
-using Business_Logic.Interfaces;using Business_Logic.Models;
+using Business_Logic.Interfaces;
+using Business_Logic.Models;
 using Business_Logic.Models.Enums;
 using Business_Logic.Models.MusicUnits;
 using System;
@@ -15,7 +16,9 @@ namespace Business_Logic.Services
     {
         
        // private List<Review> reviews;
-        private ReviewFactory _reviewFactory;        // private UserService userService = UserService.Instance;        private IReviewRepository _reviewRepository;
+        private ReviewFactory _reviewFactory;
+        // private UserService userService = UserService.Instance;
+        private IReviewRepository _reviewRepository;
         private ICurrentUserProvider _currentUserProvider;
 
         public ReviewService(IReviewRepository reviewRepository, ICurrentUserProvider currentUserProvider)
@@ -55,7 +58,9 @@ namespace Business_Logic.Services
 
         public void AddReview(string title, string description, double rating, MusicUnit musicUnit, User creator)
         {
-            Review r = _reviewFactory.CreateReview(title, description, musicUnit, creator, rating);            // reviews.Add(r);            _reviewRepository.Insert(r);
+            Review r = _reviewFactory.CreateReview(title, description, musicUnit, creator, rating);
+            // reviews.Add(r);
+            _reviewRepository.Insert(r);
         }
 
 
@@ -73,8 +78,18 @@ namespace Business_Logic.Services
         public void LikeReviewByCurrentUser(Review review)
         {
             string? userId = _currentUserProvider.GetCurrentUserId();
-            if (userId != null)            {                _reviewRepository.LikeReviewIdByUserId(review.Id, userId);
+            if (userId != null)
+            {
+                _reviewRepository.LikeReviewIdByUserId(review.Id, userId);
             }
+        }
+
+        public List<Review> GetReviewsForUser(User user)
+        {
+            return _reviewRepository.GetReviewsForuserId(user.Id);
+        }
+
+        public double GetAverageRatingForReviews(List<Review> reviews)        {            if (reviews == null || reviews.Count == 0)            {                return 0.0;            }            double totalRating = 0.0;            foreach (var review in reviews)            {                totalRating += review.Rating;            }            double averageRating = totalRating / reviews.Count;            return Math.Round(averageRating, 2);
         }
     }
 }
