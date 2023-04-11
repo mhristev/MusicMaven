@@ -1,13 +1,13 @@
-﻿namespace Desktop_Application
+﻿namespace Desktop_Application.MusicSection
 {
-    partial class AlbumControl
+    partial class Tes
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,47 +20,55 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Windows Form Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             label1 = new Label();
             button1 = new Button();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(57, 68);
+            label1.Location = new Point(396, 185);
             label1.Name = "label1";
-            label1.Size = new Size(43, 15);
+            label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
-            label1.Text = "Album";
+            label1.Text = "label1";
             // 
             // button1
             // 
-            button1.BackColor = Color.Red;
-            button1.Location = new Point(136, 3);
+            button1.Location = new Point(315, 177);
             button1.Name = "button1";
-            button1.Size = new Size(22, 23);
+            button1.Size = new Size(75, 23);
             button1.TabIndex = 1;
-            button1.Text = "X";
-            button1.UseVisualStyleBackColor = false;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // AlbumControl
+            // textBox1
+            // 
+            textBox1.Location = new Point(190, 177);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 2;
+            // 
+            // Tes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(800, 450);
+            Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(label1);
-            Name = "AlbumControl";
-            Size = new Size(161, 153);
-            Click += AlbumControl_Click;
+            Name = "Tes";
+            Text = "Tes";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -69,5 +77,6 @@
 
         private Label label1;
         private Button button1;
+        private TextBox textBox1;
     }
 }

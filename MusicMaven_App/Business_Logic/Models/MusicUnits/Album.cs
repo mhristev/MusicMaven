@@ -24,6 +24,7 @@ namespace Business_Logic.Models.MusicUnits
         {
             this.genre = genre;
             this.artists = artists;
+            this.releaseDate = releaseDate;
 
         }
 

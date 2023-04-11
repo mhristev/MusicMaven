@@ -28,6 +28,7 @@ namespace Desktop_Application
             }
             _activeForm = childForm;
             childForm.TopLevel = false;
+            childForm.RightToLeft = RightToLeft.No;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
             this.panel3.Controls.Add(childForm);
@@ -43,18 +44,18 @@ namespace Desktop_Application
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new MusicArtistForm(), sender);
+            OpenChildForm(new MusicArtist(), sender);
         }
         public void fillUsers()
         {
             flowLayoutPanel1.Controls.Clear();
 
-            List<UserControl1> components = new List<UserControl1>();
-            components.Add(new UserControl1());
-            components.Add(new UserControl1());
-            components.Add(new UserControl1());
+            List<DefaultMusicControl> components = new List<DefaultMusicControl>();
+            components.Add(new DefaultMusicControl(new Business_Logic.Models.MusicUnits.MusicUnit("", "", "", 1, Business_Logic.Enums.MUSIC_UNIT_TYPE.ARTIST)));
+            components.Add(new DefaultMusicControl(new Business_Logic.Models.MusicUnits.MusicUnit("", "", "", 1, Business_Logic.Enums.MUSIC_UNIT_TYPE.ALBUM)));
+            components.Add(new DefaultMusicControl(new Business_Logic.Models.MusicUnits.MusicUnit("", "", "", 1, Business_Logic.Enums.MUSIC_UNIT_TYPE.SONG)));
 
-            foreach (UserControl1 auc in components)
+            foreach (DefaultMusicControl auc in components)
             {
                 flowLayoutPanel1.Controls.Add(auc);
             }

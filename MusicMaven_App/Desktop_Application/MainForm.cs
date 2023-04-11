@@ -1,11 +1,15 @@
+using Desktop_Application.MusicSection;
+using Desktop_Application.UsersSection;
+
 namespace Desktop_Application
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private Form? _activeForm;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+            //OpenChildForm(new MusicForm(), this);
         }
 
         private void OpenChildForm(Form childForm, object btnSender)
@@ -28,6 +32,16 @@ namespace Desktop_Application
         private void btnUsers_Click(object sender, EventArgs e)
         {
             OpenChildForm(new MusicForm(), sender);
+        }
+
+        private void btnUsers_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new UsersForm(), sender);
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Tes(), sender);
         }
     }
 }

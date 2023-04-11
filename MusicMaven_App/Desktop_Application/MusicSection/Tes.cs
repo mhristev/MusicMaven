@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Desktop_Application.MusicSection
 {
-    public partial class MusicSong : Form
+    public partial class Tes : Form
     {
-        public MusicSong()
+        public Tes()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            label1.Text = textBox1.Text;
         }
     }
 }

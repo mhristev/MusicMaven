@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business_Logic.Enums;
+using Business_Logic.Models.MusicUnits;
+using Desktop_Application.MusicSection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,28 +13,45 @@ using System.Windows.Forms;
 
 namespace Desktop_Application
 {
-    public partial class UserControl1 : UserControl
+    public partial class DefaultMusicControl : UserControl
     {
-        public UserControl1()
+        private MusicUnit _musicUnit;
+        public DefaultMusicControl(MusicUnit musicUnit)
         {
             InitializeComponent();
+            _musicUnit = musicUnit;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MusicForm parent = this.FindForm() as MusicForm;
+            MusicForm? parent = this.FindForm() as MusicForm;
             if (parent != null)
             {
-                parent.OpenChildForm(new MusicArtistForm(), sender);
+                parent.OpenChildForm(new MusicArtist(), sender);
             }
+        }
 
-            MusicForm grandParent = this.Parent as MusicForm;
-
-            if (grandParent != null)
+        private void DefaultMusicControl_Click(object sender, EventArgs e)
+        {
+            MusicForm? parent = this.FindForm() as MusicForm;
+            if (parent != null)
             {
-                grandParent.OpenChildForm(new MusicArtistForm(), sender);
+                switch (_musicUnit.Type)
+                {
+                    case MUSIC_UNIT_TYPE.ARTIST:
+                        parent.OpenChildForm(new MusicArtist(), sender);
+                        break;
+                    case MUSIC_UNIT_TYPE.ALBUM:
+                        parent.OpenChildForm(new MusicAlbum(), sender);
+                        break;
+                    case MUSIC_UNIT_TYPE.SONG:
+                        parent.OpenChildForm(new MusicSong(), sender);
+                        break;
+                    default:
+                        MessageBox.Show("Error while loading object.");
+                        break;
+                }
             }
-
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Desktop_Application
+﻿namespace Desktop_Application.Controls
 {
-    partial class AlbumControl
+    partial class SongControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,38 +29,26 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(57, 68);
+            label1.Location = new Point(24, 15);
             label1.Name = "label1";
-            label1.Size = new Size(43, 15);
+            label1.Size = new Size(34, 15);
             label1.TabIndex = 0;
-            label1.Text = "Album";
+            label1.Text = "Song";
             // 
-            // button1
-            // 
-            button1.BackColor = Color.Red;
-            button1.Location = new Point(136, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(22, 23);
-            button1.TabIndex = 1;
-            button1.Text = "X";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // AlbumControl
+            // SongControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            Controls.Add(button1);
             Controls.Add(label1);
-            Name = "AlbumControl";
-            Size = new Size(161, 153);
-            Click += AlbumControl_Click;
+            Name = "SongControl";
+            Size = new Size(459, 43);
+            Click += SongControl_Click;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -68,6 +56,5 @@
         #endregion
 
         private Label label1;
-        private Button button1;
     }
 }

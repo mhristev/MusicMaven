@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
             button2 = new Button();
             panel1 = new Panel();
             panel3 = new Panel();
+            button1 = new Button();
             textBox1 = new TextBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
@@ -41,24 +41,16 @@
             panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
-            // 
-            button1.Location = new Point(14, 18);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // button2
             // 
-            button2.Location = new Point(808, 33);
+            button2.BackColor = Color.FromArgb(24, 137, 149);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(856, 173);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(162, 23);
             button2.TabIndex = 2;
-            button2.Text = "Add";
-            button2.UseVisualStyleBackColor = true;
+            button2.Text = "Create Artist";
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // panel1
@@ -75,34 +67,50 @@
             // 
             // panel3
             // 
+            panel3.BackColor = Color.FromArgb(68, 61, 97);
             panel3.Controls.Add(button1);
             panel3.Controls.Add(textBox1);
             panel3.Controls.Add(flowLayoutPanel1);
             panel3.Controls.Add(button2);
-            panel3.Location = new Point(0, 73);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 67);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1063, 656);
+            panel3.Size = new Size(1063, 694);
             panel3.TabIndex = 6;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(24, 137, 149);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(513, 167);
+            button1.Name = "button1";
+            button1.Size = new Size(68, 29);
+            button1.TabIndex = 1;
+            button1.Text = "Find";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(54, 173);
+            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(50, 167);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.RightToLeft = RightToLeft.No;
-            textBox1.Size = new Size(457, 23);
+            textBox1.Size = new Size(457, 29);
             textBox1.TabIndex = 5;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new Point(54, 202);
+            flowLayoutPanel1.Location = new Point(41, 202);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(964, 464);
+            flowLayoutPanel1.Size = new Size(977, 481);
             flowLayoutPanel1.TabIndex = 3;
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.BackColor = Color.FromArgb(53, 47, 95);
             panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
@@ -122,14 +130,17 @@
             label1.TabIndex = 0;
             label1.Text = "Music";
             // 
-            // Test
+            // MusicForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(68, 61, 97);
             ClientSize = new Size(1061, 722);
             Controls.Add(panel1);
-            MinimumSize = new Size(1063, 761);
-            Name = "Test";
+            ForeColor = Color.Black;
+            MaximizeBox = false;
+            MinimumSize = new Size(1077, 761);
+            Name = "MusicForm";
             Text = "Test";
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -140,7 +151,6 @@
         }
 
         #endregion
-        private Button button1;
         private Button button2;
         private Panel panel1;
         private FlowLayoutPanel flowLayoutPanel1;
@@ -148,5 +158,6 @@
         private Label label1;
         private TextBox textBox1;
         private Panel panel3;
+        private Button button1;
     }
 }

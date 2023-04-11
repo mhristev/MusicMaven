@@ -8,9 +8,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Business_Logic\Business_Logic.csproj" />
-    <ProjectReference Include="..\Web_Application\Web_Application.csproj" />
-  </ItemGroup>
-
 </Project>

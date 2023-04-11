@@ -1,6 +1,6 @@
 ﻿namespace Desktop_Application
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -39,7 +39,7 @@
             // 
             // sidebarPanel
             // 
-            sidebarPanel.BackColor = SystemColors.ActiveCaption;
+            sidebarPanel.BackColor = Color.FromArgb(53, 47, 95);
             sidebarPanel.Controls.Add(panel1);
             sidebarPanel.Controls.Add(btnMusic);
             sidebarPanel.Controls.Add(btnUsers);
@@ -61,7 +61,7 @@
             // 
             // btnMusic
             // 
-            btnMusic.BackColor = SystemColors.ActiveCaption;
+            btnMusic.BackColor = Color.Transparent;
             btnMusic.FlatAppearance.BorderSize = 0;
             btnMusic.FlatStyle = FlatStyle.Flat;
             btnMusic.Font = new Font("Segoe UI Black", 13F, FontStyle.Bold, GraphicsUnit.Point);
@@ -80,7 +80,7 @@
             // 
             // btnUsers
             // 
-            btnUsers.BackColor = SystemColors.ActiveCaption;
+            btnUsers.BackColor = Color.Transparent;
             btnUsers.FlatAppearance.BorderSize = 0;
             btnUsers.FlatStyle = FlatStyle.Flat;
             btnUsers.Font = new Font("Segoe UI Black", 13F, FontStyle.Bold, GraphicsUnit.Point);
@@ -95,10 +95,11 @@
             btnUsers.TextAlign = ContentAlignment.MiddleLeft;
             btnUsers.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnUsers.UseVisualStyleBackColor = false;
+            btnUsers.Click += btnUsers_Click_1;
             // 
             // btnLogout
             // 
-            btnLogout.BackColor = SystemColors.ActiveCaption;
+            btnLogout.BackColor = Color.Transparent;
             btnLogout.FlatAppearance.BorderSize = 0;
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Segoe UI Black", 13F, FontStyle.Bold, GraphicsUnit.Point);
@@ -113,23 +114,27 @@
             btnLogout.TextAlign = ContentAlignment.MiddleLeft;
             btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // panel2
             // 
+            panel2.BackColor = Color.FromArgb(78, 71, 108);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(123, 0);
+            panel2.MaximumSize = new Size(1063, 761);
+            panel2.MinimumSize = new Size(1063, 761);
             panel2.Name = "panel2";
             panel2.Size = new Size(1063, 761);
             panel2.TabIndex = 3;
             // 
-            // Form1
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 761);
             Controls.Add(panel2);
             Controls.Add(sidebarPanel);
-            Name = "Form1";
+            Name = "MainForm";
             Text = "Form1";
             sidebarPanel.ResumeLayout(false);
             ResumeLayout(false);

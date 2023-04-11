@@ -1,6 +1,6 @@
 ﻿namespace Desktop_Application
 {
-    partial class UserControl1
+    partial class DefaultMusicControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
             SuspendLayout();
             // 
-            // button1
-            // 
-            button1.Location = new Point(22, 24);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // UserControl1
+            // DefaultMusicControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            Controls.Add(button1);
-            MaximumSize = new Size(964, 70);
-            MinimumSize = new Size(964, 70);
-            Name = "UserControl1";
-            Size = new Size(964, 70);
+            BackColor = Color.FromArgb(101, 93, 140);
+            MaximumSize = new Size(970, 0);
+            MinimumSize = new Size(970, 0);
+            Name = "DefaultMusicControl";
+            Size = new Size(970, 50);
+            Click += DefaultMusicControl_Click;
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Button button1;
     }
 }
