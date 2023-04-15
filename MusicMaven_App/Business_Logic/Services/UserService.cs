@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business_Logic.Exceptions;
 
 namespace Business_Logic.Services
 {
@@ -32,7 +33,7 @@ namespace Business_Logic.Services
         }
 
         public User? GetUserByEmail(string email)
-        {            return _userRepository.GetUserByEmail(email);
+        {            if (string.IsNullOrEmpty(email))            {                throw new EmptyEmailException();            }            if (!EmailFormatter.IsValid(email))            {                throw new InvalidEmailException(email);            }            return _userRepository.GetUserByEmail(email);
         }
     }
 }

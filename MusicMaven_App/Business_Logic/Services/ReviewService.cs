@@ -14,10 +14,7 @@ namespace Business_Logic.Services
 {
     public class ReviewService
     {
-        
-       // private List<Review> reviews;
         private ReviewFactory _reviewFactory;
-        // private UserService userService = UserService.Instance;
         private IReviewRepository _reviewRepository;
         private ICurrentUserProvider _currentUserProvider;
 
@@ -28,38 +25,14 @@ namespace Business_Logic.Services
             _reviewFactory = new ReviewFactory();
         }
 
-        //private ReviewService()
-        //{
-        //    reviewFactory = new ReviewFactory();
-        //    MusicUnitService musicUnitService = MusicUnitService.Instance;
-        //    Artist tyler = (Artist)musicUnitService.GetAllMusicUnits().First();
-        //    //Artist artist = new Artist(Guid.NewGuid().ToString(), "Tyler the Creator", "images/tyler", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 9);
-
-        ////    User johnDoe = new User("1", "johndoe", "JohnDoe@gmail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
-        ////    User janeDoe = new User("2", "janedoe", "JaneDoe@mail.com", "password1", new List<User>(), USER_TYPE.NORMAL);
-
-        //    //reviews = new List<Review>() {
-        //    //    reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, userService.GetCurrentUser(), 8.3),
-        //    //    reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, userService.GetCurrentUser(), 4.1)
-        //    //};
-        //    reviews = new List<Review>() {
-        //        reviewFactory.CreateReview("Great Album","I loved this album so much.", tyler, new User("1", "", "", "", new(), USER_TYPE.NORMAL) , 8.3),
-        //        reviewFactory.CreateReview("Disappointing", "I was really looking forward to this album, but it didn't meet my expectations.", tyler, new User("1", "", "", "", new(), USER_TYPE.NORMAL), 4.1)
-        //    };
-
-
-        //}
-
         public List<Review> GetAll()
         {
             return _reviewRepository.GetAll();
-           // return reviews.OrderByDescending(r => r.CreationDate).ToList();
         }
 
         public void AddReview(string title, string description, double rating, MusicUnit musicUnit, User creator)
         {
             Review r = _reviewFactory.CreateReview(title, description, musicUnit, creator, rating);
-            // reviews.Add(r);
             _reviewRepository.Insert(r);
         }
 

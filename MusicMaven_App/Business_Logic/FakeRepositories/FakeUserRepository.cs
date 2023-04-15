@@ -3,6 +3,7 @@ using Business_Logic.Factories;
 using Business_Logic.Interfaces;
 using Business_Logic.Models;
 using Business_Logic.Models.Enums;
+using Business_Logic.Exceptions;
 
 namespace Business_Logic.FakeRepositories
 {
@@ -37,8 +38,7 @@ namespace Business_Logic.FakeRepositories
         {
             return _users.FirstOrDefault(user => user.Id == id);
         }        public User? GetUserByEmail(string email)        {            return _users.FirstOrDefault(user => user.Email == email);        }        public void Insert(User entity)
-        {
-            _users.Add(entity);
+        {            if (_users.Any(u => u.Email == entity.Email))            {                throw new EmailExistException(entity.Email);            }            if (_users.Any(u => u.Username == entity.Username))            {                throw new UsernameExistException(entity.Username);            }            _users.Add(entity);
         }
 
         public void Update(User entity)

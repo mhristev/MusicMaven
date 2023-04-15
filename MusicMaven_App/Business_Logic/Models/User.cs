@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace Business_Logic.Models
+using Business_Logic.Exceptions;
+using System.Text.RegularExpressions;using Business_Logic.Services;namespace Business_Logic.Models
 {
     public class User
     {
@@ -18,18 +18,40 @@ namespace Business_Logic.Models
 
         public User(string id, string username, string email, string password, List<User> following, USER_TYPE type)
         {
-            this.id = id;
-            this.username = username;
-            this.email = email;
-            this.password = password;
-            this.following = following;
-            this.type = type;
+            this.Id = id;
+            this.Username = username;
+            this.Email = email;
+            this.Password = password;
+            this.Following = following;
+            this.Type = type;
         }
 
         public string Id { get => id; set => id = value; }
-        public string Username { get => username;  set => username = value; }
-        public string Email { get => email; set => email = value; }
-        public string Password { get => password; set => password = value; }
+        public string Username
+        {
+            get => username;
+            set            {
+                if (string.IsNullOrEmpty(value))                {
+                    throw new EmptyUsernameException();
+                }
+                username = value;
+            }
+
+        }
+        public string Email
+        {
+            get => email;            set            {                if (string.IsNullOrEmpty(value))                {                    throw new EmptyEmailException();                }                if (!EmailFormatter.IsValid(value))                {                    throw new InvalidEmailException(value);                }                email = value;            }        }
+        public string Password
+        {
+            get => password;
+            set
+            {
+                if (string.IsNullOrEmpty(value))                {
+                    throw new EmptyPasswordException();
+                }
+                password = value;
+            }
+        }
 
         public List<User> Following { get => following; set => following = value; }
 
