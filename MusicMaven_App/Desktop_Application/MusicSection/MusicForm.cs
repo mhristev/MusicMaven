@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business_Logic.Enums;
+using Business_Logic.Factories;
+using Business_Logic.Models.MusicUnits;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +21,7 @@ namespace Desktop_Application
             InitializeComponent();
             // flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
             fillUsers();
+            cmbBoxArtistType.DataSource = Enum.GetValues(typeof(ARTIST_TYPE));
         }
         public void OpenChildForm(Form childForm, object btnSender)
         {
@@ -41,14 +45,9 @@ namespace Desktop_Application
         {
             this.Close();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new MusicArtist(), sender);
-        }
         public void fillUsers()
         {
-            flowLayoutPanel1.Controls.Clear();
+            flowPanelMusicUnits.Controls.Clear();
 
             List<DefaultMusicControl> components = new List<DefaultMusicControl>();
             components.Add(new DefaultMusicControl(new Business_Logic.Models.MusicUnits.MusicUnit("", "", "", 1, Business_Logic.Enums.MUSIC_UNIT_TYPE.ARTIST)));
@@ -57,8 +56,40 @@ namespace Desktop_Application
 
             foreach (DefaultMusicControl auc in components)
             {
-                flowLayoutPanel1.Controls.Add(auc);
+                flowPanelMusicUnits.Controls.Add(auc);
             }
+        }
+
+        private void btnCreateArtist_Click(object sender, EventArgs e)
+        {
+            string name = txtBoxArtistName.Text;
+            string imageURL = txtBoxArtistImageURL.Text;
+            string artistTypeSelectedText = cmbBoxArtistType.Text;
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Please enter a name.");
+                return;
+            }
+            if (!Enum.TryParse(artistTypeSelectedText, out ARTIST_TYPE artistType))
+            {
+                MessageBox.Show("Please select a valid artist type.");
+                return;
+            }
+            if (!Uri.IsWellFormedUriString(imageURL, UriKind.RelativeOrAbsolute))
+            {
+                MessageBox.Show("Please enter a valid image URL.");
+                return;
+            }
+
+            MusicUnit unit = MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, name, imageURL, 0, artistType: artistType);
+
+            flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(unit));
+
+            txtBoxArtistName.Text = string.Empty;
+            txtBoxArtistImageURL.Text = string.Empty;
+            cmbBoxArtistType.Text = string.Empty;
+
         }
     }
 }

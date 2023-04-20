@@ -33,5 +33,10 @@ namespace Desktop_Application
                 grandParent.OpenChildForm(new MusicAlbum(), sender);
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

@@ -20,15 +20,9 @@ namespace Desktop_Application
         {
             InitializeComponent();
             _musicUnit = musicUnit;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MusicForm? parent = this.FindForm() as MusicForm;
-            if (parent != null)
-            {
-                parent.OpenChildForm(new MusicArtist(), sender);
-            }
+            lblName.Text = _musicUnit.Name;
+            lblType.Text = _musicUnit.Type.ToString();
+            lblRating.Text = _musicUnit.AvrgRating.ToString();
         }
 
         private void DefaultMusicControl_Click(object sender, EventArgs e)

@@ -29,25 +29,40 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            btnDelete = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 15);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(3, 10);
             label1.Name = "label1";
             label1.Size = new Size(34, 15);
             label1.TabIndex = 0;
             label1.Text = "Song";
             // 
+            // btnDelete
+            // 
+            btnDelete.BackgroundImage = Properties.Resources.icons8_delete_100__1_;
+            btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(274, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(33, 30);
+            btnDelete.TabIndex = 1;
+            btnDelete.UseVisualStyleBackColor = true;
+            // 
             // SongControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.FromArgb(101, 93, 140);
+            Controls.Add(btnDelete);
             Controls.Add(label1);
             Name = "SongControl";
-            Size = new Size(459, 43);
+            Size = new Size(310, 36);
             Click += SongControl_Click;
             ResumeLayout(false);
             PerformLayout();
@@ -56,5 +71,6 @@
         #endregion
 
         private Label label1;
+        private Button btnDelete;
     }
 }

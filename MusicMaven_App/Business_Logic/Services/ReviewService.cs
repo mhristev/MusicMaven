@@ -14,7 +14,6 @@ namespace Business_Logic.Services
 {
     public class ReviewService
     {
-        private ReviewFactory _reviewFactory;
         private IReviewRepository _reviewRepository;
         private ICurrentUserProvider _currentUserProvider;
 
@@ -22,7 +21,6 @@ namespace Business_Logic.Services
         {
             _reviewRepository = reviewRepository;
             _currentUserProvider = currentUserProvider;
-            _reviewFactory = new ReviewFactory();
         }
 
         public List<Review> GetAll()
@@ -32,7 +30,7 @@ namespace Business_Logic.Services
 
         public void AddReview(string title, string description, double rating, MusicUnit musicUnit, User creator)
         {
-            Review r = _reviewFactory.CreateReview(title, description, musicUnit, creator, rating);
+            Review r = ReviewFactory.CreateReview(title, description, musicUnit, creator, rating);
             _reviewRepository.Insert(r);
         }
 

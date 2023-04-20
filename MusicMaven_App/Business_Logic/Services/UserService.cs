@@ -13,12 +13,10 @@ namespace Business_Logic.Services
 {
     public class UserService
     {
-        private UserFactory userFactory;
         private readonly IUserRepository _userRepository;
 
         public UserService(IUserRepository repository)
         {
-            userFactory = new UserFactory();
             _userRepository = repository;
         }
 
@@ -29,7 +27,7 @@ namespace Business_Logic.Services
 
         public void CreateUser(string email, string username, string password) 
         {
-            _userRepository.Insert(userFactory.CreateUser(username, email, password, USER_TYPE.NORMAL));
+            _userRepository.Insert(UserFactory.CreateUser(username, email, password, USER_TYPE.NORMAL));
         }
 
         public User? GetUserByEmail(string email)

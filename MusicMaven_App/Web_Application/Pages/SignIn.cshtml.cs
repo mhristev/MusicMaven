@@ -21,9 +21,9 @@ namespace Web_Application.Pages
         private UserAuthenticationService authService;
 
 
-        public SignInModel(UserService userService)
+        public SignInModel(UserAuthenticationService authService)
         {
-            authService = new UserAuthenticationService(userService);
+            this.authService = authService;
         }
 
 

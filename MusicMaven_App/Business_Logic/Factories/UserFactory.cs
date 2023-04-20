@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business_Logic.Factories
 {
-    public  class UserFactory
+    public static class UserFactory
     {
-        public User CreateUser(string username, string email, string password, USER_TYPE type = USER_TYPE.NORMAL)
+        public static User CreateUser(string username, string email, string password, USER_TYPE type = USER_TYPE.NORMAL)
         {
             return new User(Guid.NewGuid().ToString(), username, email, password, new List<User>(), type);
         }

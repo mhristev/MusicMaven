@@ -22,6 +22,9 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<MusicUnitService>();
+builder.Services.AddScoped<AlbumService>();
+builder.Services.AddScoped<ArtistService>();
+builder.Services.AddScoped<SongService>();
 builder.Services.AddScoped<ReviewService>();
 builder.Services.AddScoped<UserAuthenticationService>();
 builder.Services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();

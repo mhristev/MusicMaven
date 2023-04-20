@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop_Application.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,11 +29,6 @@ namespace Desktop_Application
             this.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         public void OpenChildForm(Form childForm, object btnSender)
         {
 
@@ -51,10 +47,6 @@ namespace Desktop_Application
             childForm.Show();
         }
 
-        private void Test2_Load(object sender, EventArgs e)
-        {
-
-        }
         public void fillUsers()
         {
             flowLayoutPanel1.Controls.Clear();
@@ -63,15 +55,17 @@ namespace Desktop_Application
             components.Add(new AlbumControl());
             components.Add(new AlbumControl());
             components.Add(new AlbumControl());
+            components.Add(new AlbumControl());
+            components.Add(new AlbumControl());
+            components.Add(new AlbumControl());
+            components.Add(new AlbumControl());
+            components.Add(new AlbumControl());
+            components.Add(new AlbumControl());
 
             foreach (AlbumControl auc in components)
             {
                 flowLayoutPanel1.Controls.Add(auc);
             }
-        }
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -104,9 +98,6 @@ namespace Desktop_Application
             lblName.Hide();
             lblImage.Hide();
             lblArtistType.Hide();
-
-
-
         }
 
         private void MusicArtist_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -140,6 +131,15 @@ namespace Desktop_Application
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void btnAddArtist_Click(object sender, EventArgs e)
+        {
+            if (flowPanelAddArtists.Controls.Count < 3)
+            {
+                flowPanelAddArtists.Controls.Add(new AddArtistAlbumCreationControl());
+            }
+
         }
     }
 }

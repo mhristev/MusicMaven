@@ -28,30 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button2 = new Button();
+            btnCreateArtist = new Button();
             panel1 = new Panel();
             panel3 = new Panel();
+            groupBox1 = new GroupBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            cmbBoxArtistType = new ComboBox();
+            txtBoxArtistImageURL = new TextBox();
+            txtBoxArtistName = new TextBox();
             button1 = new Button();
             textBox1 = new TextBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowPanelMusicUnits = new FlowLayoutPanel();
             panel2 = new Panel();
             label1 = new Label();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            groupBox1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // button2
+            // btnCreateArtist
             // 
-            button2.BackColor = Color.FromArgb(24, 137, 149);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(856, 173);
-            button2.Name = "button2";
-            button2.Size = new Size(162, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Create Artist";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            btnCreateArtist.BackColor = Color.FromArgb(24, 137, 149);
+            btnCreateArtist.FlatStyle = FlatStyle.Flat;
+            btnCreateArtist.ForeColor = Color.White;
+            btnCreateArtist.Location = new Point(772, 80);
+            btnCreateArtist.Name = "btnCreateArtist";
+            btnCreateArtist.Size = new Size(190, 27);
+            btnCreateArtist.TabIndex = 2;
+            btnCreateArtist.Text = "Create Artist";
+            btnCreateArtist.UseVisualStyleBackColor = false;
+            btnCreateArtist.Click += btnCreateArtist_Click;
             // 
             // panel1
             // 
@@ -68,23 +77,91 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(68, 61, 97);
+            panel3.Controls.Add(groupBox1);
             panel3.Controls.Add(button1);
             panel3.Controls.Add(textBox1);
-            panel3.Controls.Add(flowLayoutPanel1);
-            panel3.Controls.Add(button2);
+            panel3.Controls.Add(flowPanelMusicUnits);
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 67);
             panel3.Name = "panel3";
             panel3.Size = new Size(1063, 694);
             panel3.TabIndex = 6;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(cmbBoxArtistType);
+            groupBox1.Controls.Add(txtBoxArtistImageURL);
+            groupBox1.Controls.Add(btnCreateArtist);
+            groupBox1.Controls.Add(txtBoxArtistName);
+            groupBox1.ForeColor = Color.White;
+            groupBox1.Location = new Point(50, 28);
+            groupBox1.Name = "groupBox1";
+            groupBox1.RightToLeft = RightToLeft.No;
+            groupBox1.Size = new Size(968, 114);
+            groupBox1.TabIndex = 9;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Create Artist";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(458, 39);
+            label4.Name = "label4";
+            label4.Size = new Size(62, 15);
+            label4.TabIndex = 11;
+            label4.Text = "Artist Type";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(24, 80);
+            label3.Name = "label3";
+            label3.Size = new Size(64, 15);
+            label3.TabIndex = 10;
+            label3.Text = "Image URL";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 39);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Name";
+            // 
+            // cmbBoxArtistType
+            // 
+            cmbBoxArtistType.FormattingEnabled = true;
+            cmbBoxArtistType.Location = new Point(547, 31);
+            cmbBoxArtistType.Name = "cmbBoxArtistType";
+            cmbBoxArtistType.Size = new Size(190, 23);
+            cmbBoxArtistType.TabIndex = 7;
+            // 
+            // txtBoxArtistImageURL
+            // 
+            txtBoxArtistImageURL.Location = new Point(94, 72);
+            txtBoxArtistImageURL.Name = "txtBoxArtistImageURL";
+            txtBoxArtistImageURL.Size = new Size(315, 23);
+            txtBoxArtistImageURL.TabIndex = 8;
+            // 
+            // txtBoxArtistName
+            // 
+            txtBoxArtistName.Location = new Point(94, 31);
+            txtBoxArtistName.Name = "txtBoxArtistName";
+            txtBoxArtistName.Size = new Size(315, 23);
+            txtBoxArtistName.TabIndex = 6;
+            // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(24, 137, 149);
+            button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.White;
             button1.Location = new Point(513, 167);
             button1.Name = "button1";
-            button1.Size = new Size(68, 29);
+            button1.Size = new Size(83, 29);
             button1.TabIndex = 1;
             button1.Text = "Find";
             button1.UseVisualStyleBackColor = false;
@@ -100,13 +177,13 @@
             textBox1.Size = new Size(457, 29);
             textBox1.TabIndex = 5;
             // 
-            // flowLayoutPanel1
+            // flowPanelMusicUnits
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new Point(41, 202);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(977, 481);
-            flowLayoutPanel1.TabIndex = 3;
+            flowPanelMusicUnits.AutoScroll = true;
+            flowPanelMusicUnits.Location = new Point(41, 202);
+            flowPanelMusicUnits.Name = "flowPanelMusicUnits";
+            flowPanelMusicUnits.Size = new Size(977, 481);
+            flowPanelMusicUnits.TabIndex = 3;
             // 
             // panel2
             // 
@@ -145,19 +222,28 @@
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Button button2;
+        private Button btnCreateArtist;
         private Panel panel1;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowPanelMusicUnits;
         private Panel panel2;
         private Label label1;
         private TextBox textBox1;
         private Panel panel3;
         private Button button1;
+        private GroupBox groupBox1;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private ComboBox cmbBoxArtistType;
+        private TextBox txtBoxArtistImageURL;
+        private TextBox txtBoxArtistName;
     }
 }

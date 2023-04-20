@@ -38,10 +38,5 @@ namespace Desktop_Application
         {
             OpenChildForm(new UsersForm(), sender);
         }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new Tes(), sender);
-        }
     }
 }

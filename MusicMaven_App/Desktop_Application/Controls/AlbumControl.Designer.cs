@@ -28,38 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            button1 = new Button();
+            lblAlbumName = new Label();
+            btnDelete = new Button();
             SuspendLayout();
             // 
-            // label1
+            // lblAlbumName
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(57, 68);
-            label1.Name = "label1";
-            label1.Size = new Size(43, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Album";
+            lblAlbumName.AutoSize = true;
+            lblAlbumName.ForeColor = Color.White;
+            lblAlbumName.Location = new Point(43, 50);
+            lblAlbumName.Name = "lblAlbumName";
+            lblAlbumName.Size = new Size(51, 15);
+            lblAlbumName.TabIndex = 0;
+            lblAlbumName.Text = "Nameee";
             // 
-            // button1
+            // btnDelete
             // 
-            button1.BackColor = Color.Red;
-            button1.Location = new Point(136, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(22, 23);
-            button1.TabIndex = 1;
-            button1.Text = "X";
-            button1.UseVisualStyleBackColor = false;
+            btnDelete.BackColor = Color.Red;
+            btnDelete.BackgroundImage = Desktop_Application.Properties.Resources.icons8_delete_100__1_;
+            btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(105, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(28, 29);
+            btnDelete.TabIndex = 1;
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // AlbumControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            Controls.Add(button1);
-            Controls.Add(label1);
+            BackColor = Color.FromArgb(101, 93, 140);
+            Controls.Add(btnDelete);
+            Controls.Add(lblAlbumName);
             Name = "AlbumControl";
-            Size = new Size(161, 153);
+            Size = new Size(139, 106);
             Click += AlbumControl_Click;
             ResumeLayout(false);
             PerformLayout();
@@ -67,7 +72,7 @@
 
         #endregion
 
-        private Label label1;
-        private Button button1;
+        private Label lblAlbumName;
+        private Button btnDelete;
     }
 }

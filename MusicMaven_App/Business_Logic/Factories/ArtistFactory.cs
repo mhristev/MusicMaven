@@ -9,9 +9,9 @@ using System.Xml.Linq;
 
 namespace Business_Logic.Factories
 {
-    public  class ArtistFactory
+    public static class ArtistFactory
     {
-        public Artist CreateArtist(string name, string img, double avgRating, MUSIC_UNIT_TYPE type, ARTIST_TYPE artistType)
+        public static Artist CreateArtist(string name, string img, double avgRating, MUSIC_UNIT_TYPE type, ARTIST_TYPE artistType)
         {
             return new Artist(Guid.NewGuid().ToString(), name, img, type, artistType, avgRating);
         }

@@ -13,7 +13,6 @@ namespace Business_Logic.FakeRepositories
 
 		public FakeUserRepository()
 		{
-            UserFactory userFactory = new UserFactory();
             _users.Add(new User("1", "admin", "admin@admin.com", "admin", new List<User>(), type: USER_TYPE.ADMIN));
             _users.Add(new User("2", "JohnSmith", "JohnSmith@app.com", "password", new List<User>(), type: USER_TYPE.NORMAL));
             _users.Add(new User("3", "JaneDoe", "JaneDoe@admin.com", "password", new List<User>(), type: USER_TYPE.NORMAL));
