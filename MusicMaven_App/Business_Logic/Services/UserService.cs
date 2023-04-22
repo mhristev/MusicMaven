@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business_Logic.Exceptions;
+using Business_Logic.Interfaces.IServices;
 
 namespace Business_Logic.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 

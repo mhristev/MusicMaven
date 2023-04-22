@@ -9,17 +9,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.DTOs;
+using Business_Logic.Interfaces.IServices;
 
 namespace Web_Application.Pages
 {
     [Authorize]
 	public class CreateReviewModel : PageModel
     {
-        private MusicUnitService _musicUnitService;
-        private ReviewService _reviewService;
-        private UserService _userService;
+        private IMusicUnitService _musicUnitService;
+        private IReviewService _reviewService;
+        private IUserService _userService;
 
-        public CreateReviewModel(UserService us, MusicUnitService musicUnitService, ReviewService reviewService)
+        public CreateReviewModel(IUserService us, IMusicUnitService musicUnitService, IReviewService reviewService)
         {
             _userService = us;
             _reviewService = reviewService;

@@ -3,14 +3,9 @@ using Business_Logic.Models.MusicUnits;
 
 namespace Web_Application.DTOs.MusicUnitDTOs
 {
-    public class ArtistDTO
+    public class ArtistDTO : MusicUnitDTO
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public MUSIC_UNIT_TYPE Type { get; set; }
         public ARTIST_TYPE ArtistType { get; set; }
-        public double AvrgRating { get; set; }
 
         public static ArtistDTO FromArtist(Artist a) {
             return new ArtistDTO()

@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Business_Logic.FakeRepositories;
 using Business_Logic.Interfaces;
-using Business_Logic.Models.MusicUnits;using Business_Logic.Models;using Business_Logic.Models.Enums;using Business_Logic.Enums;namespace Business_Logic.Services.Tests
+using Business_Logic.Models.MusicUnits;using Business_Logic.Models;using Business_Logic.Models.Enums;using Business_Logic.Enums;using Business_Logic.Interfaces.IServices;namespace Business_Logic.Services.Tests
 {
     
 
     [TestClass]
     public class MusicUnitServiceTests
     {
-        private IAlbumRepository _albumRepository;        private ISongRepository _songRepository;        private IArtistRepository _artistRepository;        private IMusicUnitRepository _musicUnitRepository;        private MusicUnitService _service;
+        private IAlbumRepository _albumRepository;        private ISongRepository _songRepository;        private IArtistService _artistService;        private IMusicUnitRepository _musicUnitRepository;        private MusicUnitService _service;
 
-        [TestInitialize]        public void Initialize()        {            _artistRepository = new FakeArtistRepository();            _albumRepository = new FakeAlbumRepository(_artistRepository);            _songRepository = new FakeSongRepository(_albumRepository);                        _musicUnitRepository = new FakeMusicUnitRepository(_albumRepository, _artistRepository, _songRepository);            _service = new MusicUnitService(                _albumRepository,                _songRepository,                _artistRepository,                _musicUnitRepository);        }
+        [TestInitialize]        public void Initialize()        {            _artistService = new ArtistService();            _albumRepository = new FakeAlbumRepository(_artistRepository);            _songRepository = new FakeSongRepository(_albumRepository);                        _musicUnitRepository = new FakeMusicUnitRepository(_albumRepository, _artistRepository, _songRepository);            _service = new MusicUnitService(                _albumRepository,                _songRepository,                _artistRepository,                _musicUnitRepository);        }
 
         [TestMethod]
         public void GetMusicUnitWithNonExistentIdTest()

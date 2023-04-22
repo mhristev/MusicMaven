@@ -4,6 +4,7 @@ using Business_Logic.Models;
 using Business_Logic.Models.MusicUnits;using Business_Logic.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
+using Business_Logic.Interfaces.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,17 +18,18 @@ builder.Services.AddSingleton<IRepository<Album>, FakeAlbumRepository>();
 builder.Services.AddSingleton<IRepository<Artist>, FakeArtistRepository>();
 builder.Services.AddSingleton<IRepository<Song>, FakeSongRepository>();
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<ICurrentUserProvider, CurrentUserProvider>();
 
+builder.Services.AddTransient<IUserService, UserService>();
 
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<MusicUnitService>();
-builder.Services.AddScoped<AlbumService>();
-builder.Services.AddScoped<ArtistService>();
-builder.Services.AddScoped<SongService>();
-builder.Services.AddScoped<ReviewService>();
-builder.Services.AddScoped<UserAuthenticationService>();
-builder.Services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
+builder.Services.AddTransient<IMusicUnitService, MusicUnitService>();
+builder.Services.AddTransient<IAlbumService, AlbumService>();
+builder.Services.AddTransient<IArtistService, ArtistService>();
+builder.Services.AddTransient<ISongService, SongService>();
+builder.Services.AddTransient<IReviewService, ReviewService>();
+builder.Services.AddTransient<IUserAuthenticationService, UserAuthenticationService>();
+builder.Services.AddTransient<ICurrentUserProvider, CurrentUserProvider>();
 
 var mvcBuilder = builder.Services.AddRazorPages();
 

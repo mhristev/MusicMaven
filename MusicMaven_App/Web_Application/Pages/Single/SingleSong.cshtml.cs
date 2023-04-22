@@ -9,14 +9,15 @@ using Web_Application.DTOs.MusicUnitDTOs;
 using Business_Logic.Models.MusicUnits;
 using Web_Application.DTOs;
 using Business_Logic.Models;
+using Business_Logic.Interfaces.IServices;
 
 namespace Web_Application.Pages.Single
 {
 	public class SingleSongModel : PageModel
     {
-        private MusicUnitService _musicUnitService;
-        private ReviewService _reviewService;
-        private UserService _userService;
+        private IMusicUnitService _musicUnitService;
+        private IReviewService _reviewService;
+        private IUserService _userService;
 
         public SongDTO Song { get; private set; } = new SongDTO();
         public List<ReviewDTO> Reviews { get; private set; } = new List<ReviewDTO>();
@@ -24,7 +25,7 @@ namespace Web_Application.Pages.Single
         [BindProperty]
         public ReviewDTO ReviewDTO { get; set; }
 
-        public SingleSongModel(UserService us, ReviewService reviewService, MusicUnitService musicUnitService)
+        public SingleSongModel(IUserService us, IReviewService reviewService, IMusicUnitService musicUnitService)
         {
             _userService = us;
             _musicUnitService = musicUnitService;

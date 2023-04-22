@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business_Logic.Interfaces.IServices;
 
 namespace Business_Logic.Services
 {
-    public class ReviewService
+    public class ReviewService : IReviewService
     {
         private IReviewRepository _reviewRepository;
         private ICurrentUserProvider _currentUserProvider;

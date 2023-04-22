@@ -1,7 +1,7 @@
 ﻿using System;
-using Business_Logic.Interfaces;using Business_Logic.Models.MusicUnits;namespace Business_Logic.Services
+using Business_Logic.Interfaces.IServices;using Business_Logic.Interfaces;using Business_Logic.Models.MusicUnits;namespace Business_Logic.Services
 {
-	public class AlbumService
+	public class AlbumService : IAlbumService
 	{        private IAlbumRepository _albumRepository;
 
 		public AlbumService(IAlbumRepository albumRepository)

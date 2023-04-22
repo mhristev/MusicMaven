@@ -7,14 +7,15 @@ using Business_Logic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Business_Logic.Interfaces.IServices;
 
 namespace Web_Application.Pages
 {
     [Authorize]
 	public class LikeReviewModel : PageModel
     {
-        private ReviewService _reviewService;
-        public LikeReviewModel(ReviewService reviewService)
+        private IReviewService _reviewService;
+        public LikeReviewModel(IReviewService reviewService)
         {
             _reviewService = reviewService;
         }

@@ -1,0 +1,45 @@
+﻿@page
+@model Web_Application.Pages.Single.EditProfileModel
+@{
+     ViewData["Title"] = "Edit Profile";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>@ViewData["Title"]</h1>
+            <hr />
+            <form method="post" asp-route-editedUser="@Model.editedUser">
+                <div class="form-group mb-3">
+                    <label asp-for="@Model.editedUser.Email">Email address</label>
+                    <input type="email" class="form-control" asp-for="@Model.editedUser.Email" value="@Model.userDTO.Email" />
+                    <span asp-validation-for="@Model.editedUser.Email" class="text text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="@Model.editedUser.Username">Username</label>
+                    <input type="text" class="form-control" asp-for="@Model.editedUser.Username" value="@Model.userDTO.Username" />
+                    <span asp-validation-for="@Model.editedUser.Username" class="text text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" name="CurrentPassword">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="InputPassword">New Password</label>
+                    <input type="password" class="form-control" id="InputPassword" name="InputPassword" />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="ConfirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

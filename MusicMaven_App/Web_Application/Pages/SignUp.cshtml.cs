@@ -6,6 +6,7 @@ using Business_Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.Models;
+using Business_Logic.Interfaces.IServices;
 
 namespace Web_Application.Pages
 {
@@ -14,9 +15,9 @@ namespace Web_Application.Pages
         [BindProperty]
         public RegisterModel RegisterModel { get; set; }
 
-        private UserService _userService;
+        private IUserService _userService;
 
-        public SignUpModel(UserService userService)
+        public SignUpModel(IUserService userService)
         {
             this._userService = userService;
         }

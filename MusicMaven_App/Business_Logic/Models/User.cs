@@ -14,15 +14,17 @@ using System.Text.RegularExpressions;using Business_Logic.Services;namespace 
         private string email;
         private string password;
         private List<User> following;
+        private List<User> followers;
         private USER_TYPE type;
 
-        public User(string id, string username, string email, string password, List<User> following, USER_TYPE type)
+        public User(string id, string username, string email, string password, List<User> following, List<User> followers, USER_TYPE type)
         {
             this.Id = id;
             this.Username = username;
             this.Email = email;
             this.Password = password;
             this.Following = following;
+            this.Followers = followers;
             this.Type = type;
         }
 
@@ -54,7 +56,7 @@ using System.Text.RegularExpressions;using Business_Logic.Services;namespace 
         }
 
         public List<User> Following { get => following; set => following = value; }
-
+        public List<User> Followers { get => followers; set => followers = value; }
         public USER_TYPE Type { get => type; set => type = value; }
     }
 }

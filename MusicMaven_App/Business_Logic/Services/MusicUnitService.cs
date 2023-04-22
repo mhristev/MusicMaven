@@ -6,28 +6,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business_Logic.Interfaces.IServices;
 
 namespace Business_Logic.Services
 {
-    public class MusicUnitService
+    public class MusicUnitService : IMusicUnitService
     {
 
-        private ArtistService artistService;
-        private SongService songService;
-        private AlbumService albumService;
-        private IMusicUnitRepository _musicUnitRepository;
+        private IArtistService artistService;
+        private ISongService songService;
+        private IAlbumService albumService;
+        private IMusicUnitRepository musicUnitRepository;
 
-        public MusicUnitService(AlbumService albumRepository, SongService songRepository, ArtistService artistRepository, IMusicUnitRepository unitRepository)        {
-            this.albumService = albumRepository;
-            this.artistService = artistRepository;
-            this.songService = songRepository;
-            this._musicUnitRepository = unitRepository;
+        public MusicUnitService(IAlbumService albumService, ISongService songService, IArtistService artistService, IMusicUnitRepository unitRepository)        {
+            this.albumService = albumService;
+            this.artistService = artistService;
+            this.songService = songService;
+            this.musicUnitRepository = unitRepository;
         }
 
 
         public MusicUnit? GetMusicUnitWithId(string id)
         {
-            return _musicUnitRepository.GetMusicUnitByid(id);
+            return musicUnitRepository.GetMusicUnitByid(id);
         }
 
         public List<Album> GetAlbumsForArtist(Artist artist)
@@ -65,7 +66,7 @@ namespace Business_Logic.Services
         }
 
         public List<MusicUnit> GetHighestRatedMusicUnits(int unitCount)        {
-            return _musicUnitRepository.GetHighestRatedUnits(unitCount);
+            return musicUnitRepository.GetHighestRatedUnits(unitCount);
         }
 
     }

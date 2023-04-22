@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.DTOs;
+using Business_Logic.Interfaces.IServices;
 
 namespace Web_Application.Pages
 {
@@ -18,10 +19,10 @@ namespace Web_Application.Pages
         [BindProperty]
         public LoginModel LoginModel { get; set; }
 
-        private UserAuthenticationService authService;
+        private IUserAuthenticationService authService;
 
 
-        public SignInModel(UserAuthenticationService authService)
+        public SignInModel(IUserAuthenticationService authService)
         {
             this.authService = authService;
         }

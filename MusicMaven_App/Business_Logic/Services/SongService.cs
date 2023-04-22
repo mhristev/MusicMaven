@@ -1,7 +1,7 @@
 ﻿using System;
-using Business_Logic.Interfaces;using Business_Logic.Models.MusicUnits;namespace Business_Logic.Services
+using Business_Logic.Interfaces;using Business_Logic.Models.MusicUnits;using Business_Logic.Interfaces.IServices;namespace Business_Logic.Services
 {
-	public class SongService
+	public class SongService : ISongService
 	{        private ISongRepository _songRepository;        public SongService(ISongRepository songRepository)
 		{
 			_songRepository = songRepository;

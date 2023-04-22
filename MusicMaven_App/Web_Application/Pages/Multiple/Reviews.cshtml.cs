@@ -7,15 +7,16 @@ using System;
 using Web_Application.DTOs;
 using Web_Application.DTOs.MusicUnitDTOs;
 using Business_Logic.Models.Enums;
+using Business_Logic.Interfaces.IServices;
 
 namespace Web_Application.Pages
 {
     public class ReviewsModel : PageModel
     {
-        private ReviewService _reviewService;
+        private IReviewService _reviewService;
         public List<ReviewDTO> Reviews { get; set; } = new List<ReviewDTO>();
 
-        public ReviewsModel(ReviewService reviewService)        {
+        public ReviewsModel(IReviewService reviewService)        {
             this._reviewService = reviewService;
         }
         

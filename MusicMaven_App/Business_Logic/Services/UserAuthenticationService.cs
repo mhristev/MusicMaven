@@ -1,12 +1,13 @@
 ﻿using System;
 using Business_Logic.Models;
+using Business_Logic.Interfaces.IServices;
 
 namespace Business_Logic.Services
 {
-	public class UserAuthenticationService
+	public class UserAuthenticationService : IUserAuthenticationService
 	{
-		private readonly UserService userService;
-		public UserAuthenticationService(UserService us)
+		private readonly IUserService userService;
+		public UserAuthenticationService(IUserService us)
 		{
 			userService = us;
 		}

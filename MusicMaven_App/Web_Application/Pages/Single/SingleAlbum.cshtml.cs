@@ -9,14 +9,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.DTOs;
 using Web_Application.DTOs.MusicUnitDTOs;
+using Business_Logic.Interfaces.IServices;
 
 namespace Web_Application.Pages.Single
 {
 	public class SingleAlbumModel : PageModel
     {
-        private MusicUnitService _musicUnitService;
-        private ReviewService _reviewService;
-        private UserService _userService;
+        private IMusicUnitService _musicUnitService;
+        private IReviewService _reviewService;
+        private IUserService _userService;
 
         public List<SongDTO> Songs { get; private set; } = new List<SongDTO>();
         public AlbumDTO Album { get; private set; } = new AlbumDTO();
@@ -26,7 +27,7 @@ namespace Web_Application.Pages.Single
         public ReviewDTO ReviewDTO { get; set; }
 
 
-        public SingleAlbumModel(UserService userService, MusicUnitService musicUnitService, ReviewService reviewService)
+        public SingleAlbumModel(IUserService userService, IMusicUnitService musicUnitService, IReviewService reviewService)
         {
             this._userService = userService;
             this._reviewService = reviewService;
