@@ -9,9 +9,7 @@ namespace Business_Logic.Models.MusicUnits
 {
     public class Artist : MusicUnit
     {
-        private ARTIST_TYPE artistType;
-
-        public Artist(string id,
+        private ARTIST_TYPE artistType;        public Artist()        {        }        public Artist(string id,
                       string name,
                       string image,
                       MUSIC_UNIT_TYPE type,
