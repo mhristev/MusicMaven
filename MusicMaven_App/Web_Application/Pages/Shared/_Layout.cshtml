@@ -12,86 +12,6 @@
 </head>
 <body>
     <header>
-        <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center text-white">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index">MusicMaven</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">-->
-        <!--<li class="nav-item">
-            <a class="nav-link text-light" asp-area="" asp-page="/Index">Music</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Reviews</a>
-        </li>-->
-        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle custom-link-nav"
-                               href="#"
-                               id="navbarDropdownMenuLink"
-                               role="button"
-                               data-bs-toggle="dropdown"
-                               aria-haspopup="true"
-                               aria-expanded="false">
-                                Music
-                            </a>
-                            <div class="dropdown-menu"
-                                 aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/Top100">Top 100 Albums</a>
-                                <a class="dropdown-item" href="#">Top 100 Artists</a>
-                                <a class="dropdown-item" href="#">Top 100 Songs</a>
-                            </div>
-
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link custom-link-nav" asp-area="" asp-page="/Multiple/Reviews">Reviews</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle custom-link-nav"
-                               href="#"
-                               id="navbarDropdownMenuLink"
-                               role="button"
-                               data-bs-toggle="dropdown"
-                               aria-haspopup="true"
-                               aria-expanded="false">
-                                More
-                            </a>
-                            <div class="dropdown-menu"
-                                 aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">About</a>
-                                <a class="dropdown-item" href="#">Contact</a>
-                            </div>
-
-                        </li>
-
-
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Sign Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <input class="form-control me-2"
-                                   type="search"
-                                   placeholder="Search"
-                                   aria-label="Search" />
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-light" type="submit">
-                                Search
-                            </button>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>-->
-
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
 
@@ -143,49 +63,44 @@
 
                         </li>
                     </ul>
-                    @*<form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                        </form>*@
-                    
+                <ul class="navbar-nav ml-auto d-flex align-items-center">
+                    @if (Context.User.FindFirst("Id") != null)
+                    {
 
-                        @if (Context.User.FindFirst("Id") != null)
-                        {
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    @*<a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a>*@
-                                    <form method="post" asp-page="@PageRoutes.Logout">
-                                        <a class="nav-link custom-link-nav" onclick="this.closest('form').submit(); return false;" asp-area="">Logout</a>
-                                    </form>
-                                    <a class="nav-link custom-link-nav" asp-area="" asp-page="@PageRoutes.Profile" asp-route-id="@Context.User.FindFirst("Id").Value">Profile</a>
-                                </li>
-
-                            </ul>
-                        }
-                        else
-                        {
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    @*<a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a>*@
-                                    <a class="nav-link custom-link-nav" asp-area="" asp-page="@PageRoutes.SignIn">Sign In</a>
-                                </li>
-                                <li class="nav-item">
-                                    @*<a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a>*@
-                                    <a class="nav-link custom-link-nav" asp-area="" asp-page="@PageRoutes.SignUp">Sign Up</a>
-                                </li>
-                            </ul>
-                        }
-                    
+                        <li class="nav-item">
+                            <form method="post" asp-page="@PageRoutes.Logout">
+                                <a class="nav-link custom-link-nav" onclick="this.closest('form').submit(); return false;" asp-area="">Logout</a>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link custom-link-nav" asp-area="" asp-page="@PageRoutes.Profile" asp-route-id="@Context.User.FindFirst("Id").Value">Profile</a>
+                        </li>
 
 
+                                            }
+                    else
+                    {
 
+                        <li class="nav-item">
+                            <a class="nav-link custom-link-nav" asp-area="" asp-page="@PageRoutes.SignIn">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link custom-link-nav" asp-area="" asp-page="@PageRoutes.SignUp">Sign Up</a>
+                        </li>
 
-                    @*<li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Sign Up</a>
-                        </li>*@
-
-
-
+                                           }
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0" method="get" asp-page="@PageRoutes.Search" asp-page-handler="Search">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searchString">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-light" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                </ul>
+                        
 
                 </div>
             </div>

@@ -28,7 +28,7 @@ namespace Business_Logic.Services
 
         public MusicUnit? GetMusicUnitWithId(string id)
         {
-            return musicUnitRepository.GetMusicUnitByid(id);
+            return musicUnitRepository.GetById(id);
         }
 
         public List<Album> GetAlbumsForArtist(Artist artist)
@@ -67,7 +67,6 @@ namespace Business_Logic.Services
 
         public List<MusicUnit> GetHighestRatedMusicUnits(int unitCount)        {
             return musicUnitRepository.GetHighestRatedUnits(unitCount);
-        }
-
+        }        public List<MusicUnit> FindMusicUnitsByKeywordOrderedByHighestRated(string keyword)        {            return musicUnitRepository.GetMusicUnitsByKeywordInNameOrderedByHighestRated(keyword);        }
     }
 }

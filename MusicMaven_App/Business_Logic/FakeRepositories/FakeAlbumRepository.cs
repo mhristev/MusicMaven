@@ -36,7 +36,7 @@ namespace Business_Logic.FakeRepositories
             Album? album = _albums.FirstOrDefault(a => a.Id == entity.Id);            if (album != null)            {                album.Name = entity.Name;                album.Image = entity.Image;                album.Genre = entity.Genre;                album.Artists = entity.Artists;                album.AvrgRating = entity.AvrgRating;                album.ReleaseDate = entity.ReleaseDate;            }
         }
 
-        public List<Album> GetNewReleasedAlbums(int albumCount)        {            return _albums.OrderByDescending(a => a.ReleaseDate).ToList();        }        public List<Album> GetAlbumsForArtistId(string id)        {            return _albums.Where(album => album.Artists.Any(a => a.Id == id)).ToList();        }
+        public List<Album> GetNewReleasedAlbums(int albumCount)        {            return _albums.OrderByDescending(a => a.ReleaseDate).ToList();        }        public List<Album> GetAlbumsForArtistId(string id)        {            return _albums.Where(album => album.Artists.Any(a => a.Id == id)).ToList();        }        public List<Album> GetAlbumsWithKeywordInName(string keyword)        {            return _albums.Where(a => a.Name.ToLower().Contains(keyword.ToLower()))                .ToList();        }
     }
 }
 

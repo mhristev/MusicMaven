@@ -1,0 +1,69 @@
+﻿@page
+@model Web_Application.Pages.SearchModel
+@using Web_Application.DTOs.MusicUnitDTOs;
+@using Helpers;
+@using Web_Application.DTOs;
+@{
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @if (Model.users.Count == 0 && Model.musicUnits.Count == 0)
+            {
+                <h2>There are no results.</h2>
+            }
+            else
+            {
+        <div class="col-md-6">
+            <h2>Users</h2>
+            <hr />
+            @foreach (UserDTO user in @Model.users)
+                {
+                <div class="card">
+                    <a class="text-decoration-none text-dark" asp-page="@PageRoutes.Profile" asp-route-id="@user.Id">
+                        <div class="row no-gutters">
+
+                            <div class="col-md-4">
+                                <img src="" class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@user.Username</h5>
+                                    @*<p class="card-text">@unit.Type</p>*@
+                                </div>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+                }
+
+        </div>
+       <div class="col-md-6">
+            <h2>Music</h2>
+            <hr />
+            @foreach (MusicUnitDTO unit in @Model.musicUnits)
+                {
+                <div class="card">
+                    <a class="text-decoration-none text-dark" asp-page-handler="MusicUnitInfo" asp-route-id="@unit.Id" asp-route-unitTyoe="@unit.Type">
+                        <div class="row no-gutters">
+
+                            <div class="col-md-4">
+                                <img src="/@unit.Image" class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@unit.Name</h5>
+                                    <p class="card-text">@unit.Type</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+                }
+            <!-- Add your music list here -->
+        </div>
+            }
+    </div>
+</div>

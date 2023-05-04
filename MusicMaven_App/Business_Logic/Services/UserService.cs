@@ -33,6 +33,5 @@ namespace Business_Logic.Services
 
         public User? GetUserByEmail(string email)
         {            if (string.IsNullOrEmpty(email))            {                throw new EmptyEmailException();            }            if (!EmailFormatter.IsValid(email))            {                throw new InvalidEmailException(email);            }            return _userRepository.GetUserByEmail(email);
-        }
-    }
+        }        public List<User> FindUsersByKeywordInUsername(string keyword)        {            return _userRepository.FindUsersByKeywordInUsername(keyword);        }    }
 }

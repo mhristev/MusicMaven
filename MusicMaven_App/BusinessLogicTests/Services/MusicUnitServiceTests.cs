@@ -25,7 +25,7 @@ using Business_Logic.Models.MusicUnits;using Business_Logic.Models;using Busin
             string id = "randomId";
 
             // Act
-            MusicUnit? result = _musicUnitRepository.GetMusicUnitByid(id);
+            MusicUnit? result = _musicUnitRepository.GetById(id);
 
             // Assert
             Assert.IsNull(result);
@@ -39,7 +39,7 @@ using Business_Logic.Models.MusicUnits;using Business_Logic.Models;using Busin
             _albumRepository.Insert(expectedUnit);
 
             // Act
-            MusicUnit? result = _musicUnitRepository.GetMusicUnitByid(id);
+            MusicUnit? result = _musicUnitRepository.GetById(id);
 
             // Assert
             Assert.IsNotNull(result);            Assert.AreEqual(expectedUnit, result);

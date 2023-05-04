@@ -14,6 +14,7 @@ namespace Web_Application.Helpers
         public const string SingleAlbum = "/Single/SingleAlbum";
         public const string SingleArtist = "/Single/SingleArtist";
         public const string Profile = "/Profile";        public const string EditProfile = "/EditProfile";
+        public const string Search = "/Search";
     }
 }
 

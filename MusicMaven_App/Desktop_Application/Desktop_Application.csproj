@@ -9,8 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business_Logic\Business_Logic.csproj" />
-    <ProjectReference Include="..\Web_Application\Web_Application.csproj" />
+    <ProjectReference Include="..\Business_Logic\Business_Logic.csproj">
+      <ReferenceSourceTarget></ReferenceSourceTarget>
+    </ProjectReference>
+    <ProjectReference Include="..\Web_Application\Web_Application.csproj">
+      <ReferenceSourceTarget></ReferenceSourceTarget>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>

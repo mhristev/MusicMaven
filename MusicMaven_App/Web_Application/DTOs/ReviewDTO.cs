@@ -19,9 +19,8 @@ namespace Web_Application.DTOs
         public string Description { get; set; }
         public DateTime? CreationDate { get; set; }
         
-        [Required]
-        [Range(1, 10, ErrorMessage = "Please enter a number between 1 and 10.")]
-        public double Rating { get; set; }
+        //[Required]
+        //[Range(1.0, 10.0, ErrorMessage = "Please enter a number between 1 and 10.")]        //[DisplayFormat(DataFormatString = "{0:0.0}", ApplyFormatInEditMode = true)]        public double Rating { get; set; }
 
         public MusicUnitDTO? MusicUnit { get; set; }
         public UserDTO? Creator { get; set; }

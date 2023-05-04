@@ -4,9 +4,7 @@ using Business_Logic.Models;
 using Business_Logic.Models.MusicUnits;using Business_Logic.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
-using Business_Logic.Interfaces.IServices;
-
-var builder = WebApplication.CreateBuilder(args);
+using Business_Logic.Interfaces.IServices;using Microsoft.AspNetCore.Localization;using System.Globalization;var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IUserRepository, FakeUserRepository>();
 builder.Services.AddSingleton<IAlbumRepository, FakeAlbumRepository>();
@@ -56,7 +54,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.AccessDeniedPath = new PathString("/CreateReview");
     });
 
-
+builder.Services.Configure<RequestLocalizationOptions>(options =>{    options.DefaultRequestCulture = new RequestCulture(CultureInfo.CurrentCulture);});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

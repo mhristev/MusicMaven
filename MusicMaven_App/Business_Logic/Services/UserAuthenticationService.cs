@@ -17,7 +17,7 @@ namespace Business_Logic.Services
 			//TODO propper auth
 			User? user = userService.GetUserByEmail(email);
 			if (user != null) {
-				if (user.Password == password)
+				if (BCrypt.Net.BCrypt.Verify(password, user.Password))
 					return user;
 			}
 			return null;

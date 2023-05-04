@@ -7,6 +7,7 @@ namespace Web_Application.Models
 	{
 		public ReviewDTO ReviewDTO { get; set; }
 		public string MusicUnitId { get; set; }
+		public string Rating { get; set; }
 	}
 }
 

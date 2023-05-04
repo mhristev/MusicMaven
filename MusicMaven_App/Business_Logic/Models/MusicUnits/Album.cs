@@ -11,9 +11,7 @@ namespace Business_Logic.Models.MusicUnits
     {
         private GENRE_TYPE genre;
         private List<Artist> artists;
-        private DateTime releaseDate;
-
-        public Album(string id,
+        private DateTime releaseDate;        public Album()        {        }        public Album(string id,
                      string name,
                      string image,
                      MUSIC_UNIT_TYPE type,
