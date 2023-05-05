@@ -12,6 +12,7 @@
     <ProjectReference Include="..\Business_Logic\Business_Logic.csproj">
       <ReferenceSourceTarget></ReferenceSourceTarget>
     </ProjectReference>
+    <ProjectReference Include="..\Data_Access_Layer\Data_Access_Layer.csproj" />
     <ProjectReference Include="..\Web_Application\Web_Application.csproj">
       <ReferenceSourceTarget></ReferenceSourceTarget>
     </ProjectReference>

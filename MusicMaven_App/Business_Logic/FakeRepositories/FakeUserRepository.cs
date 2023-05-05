@@ -13,10 +13,10 @@ namespace Business_Logic.FakeRepositories
 
 		public FakeUserRepository()
 		{
-            _users.Add(new User("1", "admin", "admin@admin.com", BCrypt.Net.BCrypt.HashPassword("admin"), new List<User>(), new List<User>(), type: USER_TYPE.ADMIN));
-            _users.Add(new User("2", "JohnSmith", "JohnSmith@app.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL));
-            _users.Add(new User("3", "JaneDoe", "JaneDoe@admin.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL));
-            _users.Add(new User("4", "AlexJohnson", "AlexJohnson@admin.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL));
+            _users.Add(new User("1", "admin", "admin@admin.com", BCrypt.Net.BCrypt.HashPassword("admin"), new List<User>(), new List<User>(), type: USER_TYPE.ADMIN, "image"));
+            _users.Add(new User("2", "JohnSmith", "JohnSmith@app.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL, "image"));
+            _users.Add(new User("3", "JaneDoe", "JaneDoe@admin.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL, "image"));
+            _users.Add(new User("4", "AlexJohnson", "AlexJohnson@admin.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL, "image"));
         }
 
         public void Delete(string id)
@@ -34,7 +34,14 @@ namespace Business_Logic.FakeRepositories
         public User? GetById(string id)
         {
             return _users.FirstOrDefault(user => user.Id == id);
-        }        public User? GetUserByEmail(string email)        {            return _users.FirstOrDefault(user => user.Email == email);        }        public void Insert(User entity)
+        }
+
+        public List<User> GetLikedByUsersForReviewId(string reviewId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User? GetUserByEmail(string email)        {            return _users.FirstOrDefault(user => user.Email == email);        }        public void Insert(User entity)
         {            if (_users.Any(u => u.Email == entity.Email))            {                throw new EmailExistException(entity.Email);            }            if (_users.Any(u => u.Username == entity.Username))            {                throw new UsernameExistException(entity.Username);            }            _users.Add(entity);
         }
 

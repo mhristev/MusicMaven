@@ -1,4 +1,6 @@
-﻿using Desktop_Application.MusicSection;
+﻿using Business_Logic.Interfaces.IServices;
+using Business_Logic.Models.MusicUnits;
+using Desktop_Application.MusicSection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +15,14 @@ namespace Desktop_Application.Controls
 {
     public partial class SongControl : UserControl
     {
-        public SongControl()
+        private Song song;
+        private IMusicUnitService musicUnitService;
+        public SongControl(IMusicUnitService musicUnitService, Song song)
         {
             InitializeComponent();
+            this.musicUnitService = musicUnitService;
+            this.song = song;
+            this.label1.Text = song.Name;
         }
 
         private void SongControl_Click(object sender, EventArgs e)

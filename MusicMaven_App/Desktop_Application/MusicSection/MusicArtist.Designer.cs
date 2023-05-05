@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MusicArtist));
             button1 = new Button();
             panel1 = new Panel();
-            button3 = new Button();
+            btnDelete = new Button();
             groupBox1 = new GroupBox();
             btnAddArtist = new Button();
             flowPanelAddArtists = new FlowLayoutPanel();
@@ -79,7 +79,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(groupBox1);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label3);
@@ -103,17 +103,18 @@
             panel1.Size = new Size(1063, 761);
             panel1.TabIndex = 1;
             // 
-            // button3
+            // btnDelete
             // 
-            button3.BackgroundImage = Properties.Resources.icons8_delete_100;
-            button3.BackgroundImageLayout = ImageLayout.Stretch;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(987, 0);
-            button3.Name = "button3";
-            button3.Size = new Size(60, 56);
-            button3.TabIndex = 18;
-            button3.UseVisualStyleBackColor = true;
+            btnDelete.BackgroundImage = Properties.Resources.icons8_delete_100;
+            btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(987, 0);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(60, 56);
+            btnDelete.TabIndex = 18;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // groupBox1
             // 
@@ -243,6 +244,7 @@
             btnCreateAlbum.TabIndex = 16;
             btnCreateAlbum.Text = "Create Album";
             btnCreateAlbum.UseVisualStyleBackColor = false;
+            btnCreateAlbum.Click += btnCreateAlbum_Click;
             // 
             // txtBoxCreateAlbumImageURL
             // 
@@ -468,6 +470,6 @@
         private DateTimePicker dtPickerCreateAlbumReleaseDate;
         private Button btnAddArtist;
         private FlowLayoutPanel flowPanelAddArtists;
-        private Button button3;
+        private Button btnDelete;
     }
 }

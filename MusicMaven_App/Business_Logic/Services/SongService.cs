@@ -11,6 +11,17 @@ using Business_Logic.Interfaces;using Business_Logic.Models.MusicUnits;using B
         }        public List<Song> GetHighestRatedSongsForArtist(Artist artist, int songCount)
         {
             return _songRepository.GetHighestRatedSongsForArtistId(artist.Id, songCount);
-        }    }
+        }        public void CreateSong(Song song)        {            _songRepository.Insert(song);        }
+
+        public void UpdateSong(Song song)
+        {
+            _songRepository.Update(song);
+        }
+
+        public void DeleteSong(Song song)
+        {
+            _songRepository.Delete(song.Id);
+        }
+    }
 }
 

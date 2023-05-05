@@ -1,4 +1,5 @@
 ﻿using Business_Logic.Enums;
+using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
 using Desktop_Application.MusicSection;
 using System;
@@ -16,10 +17,12 @@ namespace Desktop_Application
     public partial class DefaultMusicControl : UserControl
     {
         private MusicUnit _musicUnit;
-        public DefaultMusicControl(MusicUnit musicUnit)
+        private IMusicUnitService musicUnitService;
+        public DefaultMusicControl(IMusicUnitService musicUnitService,MusicUnit musicUnit)
         {
             InitializeComponent();
             _musicUnit = musicUnit;
+            this.musicUnitService = musicUnitService;
             lblName.Text = _musicUnit.Name;
             lblType.Text = _musicUnit.Type.ToString();
             lblRating.Text = _musicUnit.AvrgRating.ToString();
@@ -33,10 +36,10 @@ namespace Desktop_Application
                 switch (_musicUnit.Type)
                 {
                     case MUSIC_UNIT_TYPE.ARTIST:
-                        parent.OpenChildForm(new MusicArtist(), sender);
+                        parent.OpenChildForm(new MusicArtist(musicUnitService, (Artist)_musicUnit), sender);
                         break;
                     case MUSIC_UNIT_TYPE.ALBUM:
-                        parent.OpenChildForm(new MusicAlbum(), sender);
+                        parent.OpenChildForm(new MusicAlbum(musicUnitService, (Album)_musicUnit), sender);
                         break;
                     case MUSIC_UNIT_TYPE.SONG:
                         parent.OpenChildForm(new MusicSong(), sender);

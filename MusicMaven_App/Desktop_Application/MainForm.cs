@@ -1,3 +1,4 @@
+using Business_Logic.Interfaces.IServices;
 using Desktop_Application.MusicSection;
 using Desktop_Application.UsersSection;
 
@@ -6,9 +7,11 @@ namespace Desktop_Application
     public partial class MainForm : Form
     {
         private Form? _activeForm;
-        public MainForm()
+        private IMusicUnitService musicUnitService;
+        public MainForm(IMusicUnitService musicUnitService)
         {
             InitializeComponent();
+            this.musicUnitService = musicUnitService;
             //OpenChildForm(new MusicForm(), this);
         }
 
@@ -31,7 +34,8 @@ namespace Desktop_Application
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new MusicForm(), sender);
+
+            OpenChildForm(new MusicForm(this.musicUnitService), sender);
         }
 
         private void btnUsers_Click_1(object sender, EventArgs e)

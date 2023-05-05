@@ -68,5 +68,42 @@ namespace Business_Logic.Services
         public List<MusicUnit> GetHighestRatedMusicUnits(int unitCount)        {
             return musicUnitRepository.GetHighestRatedUnits(unitCount);
         }        public List<MusicUnit> FindMusicUnitsByKeywordOrderedByHighestRated(string keyword)        {            return musicUnitRepository.GetMusicUnitsByKeywordInNameOrderedByHighestRated(keyword);        }
+
+        public List<MusicUnit> GetAllMusicUnits()
+        {
+            return musicUnitRepository.GetAll();
+        }        public void CreateMusicUnit(MusicUnit unit)        {            switch (unit.Type)            {                case MUSIC_UNIT_TYPE.ARTIST:                    artistService.CreateArtist((Artist)unit);                    break;                case MUSIC_UNIT_TYPE.ALBUM:                    albumService.CreateAlbum((Album)unit);                    break;                case MUSIC_UNIT_TYPE.SONG:                    songService.CreateSong((Song)unit);                    break;            }        }
+
+        public void UpdateMusicUnit(MusicUnit unit)
+        {
+            switch (unit.Type)
+            {
+                case MUSIC_UNIT_TYPE.ARTIST:
+                    artistService.UpdateArtist((Artist)unit);
+                    break;
+                case MUSIC_UNIT_TYPE.ALBUM:
+                    albumService.UpdateAlbum((Album)unit);
+                    break;
+                case MUSIC_UNIT_TYPE.SONG:
+                    songService.UpdateSong((Song)unit);
+                    break;
+            }
+        }
+
+        public void DeleteMusicUnit(MusicUnit unit)
+        {
+            switch (unit.Type)
+            {
+                case MUSIC_UNIT_TYPE.ARTIST:
+                    artistService.DeleteArtist((Artist)unit);
+                    break;
+                case MUSIC_UNIT_TYPE.ALBUM:
+                    albumService.DeleteAlbum((Album)unit);
+                    break;
+                case MUSIC_UNIT_TYPE.SONG:
+                    songService.DeleteSong((Song)unit);
+                    break;
+            };
+        }
     }
 }

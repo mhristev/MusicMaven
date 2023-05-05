@@ -20,5 +20,10 @@ namespace Business_Logic.Models.MusicUnits
         }
 
         public ARTIST_TYPE ArtistType { get => artistType; set => artistType = value; }
+
+        public override string? ToString()
+        {
+            return this.Name;
+        }
     }
 }

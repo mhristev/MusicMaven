@@ -1,4 +1,6 @@
-﻿using Desktop_Application.Controls;
+﻿using Business_Logic.Interfaces.IServices;
+using Business_Logic.Models.MusicUnits;
+using Desktop_Application.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +17,17 @@ namespace Desktop_Application.MusicSection
     public partial class MusicAlbum : Form
     {
         private Form? _activeForm;
-        public MusicAlbum()
+        private Album album;
+        private IMusicUnitService musicUnitService;
+        public MusicAlbum(IMusicUnitService musicUnitService, Album album)
         {
             InitializeComponent();
+            this.musicUnitService = musicUnitService;
+            this.album = album;
+            this.lblName.Text = album.Name;
+            this.lblGenre.Text = album.Genre.ToString();
+            this.lblRating.Text = album.AvrgRating.ToString();
+            this.lblReleaseDate.Text = album.ReleaseDate.ToString();
             fillUsers();
         }
         public void OpenChildForm(Form childForm, object btnSender)
@@ -41,11 +51,12 @@ namespace Desktop_Application.MusicSection
         public void fillUsers()
         {
             flowLayoutPanel1.Controls.Clear();
-
+            List<Song> songList = musicUnitService.GetSongsInAlbum(album);
             List<SongControl> components = new List<SongControl>();
-            components.Add(new SongControl());
-            components.Add(new SongControl());
-            components.Add(new SongControl());
+            foreach (Song song in songList)
+            {
+                components.Add(new SongControl(musicUnitService, song));
+            }
 
             foreach (SongControl auc in components)
             {
@@ -157,7 +168,7 @@ namespace Desktop_Application.MusicSection
         {
             if (flowPanelArtists.Controls.Count < 3)
             {
-                flowPanelArtists.Controls.Add(new AddArtistAlbumCreationControl());
+                flowPanelArtists.Controls.Add(new AddArtistAlbumCreationControl(""));
             }
         }
     }

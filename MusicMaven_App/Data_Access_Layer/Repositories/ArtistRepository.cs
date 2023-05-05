@@ -10,13 +10,15 @@ using System.Data;using Business_Logic.Enums;namespace Data_Access_Layer.Repo
             {
                 Id = reader.GetString(reader.GetOrdinal("id")),
                 Name = reader.GetString(reader.GetOrdinal("name")),
-                Image = reader.GetString(reader.GetOrdinal("image")),                AvrgRating = reader.GetFloat(reader.GetOrdinal("avgRating")),                Type = (MUSIC_UNIT_TYPE)Enum.Parse(typeof(MUSIC_UNIT_TYPE), reader.GetString(reader.GetOrdinal("type"))),                ArtistType = (ARTIST_TYPE)reader.GetInt32(reader.GetOrdinal("artistType"))            };        }
+                Image = reader.GetString(reader.GetOrdinal("image")),                AvrgRating = reader.GetDouble(reader.GetOrdinal("avgRating")),                Type = (MUSIC_UNIT_TYPE)Enum.Parse(typeof(MUSIC_UNIT_TYPE), reader.GetString(reader.GetOrdinal("type"))),                ArtistType = (ARTIST_TYPE)Enum.Parse(typeof(ARTIST_TYPE), reader.GetString(reader.GetOrdinal("artistType")))            };        }
 
         public void Delete(string id)
         {
             string sql = "DELETE FROM Artist WHERE Id = @Id; " +
                      "DELETE FROM MusicUnit WHERE Id = @Id;";            ExecuteNonQuery(sql, command =>            {                command.Parameters.Add(new SqlParameter("@Id", SqlDbType.NVarChar) { Value = id });            });
         }
+
+        
 
         public List<Artist> GetAll()
         {
@@ -31,8 +33,8 @@ using System.Data;using Business_Logic.Enums;namespace Data_Access_Layer.Repo
 
         public void Insert(Artist entity)
         {
-            string sql = "INSERT INTO MusicUnit (Id, Name, Image, AvgRating, Type) VALUES (@Id, @Name, @Image, @AvgRating, @Type); " +
-                     "INSERT INTO Artist (Id, ArtistType) VALUES (@Id, @ArtistType);";            ExecuteNonQuery(sql, command =>            {                command.Parameters.Add(new SqlParameter("@Id", SqlDbType.NVarChar) { Value = entity.Id });                command.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar) { Value = entity.Name });                command.Parameters.Add(new SqlParameter("@Image", SqlDbType.NVarChar) { Value = entity.Image });                command.Parameters.Add(new SqlParameter("@AvgRating", SqlDbType.Float) { Value = entity.AvrgRating });                command.Parameters.Add(new SqlParameter("@Type", SqlDbType.Int) { Value = (int)entity.Type });                command.Parameters.Add(new SqlParameter("@ArtistType", SqlDbType.NVarChar) { Value = entity.ArtistType });            });
+            string sql = "INSERT INTO MusicUnit (id, name, image, avgRating, type) VALUES (@Id, @Name, @Image, @AvgRating, @Type); " +
+                     "INSERT INTO Artist (Id, ArtistType) VALUES (@Id, @ArtistType);";            ExecuteNonQuery(sql, command =>            {                command.Parameters.Add(new SqlParameter("@Id", SqlDbType.NVarChar) { Value = entity.Id });                command.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar) { Value = entity.Name });                command.Parameters.Add(new SqlParameter("@Image", SqlDbType.NVarChar) { Value = entity.Image });                command.Parameters.Add(new SqlParameter("@AvgRating", SqlDbType.Float) { Value = entity.AvrgRating });                command.Parameters.Add(new SqlParameter("@Type", SqlDbType.NVarChar) { Value = entity.Type.ToString() });                command.Parameters.Add(new SqlParameter("@ArtistType", SqlDbType.NVarChar) { Value = entity.ArtistType });            });
         }
 
         public void Update(Artist entity)
@@ -45,7 +47,6 @@ using System.Data;using Business_Logic.Enums;namespace Data_Access_Layer.Repo
             UPDATE Artist
             SET artistType = @ArtistType
             WHERE id = @Id;";            ExecuteNonQuery(sql, command =>            {                command.Parameters.Add(new SqlParameter("@Id", SqlDbType.NVarChar) { Value = entity.Id });                command.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar) { Value = entity.Name });                command.Parameters.Add(new SqlParameter("@Image", SqlDbType.NVarChar) { Value = entity.Image });                command.Parameters.Add(new SqlParameter("@Type", SqlDbType.NVarChar) { Value = entity.Type.ToString() });                command.Parameters.Add(new SqlParameter("@AvgRating", SqlDbType.Float) { Value = entity.AvrgRating });                command.Parameters.Add(new SqlParameter("@ArtistType", SqlDbType.NVarChar) { Value = entity.ArtistType.ToString() });            });
-        }
-    }
+        }        public List<Artist> GetArtistsForAlbumId(string id)        {            string sqlArtists = "SELECT mu.id, mu.name, mu.image, mu.type, mu.avgRating, ar.artistType " +                                    "FROM MusicUnit mu " +                                    "JOIN AlbumArtists aa ON mu.id = aa.artistId " +                                    "JOIN Artist ar ON mu.id = ar.id " +                                    "WHERE aa.albumId = @id";            List<Artist> artists = ExecuteQuery(sqlArtists, MapArtist, command =>            {                var parameter = command.CreateParameter();                parameter.ParameterName = "@id";                parameter.Value = id;                command.Parameters.Add(parameter);            }).ToList();            return artists;        }    }
 }
 

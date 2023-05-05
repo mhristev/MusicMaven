@@ -1,6 +1,9 @@
 ﻿using Business_Logic.Enums;
 using Business_Logic.Factories;
+using Business_Logic.Interfaces;
+using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
+using Business_Logic.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +19,13 @@ namespace Desktop_Application
     public partial class MusicForm : Form
     {
         private Form? _activeForm;
-        public MusicForm()
+        private IMusicUnitService musicUnitService;
+
+        public MusicForm(IMusicUnitService musicUnitService)
         {
             InitializeComponent();
             // flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
+            this.musicUnitService = musicUnitService;
             fillUsers();
             cmbBoxArtistType.DataSource = Enum.GetValues(typeof(ARTIST_TYPE));
         }
@@ -48,11 +54,13 @@ namespace Desktop_Application
         public void fillUsers()
         {
             flowPanelMusicUnits.Controls.Clear();
-
+            List<MusicUnit> units = musicUnitService.GetAllMusicUnits();
             List<DefaultMusicControl> components = new List<DefaultMusicControl>();
-            components.Add(new DefaultMusicControl(new Business_Logic.Models.MusicUnits.MusicUnit("", "", "", 1, Business_Logic.Enums.MUSIC_UNIT_TYPE.ARTIST)));
-            components.Add(new DefaultMusicControl(new Business_Logic.Models.MusicUnits.MusicUnit("", "", "", 1, Business_Logic.Enums.MUSIC_UNIT_TYPE.ALBUM)));
-            components.Add(new DefaultMusicControl(new Business_Logic.Models.MusicUnits.MusicUnit("", "", "", 1, Business_Logic.Enums.MUSIC_UNIT_TYPE.SONG)));
+            foreach (MusicUnit unit in units)
+            {
+                components.Add(new DefaultMusicControl(musicUnitService, unit));
+
+            }
 
             foreach (DefaultMusicControl auc in components)
             {
@@ -83,8 +91,8 @@ namespace Desktop_Application
             }
 
             MusicUnit unit = MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, name, imageURL, 0, artistType: artistType);
-
-            flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(unit));
+            musicUnitService.CreateMusicUnit(unit);
+            flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(musicUnitService, unit));
 
             txtBoxArtistName.Text = string.Empty;
             txtBoxArtistImageURL.Text = string.Empty;

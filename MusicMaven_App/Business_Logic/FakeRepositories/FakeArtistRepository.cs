@@ -26,7 +26,14 @@ namespace Business_Logic.FakeRepositories
         public List<Artist> GetAll()
         {
             return _artists;
-        }        public List<Artist> GetArtistsWithKeywordInName(string keyword)        {            return _artists.Where(a => a.Name.ToLower().Contains(keyword.ToLower()))               .ToList();        }        public Artist? GetById(string id)
+        }
+
+        public List<Artist> GetArtistsForAlbumId(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Artist> GetArtistsWithKeywordInName(string keyword)        {            return _artists.Where(a => a.Name.ToLower().Contains(keyword.ToLower()))               .ToList();        }        public Artist? GetById(string id)
         {
             return _artists.FirstOrDefault(a => a.Id == id);
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business_Logic.Interfaces.IServices;
+using Business_Logic.Models.MusicUnits;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,11 @@ namespace Desktop_Application.Controls
 {
     public partial class AddArtistAlbumCreationControl : UserControl
     {
-        public AddArtistAlbumCreationControl()
+
+        public AddArtistAlbumCreationControl(List<Artist> artists)
         {
             InitializeComponent();
+            cmBoxArtist.DataSource = artists;
         }
         public AddArtistAlbumCreationControl(string name)
         {
@@ -29,6 +33,11 @@ namespace Desktop_Application.Controls
         private void button1_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        public Artist GetSelectedArtist()
+        {
+            return (Artist)cmBoxArtist.SelectedItem;
         }
     }
 }

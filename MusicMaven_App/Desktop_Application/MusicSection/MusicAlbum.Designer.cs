@@ -228,7 +228,7 @@
             // 
             btnEdit.BackColor = Color.FromArgb(24, 137, 149);
             btnEdit.FlatAppearance.BorderSize = 0;
-            btnEdit.FlatStyle = FlatStyle.Popup;
+            btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnEdit.ForeColor = Color.White;
             btnEdit.Location = new Point(59, 231);
