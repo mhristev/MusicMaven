@@ -12,6 +12,7 @@ namespace Web_Application.DTOs
         public string Email { get; set; }
         public List<UserDTO> Following { get; set; }
         public List<UserDTO> Followers { get; set; }
+        public string Image { get; set; }
 
         public static UserDTO FromUser(User user)
         {
@@ -21,6 +22,7 @@ namespace Web_Application.DTOs
             userDTO.Email = user.Email;
             userDTO.Following = user.Following.Select(u => UserDTO.FromUser(u)).ToList();
             userDTO.Followers = user.Followers.Select(u => UserDTO.FromUser(u)).ToList();
+            userDTO.Image = user.Image;
             return userDTO;
         }
 

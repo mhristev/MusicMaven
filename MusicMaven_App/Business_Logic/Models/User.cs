@@ -15,9 +15,7 @@ using System.Text.RegularExpressions;using Business_Logic.Services;namespace 
         private string password;
         private List<User> following;
         private List<User> followers;
-        private USER_TYPE type;
-
-        public User(string id, string username, string email, string password, List<User> following, List<User> followers, USER_TYPE type)
+        private USER_TYPE type;        private string image;        public User()        {        }        public User(string id, string username, string email, string password, List<User> following, List<User> followers, USER_TYPE type, string image)
         {
             this.Id = id;
             this.Username = username;
@@ -25,6 +23,7 @@ using System.Text.RegularExpressions;using Business_Logic.Services;namespace 
             this.Password = password;
             this.Following = following;
             this.Followers = followers;
+            this.Image = image;
             this.Type = type;
         }
 
@@ -58,5 +57,6 @@ using System.Text.RegularExpressions;using Business_Logic.Services;namespace 
         public List<User> Following { get => following; set => following = value; }
         public List<User> Followers { get => followers; set => followers = value; }
         public USER_TYPE Type { get => type; set => type = value; }
+        public string Image { get => image; set => image = value; }
     }
 }

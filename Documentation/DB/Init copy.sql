@@ -60,6 +60,7 @@ CREATE TABLE [User] (
     username NVARCHAR(50) NOT NULL,
     email NVARCHAR(100) NOT NULL,
     hashedPassword TEXT NOT NULL,
+    image TEXT NOT NULL,
     type NVARCHAR(50) NOT NULL
 );
 

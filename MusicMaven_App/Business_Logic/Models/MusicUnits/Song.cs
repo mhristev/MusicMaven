@@ -10,9 +10,7 @@ namespace Business_Logic.Models.MusicUnits
     public class Song : MusicUnit
     {
         private int durationInSeconds;
-        private Album album;
-
-        public Song(string id,
+        private Album album;        public Song()        {        }        public Song(string id,
                     string name,
                     string image,
                     MUSIC_UNIT_TYPE type,
