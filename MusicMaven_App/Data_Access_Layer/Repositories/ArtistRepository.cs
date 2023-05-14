@@ -14,8 +14,7 @@ using System.Data;using Business_Logic.Enums;namespace Data_Access_Layer.Repo
 
         public void Delete(string id)
         {
-            string sql = "DELETE FROM Artist WHERE Id = @Id; " +
-                     "DELETE FROM MusicUnit WHERE Id = @Id;";            ExecuteNonQuery(sql, command =>            {                command.Parameters.Add(new SqlParameter("@Id", SqlDbType.NVarChar) { Value = id });            });
+            string sql = "DELETE FROM Artist WHERE id = @Id; ";            ExecuteNonQuery(sql, command =>            {                command.Parameters.Add(new SqlParameter("@Id", SqlDbType.NVarChar) { Value = id });            });
         }
 
         

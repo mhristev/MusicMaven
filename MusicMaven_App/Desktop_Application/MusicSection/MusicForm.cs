@@ -4,10 +4,12 @@ using Business_Logic.Interfaces;
 using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
 using Business_Logic.Services;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,7 @@ using System.Windows.Forms;
 
 namespace Desktop_Application
 {
-    public partial class MusicForm : Form
+    public partial class MusicForm : Form, IMusicForm
     {
         private Form? _activeForm;
         private IMusicUnitService musicUnitService;
@@ -26,7 +28,7 @@ namespace Desktop_Application
             InitializeComponent();
             // flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
             this.musicUnitService = musicUnitService;
-            fillUsers();
+            fillMusicUnits();
             cmbBoxArtistType.DataSource = Enum.GetValues(typeof(ARTIST_TYPE));
         }
         public void OpenChildForm(Form childForm, object btnSender)
@@ -46,12 +48,16 @@ namespace Desktop_Application
             childForm.BringToFront();
             childForm.Show();
         }
+        public void RefreshContents()
+        {
+            fillMusicUnits();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        public void fillUsers()
+        public void fillMusicUnits()
         {
             flowPanelMusicUnits.Controls.Clear();
             List<MusicUnit> units = musicUnitService.GetAllMusicUnits();
@@ -70,34 +76,38 @@ namespace Desktop_Application
 
         private void btnCreateArtist_Click(object sender, EventArgs e)
         {
-            string name = txtBoxArtistName.Text;
-            string imageURL = txtBoxArtistImageURL.Text;
-            string artistTypeSelectedText = cmbBoxArtistType.Text;
-
-            if (string.IsNullOrWhiteSpace(name))
+            try
             {
-                MessageBox.Show("Please enter a name.");
-                return;
-            }
-            if (!Enum.TryParse(artistTypeSelectedText, out ARTIST_TYPE artistType))
+                string name = txtBoxArtistName.Text;
+                string imageURL = txtBoxArtistImageURL.Text;
+                string artistTypeSelectedText = cmbBoxArtistType.Text;
+
+               
+                ARTIST_TYPE artistType = (ARTIST_TYPE)Enum.Parse(typeof(ARTIST_TYPE), artistTypeSelectedText);
+               
+                MusicUnit unit = MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, name, imageURL, 0, artistType: artistType);
+                musicUnitService.CreateMusicUnit(unit);
+                flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(musicUnitService, unit));
+
+                txtBoxArtistName.Text = string.Empty;
+                txtBoxArtistImageURL.Text = string.Empty;
+                cmbBoxArtistType.Text = string.Empty;
+            } 
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Please select a valid artist type.");
-                return;
-            }
-            if (!Uri.IsWellFormedUriString(imageURL, UriKind.RelativeOrAbsolute))
-            {
-                MessageBox.Show("Please enter a valid image URL.");
-                return;
+                MessageBox.Show(ex.Message);
             }
 
-            MusicUnit unit = MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, name, imageURL, 0, artistType: artistType);
-            musicUnitService.CreateMusicUnit(unit);
-            flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(musicUnitService, unit));
+        }
 
-            txtBoxArtistName.Text = string.Empty;
-            txtBoxArtistImageURL.Text = string.Empty;
-            cmbBoxArtistType.Text = string.Empty;
+        public void RefreshMusicForm()
+        {
+            this.fillMusicUnits();
+        }
 
+        public void RefreshParentMusicForm()
+        {
+            throw new NotImplementedException();
         }
     }
 }

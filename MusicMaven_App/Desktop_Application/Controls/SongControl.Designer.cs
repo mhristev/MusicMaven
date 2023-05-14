@@ -53,6 +53,7 @@
             btnDelete.Size = new Size(33, 30);
             btnDelete.TabIndex = 1;
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // SongControl
             // 

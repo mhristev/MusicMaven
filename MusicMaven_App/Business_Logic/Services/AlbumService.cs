@@ -17,7 +17,14 @@ using Business_Logic.Interfaces.IServices;using Business_Logic.Interfaces;usin
         public List<Album> GetAlbumsForArtist(Artist artist)
         {
             return _albumRepository.GetAlbumsForArtistId(artist.Id);
-        }        public List<Album> GetNewReleasedAlbums(int albumCount)
+        }
+
+        public List<Album> GetAllAlbums()
+        {
+            return _albumRepository.GetAll();
+        }
+
+        public List<Album> GetNewReleasedAlbums(int albumCount)
         {
             return _albumRepository.GetNewReleasedAlbums(albumCount);
         }

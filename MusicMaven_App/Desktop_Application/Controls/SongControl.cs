@@ -30,8 +30,14 @@ namespace Desktop_Application.Controls
             MusicAlbum parent = this.FindForm() as MusicAlbum;
             if (parent != null)
             {
-                parent.OpenChildForm(new MusicSong(), sender);
+                parent.OpenChildForm(new MusicSong(musicUnitService, song), sender);
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            musicUnitService.DeleteMusicUnit(song);
+            this.Dispose();
         }
     }
 }

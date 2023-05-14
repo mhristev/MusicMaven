@@ -12,6 +12,7 @@ namespace Business_Logic.Enums
         ROCK,
         POP,
         HIP_HOP,
-        JAZZ
+        JAZZ,
+        RnB
     }
 }

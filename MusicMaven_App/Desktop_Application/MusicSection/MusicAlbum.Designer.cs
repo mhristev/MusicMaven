@@ -33,12 +33,11 @@
             label8 = new Label();
             label2 = new Label();
             label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            textBox2 = new TextBox();
+            nmrDurationInSecondsCreateSong = new NumericUpDown();
+            txtBoxImgCreateSong = new TextBox();
             btnCreateSong = new Button();
-            textBox1 = new TextBox();
+            txtBoxNameCreateSong = new TextBox();
             btnAddArtist = new Button();
-            lblArtists = new Label();
             flowPanelArtists = new FlowLayoutPanel();
             btnBack = new Button();
             btnEdit = new Button();
@@ -48,7 +47,7 @@
             lblRating = new Label();
             lblReleaseDate = new Label();
             lblGenre = new Label();
-            button2 = new Button();
+            btnDelete = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             label7 = new Label();
             label6 = new Label();
@@ -58,14 +57,13 @@
             lblName = new Label();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nmrDurationInSecondsCreateSong).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Controls.Add(groupBox1);
             panel1.Controls.Add(btnAddArtist);
-            panel1.Controls.Add(lblArtists);
             panel1.Controls.Add(flowPanelArtists);
             panel1.Controls.Add(btnBack);
             panel1.Controls.Add(btnEdit);
@@ -75,7 +73,7 @@
             panel1.Controls.Add(lblRating);
             panel1.Controls.Add(lblReleaseDate);
             panel1.Controls.Add(lblGenre);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(flowLayoutPanel1);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
@@ -94,10 +92,10 @@
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(numericUpDown1);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(nmrDurationInSecondsCreateSong);
+            groupBox1.Controls.Add(txtBoxImgCreateSong);
             groupBox1.Controls.Add(btnCreateSong);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtBoxNameCreateSong);
             groupBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(59, 527);
@@ -134,24 +132,24 @@
             label1.TabIndex = 3;
             label1.Text = "Name";
             // 
-            // numericUpDown1
+            // nmrDurationInSecondsCreateSong
             // 
-            numericUpDown1.BackColor = Color.FromArgb(101, 93, 140);
-            numericUpDown1.ForeColor = Color.White;
-            numericUpDown1.Location = new Point(744, 33);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(171, 25);
-            numericUpDown1.TabIndex = 2;
+            nmrDurationInSecondsCreateSong.BackColor = Color.FromArgb(101, 93, 140);
+            nmrDurationInSecondsCreateSong.ForeColor = Color.White;
+            nmrDurationInSecondsCreateSong.Location = new Point(744, 33);
+            nmrDurationInSecondsCreateSong.Name = "nmrDurationInSecondsCreateSong";
+            nmrDurationInSecondsCreateSong.Size = new Size(171, 25);
+            nmrDurationInSecondsCreateSong.TabIndex = 2;
             // 
-            // textBox2
+            // txtBoxImgCreateSong
             // 
-            textBox2.BackColor = Color.FromArgb(101, 93, 140);
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.ForeColor = Color.White;
-            textBox2.Location = new Point(114, 78);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(339, 18);
-            textBox2.TabIndex = 1;
+            txtBoxImgCreateSong.BackColor = Color.FromArgb(101, 93, 140);
+            txtBoxImgCreateSong.BorderStyle = BorderStyle.None;
+            txtBoxImgCreateSong.ForeColor = Color.White;
+            txtBoxImgCreateSong.Location = new Point(114, 78);
+            txtBoxImgCreateSong.Name = "txtBoxImgCreateSong";
+            txtBoxImgCreateSong.Size = new Size(339, 18);
+            txtBoxImgCreateSong.TabIndex = 1;
             // 
             // btnCreateSong
             // 
@@ -165,17 +163,18 @@
             btnCreateSong.TabIndex = 18;
             btnCreateSong.Text = "Create Song";
             btnCreateSong.UseVisualStyleBackColor = false;
+            btnCreateSong.Click += btnCreateSong_Click;
             // 
-            // textBox1
+            // txtBoxNameCreateSong
             // 
-            textBox1.BackColor = Color.FromArgb(101, 93, 140);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(114, 40);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(339, 18);
-            textBox1.TabIndex = 0;
+            txtBoxNameCreateSong.BackColor = Color.FromArgb(101, 93, 140);
+            txtBoxNameCreateSong.BorderStyle = BorderStyle.None;
+            txtBoxNameCreateSong.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxNameCreateSong.ForeColor = Color.White;
+            txtBoxNameCreateSong.Location = new Point(114, 40);
+            txtBoxNameCreateSong.Name = "txtBoxNameCreateSong";
+            txtBoxNameCreateSong.Size = new Size(339, 18);
+            txtBoxNameCreateSong.TabIndex = 0;
             // 
             // btnAddArtist
             // 
@@ -191,22 +190,11 @@
             btnAddArtist.Visible = false;
             btnAddArtist.Click += btnAddArtist_Click;
             // 
-            // lblArtists
-            // 
-            lblArtists.AutoSize = true;
-            lblArtists.Font = new Font("Yu Gothic Medium", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblArtists.ForeColor = Color.White;
-            lblArtists.Location = new Point(204, 139);
-            lblArtists.Name = "lblArtists";
-            lblArtists.Size = new Size(162, 25);
-            lblArtists.TabIndex = 11;
-            lblArtists.Text = "artist1 | artist2";
-            // 
             // flowPanelArtists
             // 
             flowPanelArtists.Location = new Point(204, 131);
             flowPanelArtists.Name = "flowPanelArtists";
-            flowPanelArtists.Size = new Size(704, 38);
+            flowPanelArtists.Size = new Size(785, 38);
             flowPanelArtists.TabIndex = 20;
             // 
             // btnBack
@@ -267,6 +255,7 @@
             dtpReleaseDate.Name = "dtpReleaseDate";
             dtpReleaseDate.Size = new Size(200, 23);
             dtpReleaseDate.TabIndex = 14;
+            dtpReleaseDate.Value = new DateTime(2023, 5, 10, 15, 10, 45, 0);
             dtpReleaseDate.Visible = false;
             // 
             // lblRating
@@ -302,17 +291,18 @@
             lblGenre.TabIndex = 10;
             lblGenre.Text = "ROCK";
             // 
-            // button2
+            // btnDelete
             // 
-            button2.BackgroundImage = Properties.Resources.icons8_delete_100;
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(980, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(60, 56);
-            button2.TabIndex = 9;
-            button2.UseVisualStyleBackColor = true;
+            btnDelete.BackgroundImage = Properties.Resources.icons8_delete_100;
+            btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(980, 12);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(60, 56);
+            btnDelete.TabIndex = 9;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -404,7 +394,7 @@
             panel1.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nmrDurationInSecondsCreateSong).EndInit();
             ResumeLayout(false);
         }
 
@@ -418,12 +408,11 @@
         private Label label5;
         private Label label7;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button2;
+        private Button btnDelete;
         private ComboBox cmBoxGenre;
         private DateTimePicker dtpReleaseDate;
         private Label lblRating;
         private Label lblReleaseDate;
-        private Label lblArtists;
         private Label lblGenre;
         private TextBox txtBoxName;
         private Button btnEdit;
@@ -432,11 +421,11 @@
         private FlowLayoutPanel flowPanelArtists;
         private Button btnAddArtist;
         private GroupBox groupBox1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtBoxImgCreateSong;
+        private TextBox txtBoxNameCreateSong;
         private Label label8;
         private Label label2;
         private Label label1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown nmrDurationInSecondsCreateSong;
     }
 }

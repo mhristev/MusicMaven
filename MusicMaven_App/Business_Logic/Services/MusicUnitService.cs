@@ -105,5 +105,10 @@ namespace Business_Logic.Services
                     break;
             };
         }
+
+        public List<Album> GetAlbums()
+        {
+            return albumService.GetAllAlbums();
+        }
     }
 }

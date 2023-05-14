@@ -16,7 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Desktop_Application
 {
-    public partial class MusicArtist : Form
+    public partial class MusicArtist : Form, IMusicForm
     {
         private Form? _activeForm;
         private IMusicUnitService musicUnitService;
@@ -30,7 +30,7 @@ namespace Desktop_Application
             lblArtistType.Text = artist.ArtistType.ToString();
             lblImage.Text = artist.Image;
             lblRating.Text = artist.AvrgRating.ToString();
-            fillUsers();
+            fillAlbums();
             textBox2.Hide();
             cmBoxArtistType.Hide();
             txtBoxImage.Hide();
@@ -40,6 +40,7 @@ namespace Desktop_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.RefreshParentMusicForm();
             this.Close();
         }
 
@@ -61,7 +62,7 @@ namespace Desktop_Application
             childForm.Show();
         }
 
-        public void fillUsers()
+        public void fillAlbums()
         {
             List<Album> albums = musicUnitService.GetAlbumsForArtist(artist);
             flowLayoutPanel1.Controls.Clear();
@@ -168,8 +169,17 @@ namespace Desktop_Application
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            musicUnitService.DeleteMusicUnit(artist);
-            this.Close();
+            DialogResult result =
+                MessageBox.Show("Are you sure you want to delete this artist (this action will delete all solo albums and songs of this artist)?", "Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                musicUnitService.DeleteMusicUnit(artist);
+                this.RefreshParentMusicForm();
+                this.Close();
+            }
+
         }
 
         private void btnCreateAlbum_Click(object sender, EventArgs e)
@@ -214,6 +224,26 @@ namespace Desktop_Application
             {
                 Album album = (Album)MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, name, image, 0, albumGenre: genre, albumCreators: artists, albumReleaseDate: creationDate);
                 musicUnitService.CreateMusicUnit(album);
+                flowLayoutPanel1.Controls.Add(new AlbumControl(musicUnitService, album));
+                txtBoxCreateAlbumName.Text = String.Empty;
+                txtBoxCreateAlbumImageURL.Text = String.Empty;
+                cmbBoxCreateAlbumGenre.SelectedItem = 0;
+                dtPickerCreateAlbumReleaseDate.Value = DateTime.Today;
+            }
+
+        }
+        public void RefreshMusicForm()
+        {
+            this.fillAlbums();
+        }
+
+        public void RefreshParentMusicForm()
+        {
+            if (this.ParentForm is IMusicForm)
+            {
+                IMusicForm underneathForm = (IMusicForm)this.ParentForm;
+                // Do something with the underneathForm
+                underneathForm.RefreshMusicForm();
             }
 
         }

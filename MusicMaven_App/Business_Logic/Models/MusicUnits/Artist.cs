@@ -16,10 +16,22 @@ namespace Business_Logic.Models.MusicUnits
                       ARTIST_TYPE artistType,
                       double avgRating) : base(id, name, image, avgRating, type)
         {
-            this.artistType = artistType;
+            this.ArtistType = artistType;
         }
 
-        public ARTIST_TYPE ArtistType { get => artistType; set => artistType = value; }
+        public ARTIST_TYPE ArtistType { get => artistType; 
+            set
+            {
+                if (!Enum.IsDefined(typeof(ARTIST_TYPE), value))
+                {
+                    throw new ArgumentException("Invalid artist type.");
+                }
+                else
+                {
+                    this.artistType = value;
+                }
+            }
+        }
 
         public override string? ToString()
         {

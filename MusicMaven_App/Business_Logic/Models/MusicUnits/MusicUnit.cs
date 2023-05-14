@@ -15,17 +15,67 @@ namespace Business_Logic.Models.MusicUnits
         private double avgRating;
         private MUSIC_UNIT_TYPE type;        public MusicUnit() { }        public MusicUnit(string id, string name, string image, double avrgRating, MUSIC_UNIT_TYPE type)
         {
-            this.id = id;
-            this.name = name;
-            this.image = image;
-            this.avgRating = avrgRating;
-            this.type = type;
+            this.Id = id;
+            this.Name = name;
+            this.Image = image;
+            this.AvrgRating = avrgRating;
+            this.Type = type;
         }
 
         public string Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Image { get => image; set => image = value; }
-        public double AvrgRating { get => avgRating; set => avgRating = value; }
-        public MUSIC_UNIT_TYPE Type { get => type; set => type = value; }
+        public string Name { get => name; 
+            set 
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Enter a valid name.");
+                }
+                else
+                {
+                    name = value;
+                }
+            } 
+        }
+        public string Image { get => image; 
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Enter a valid URL");
+                }
+                else
+                {
+                    image = value;
+                }
+            }
+        }
+        public double AvrgRating
+        {
+            get => avgRating;
+            set
+            {
+                if (value < 0 || value > 10)
+                {
+                    throw new ArgumentException("Enter a valid Rating");
+                }
+                else
+                {
+                    avgRating = value;
+                }
+            }
+        }
+        public MUSIC_UNIT_TYPE Type { get => type; 
+            set
+            {
+                if (!Enum.IsDefined(typeof(MUSIC_UNIT_TYPE), value))
+                {
+                    throw new ArgumentException("Enter a valid music unit type.");
+                }
+                else
+                {
+                    this.type = value;
+                }
+            }
+        }
     }
 }

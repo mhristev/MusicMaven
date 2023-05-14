@@ -6,10 +6,11 @@ CREATE TABLE MusicUnit (
     avgRating FLOAT NOT NULL,
     type NVARCHAR(100) NOT NULL
 );
+
 CREATE TABLE Artist (
     id NVARCHAR(100) PRIMARY KEY,
     artistType NVARCHAR(50) NOT NULL,
-    FOREIGN KEY (id) REFERENCES MusicUnit(id)
+    FOREIGN KEY (id) REFERENCES MusicUnit(id) 
 );
 
 CREATE TABLE Album (
@@ -35,6 +36,15 @@ CREATE TABLE Song (
     FOREIGN KEY (albumId) REFERENCES Album(id)
 );
 
+CREATE TABLE [User] (
+    id NVARCHAR(100) PRIMARY KEY,
+    username NVARCHAR(50) NOT NULL,
+    email NVARCHAR(100) NOT NULL,
+    hashedPassword TEXT NOT NULL,
+    image TEXT NOT NULL,
+    type NVARCHAR(50) NOT NULL
+);
+
 CREATE TABLE Review (
     id NVARCHAR(100) PRIMARY KEY,
     title NVARCHAR(200) NOT NULL,
@@ -53,15 +63,6 @@ CREATE TABLE ReviewLike (
     PRIMARY KEY (reviewId, userId),
     FOREIGN KEY (reviewId) REFERENCES Review(id),
     FOREIGN KEY (userId) REFERENCES [User](id)
-);
-
-CREATE TABLE [User] (
-    id NVARCHAR(100) PRIMARY KEY,
-    username NVARCHAR(50) NOT NULL,
-    email NVARCHAR(100) NOT NULL,
-    hashedPassword TEXT NOT NULL,
-    image TEXT NOT NULL,
-    type NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE UserFollowing (

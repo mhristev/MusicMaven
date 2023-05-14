@@ -1,20 +1,13 @@
-﻿using Business_Logic.Interfaces.IServices;
+﻿using Business_Logic.Enums;
+using Business_Logic.Factories;
+using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
 using Desktop_Application.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Globalization;
 
 namespace Desktop_Application.MusicSection
 {
-    public partial class MusicAlbum : Form
+    public partial class MusicAlbum : Form, IMusicForm
     {
         private Form? _activeForm;
         private Album album;
@@ -27,8 +20,16 @@ namespace Desktop_Application.MusicSection
             this.lblName.Text = album.Name;
             this.lblGenre.Text = album.Genre.ToString();
             this.lblRating.Text = album.AvrgRating.ToString();
-            this.lblReleaseDate.Text = album.ReleaseDate.ToString();
-            fillUsers();
+            this.lblReleaseDate.Text = album.ReleaseDate.ToString("dd-MM-yyyy");
+            List<Artist> artists = musicUnitService.GetArtists();
+            foreach (Artist artist in album.Artists)
+            {
+                AddArtistAlbumCreationControl control = new AddArtistAlbumCreationControl(artists, artist);
+                control.HideDeleteAndDisableComboBox();
+                flowPanelArtists.Controls.Add(control);
+            }
+            cmBoxGenre.DataSource = Enum.GetValues(typeof(GENRE_TYPE));
+            fillSongs();
         }
         public void OpenChildForm(Form childForm, object btnSender)
         {
@@ -48,7 +49,7 @@ namespace Desktop_Application.MusicSection
             childForm.Show();
         }
 
-        public void fillUsers()
+        public void fillSongs()
         {
             flowLayoutPanel1.Controls.Clear();
             List<Song> songList = musicUnitService.GetSongsInAlbum(album);
@@ -64,13 +65,9 @@ namespace Desktop_Application.MusicSection
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
+            this.RefreshParentMusicForm();
             this.Close();
         }
 
@@ -88,15 +85,11 @@ namespace Desktop_Application.MusicSection
             txtBoxName.BringToFront();
 
 
-            string[] substrings = lblArtists.Text.Split('|');
-            flowPanelArtists.Controls.Clear();
-            foreach (string substring in substrings)
+            foreach (AddArtistAlbumCreationControl control in flowPanelArtists.Controls)
             {
-                if (substring.Trim().Length > 0)
-                {
-                    flowPanelArtists.Controls.Add(new AddArtistAlbumCreationControl(substring.Trim()));
-                }
+                control.ShowDeleteAndEnableComboBox();
             }
+
             btnAddArtist.Show();
 
             cmBoxGenre.Location = lblGenre.Location;
@@ -107,13 +100,13 @@ namespace Desktop_Application.MusicSection
             cmBoxGenre.BringToFront();
 
             dtpReleaseDate.Location = lblReleaseDate.Location;
-            dtpReleaseDate.Value = DateTime.Parse(lblReleaseDate.Text);
+            DateTime dateValue = DateTime.ParseExact(lblReleaseDate.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture); // Convert the date string to a DateTime value
+            dtpReleaseDate.Value = dateValue;
             dtpReleaseDate.Size = lblReleaseDate.Size * 2;
             dtpReleaseDate.RightToLeft = RightToLeft.No;
             dtpReleaseDate.Show();
             dtpReleaseDate.BringToFront();
 
-            lblArtists.Hide();
             lblName.Hide();
             lblGenre.Hide();
             lblReleaseDate.Hide();
@@ -136,20 +129,24 @@ namespace Desktop_Application.MusicSection
                     cmBoxGenre.Hide();
                     lblGenre.Show();
 
-                    lblReleaseDate.Text = dtpReleaseDate.Text;
+                    lblReleaseDate.Text = dtpReleaseDate.Value.ToString("dd-MM-yyyy");
                     lblReleaseDate.Size = dtpReleaseDate.Size;
                     dtpReleaseDate.Hide();
                     lblReleaseDate.Show();
 
-                    lblArtists.Text = "";
+                    List<Artist> newArtists = new List<Artist>();
                     foreach (AddArtistAlbumCreationControl c in flowPanelArtists.Controls)
                     {
-                        lblArtists.Text += c.GetSelectedArtistName() + " | ";
+                        c.HideDeleteAndDisableComboBox();
+                        newArtists.Add(c.GetSelectedArtist());
                     }
-                    flowPanelArtists.Controls.Clear();
-
-                    lblArtists.Show();
                     btnAddArtist.Hide();
+
+                    album.Name = lblName.Text;
+                    album.Genre = (GENRE_TYPE)Enum.Parse(typeof(GENRE_TYPE), lblGenre.Text);
+                    album.ReleaseDate = DateTime.Parse(dtpReleaseDate.Text);
+                    album.Artists = newArtists;
+                    musicUnitService.UpdateMusicUnit(album);
 
                 }
             }
@@ -166,10 +163,57 @@ namespace Desktop_Application.MusicSection
 
         private void btnAddArtist_Click(object sender, EventArgs e)
         {
+            List<Artist> artists = musicUnitService.GetArtists();
+
             if (flowPanelArtists.Controls.Count < 3)
             {
-                flowPanelArtists.Controls.Add(new AddArtistAlbumCreationControl(""));
+                flowPanelArtists.Controls.Add(new AddArtistAlbumCreationControl(artists));
             }
+        }
+
+        private void btnCreateSong_Click(object sender, EventArgs e)
+        {
+            string? name = txtBoxNameCreateSong.Text;
+            string? img = txtBoxImgCreateSong.Text;
+            int duration = (int)nmrDurationInSecondsCreateSong.Value;
+
+            if (duration != 0 && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(img))
+            {
+                MusicUnit song = MusicUnitFactory.CreateMusicUnit(Business_Logic.Enums.MUSIC_UNIT_TYPE.SONG, name, img, 0, durationInSeconds: duration, songAlbum: album);
+                musicUnitService.CreateMusicUnit(song);
+                flowLayoutPanel1.Controls.Add(new SongControl(musicUnitService, (Song)song));
+            }
+
+        }
+
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = 
+                MessageBox.Show("Are you sure you want to delete this album (this will also delete all the songs related to this record)?", "Confirmation", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                musicUnitService.DeleteMusicUnit(album);
+                this.RefreshParentMusicForm();
+                this.Dispose();
+            }            
+        }
+
+        public void RefreshParentMusicForm()
+        {
+            if (this.ParentForm is IMusicForm)
+            {
+                IMusicForm underneathForm = (IMusicForm)this.ParentForm;
+                // Do something with the underneathForm
+                underneathForm.RefreshMusicForm();
+            }
+        }
+
+        public void RefreshMusicForm()
+        {
+            this.fillSongs();
         }
     }
 }

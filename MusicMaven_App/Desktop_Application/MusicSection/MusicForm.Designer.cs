@@ -182,6 +182,7 @@
             flowPanelMusicUnits.AutoScroll = true;
             flowPanelMusicUnits.Location = new Point(41, 202);
             flowPanelMusicUnits.Name = "flowPanelMusicUnits";
+            flowPanelMusicUnits.RightToLeft = RightToLeft.No;
             flowPanelMusicUnits.Size = new Size(977, 481);
             flowPanelMusicUnits.TabIndex = 3;
             // 

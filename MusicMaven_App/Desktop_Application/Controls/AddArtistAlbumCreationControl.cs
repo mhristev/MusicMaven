@@ -20,10 +20,13 @@ namespace Desktop_Application.Controls
             InitializeComponent();
             cmBoxArtist.DataSource = artists;
         }
-        public AddArtistAlbumCreationControl(string name)
+        public AddArtistAlbumCreationControl(List<Artist> artists, Artist selectedArtist)
         {
             InitializeComponent();
-            this.cmBoxArtist.Text = name;
+            cmBoxArtist.DataSource = artists;
+            int index = artists.FindIndex(artist => artist.Id == selectedArtist.Id);
+
+            cmBoxArtist.SelectedIndex = index;
         }
         public string GetSelectedArtistName()
         {
@@ -33,6 +36,18 @@ namespace Desktop_Application.Controls
         private void button1_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        public void HideDeleteAndDisableComboBox()
+        {
+            button1.Visible = false;
+            cmBoxArtist.Enabled = false;
+        }
+
+        public void ShowDeleteAndEnableComboBox()
+        {
+            button1.Visible = true;
+            cmBoxArtist.Enabled = true;
         }
 
         public Artist GetSelectedArtist()

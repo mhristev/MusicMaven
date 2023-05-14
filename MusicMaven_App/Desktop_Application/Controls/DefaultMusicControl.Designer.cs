@@ -47,7 +47,7 @@
             // 
             lblType.AutoSize = true;
             lblType.ForeColor = Color.White;
-            lblType.Location = new Point(738, 20);
+            lblType.Location = new Point(705, 20);
             lblType.Name = "lblType";
             lblType.Size = new Size(38, 15);
             lblType.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             lblRating.AutoSize = true;
             lblRating.ForeColor = Color.White;
-            lblRating.Location = new Point(909, 20);
+            lblRating.Location = new Point(882, 20);
             lblRating.Name = "lblRating";
             lblRating.Size = new Size(38, 15);
             lblRating.TabIndex = 2;
@@ -71,10 +71,10 @@
             Controls.Add(lblRating);
             Controls.Add(lblType);
             Controls.Add(lblName);
-            MaximumSize = new Size(970, 0);
-            MinimumSize = new Size(970, 0);
+            MaximumSize = new Size(950, 50);
+            MinimumSize = new Size(950, 50);
             Name = "DefaultMusicControl";
-            Size = new Size(970, 50);
+            Size = new Size(950, 50);
             Click += DefaultMusicControl_Click;
             ResumeLayout(false);
             PerformLayout();

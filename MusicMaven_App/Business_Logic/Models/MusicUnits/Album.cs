@@ -26,9 +26,25 @@ namespace Business_Logic.Models.MusicUnits
 
         }
 
-        public GENRE_TYPE Genre { get => genre; set => genre = value; }
+        public GENRE_TYPE Genre { get => genre; 
+            set 
+            {
+                if (!Enum.IsDefined(typeof(GENRE_TYPE), value))
+                {
+                    throw new ArgumentException("Enter a valid genre type.");
+                }
+                else
+                {
+                    this.genre = value;
+                }
+            }
+        }
         public List<Artist> Artists { get => artists; set => artists = value; }
         public DateTime ReleaseDate { get => releaseDate; set => releaseDate = value; }
 
+        public override string? ToString()
+        {
+            return this.Name;
+        }
     }
 }

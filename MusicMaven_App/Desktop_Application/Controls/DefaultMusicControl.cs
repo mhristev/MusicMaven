@@ -18,7 +18,7 @@ namespace Desktop_Application
     {
         private MusicUnit _musicUnit;
         private IMusicUnitService musicUnitService;
-        public DefaultMusicControl(IMusicUnitService musicUnitService,MusicUnit musicUnit)
+        public DefaultMusicControl(IMusicUnitService musicUnitService, MusicUnit musicUnit)
         {
             InitializeComponent();
             _musicUnit = musicUnit;
@@ -42,7 +42,7 @@ namespace Desktop_Application
                         parent.OpenChildForm(new MusicAlbum(musicUnitService, (Album)_musicUnit), sender);
                         break;
                     case MUSIC_UNIT_TYPE.SONG:
-                        parent.OpenChildForm(new MusicSong(), sender);
+                        parent.OpenChildForm(new MusicSong(musicUnitService, (Song)_musicUnit), sender);
                         break;
                     default:
                         MessageBox.Show("Error while loading object.");

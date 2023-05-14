@@ -29,40 +29,48 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            txtBoxSongName = new TextBox();
             msktxtBoxDuration = new MaskedTextBox();
             btnEdit = new Button();
-            button3 = new Button();
+            btnDelete = new Button();
             btnBack = new Button();
-            lblAlbum = new Label();
-            lblRating = new Label();
-            lblDuration = new Label();
-            cmbBoxAlbum = new ComboBox();
+            lblSongRating = new Label();
+            lblSongDuration = new Label();
+            cmbBoxSongAlbum = new ComboBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            label1 = new Label();
+            lblSongName = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(txtBoxSongName);
             panel1.Controls.Add(msktxtBoxDuration);
             panel1.Controls.Add(btnEdit);
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(btnBack);
-            panel1.Controls.Add(lblAlbum);
-            panel1.Controls.Add(lblRating);
-            panel1.Controls.Add(lblDuration);
-            panel1.Controls.Add(cmbBoxAlbum);
+            panel1.Controls.Add(lblSongRating);
+            panel1.Controls.Add(lblSongDuration);
+            panel1.Controls.Add(cmbBoxSongAlbum);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(lblSongName);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1047, 617);
             panel1.TabIndex = 0;
+            // 
+            // txtBoxSongName
+            // 
+            txtBoxSongName.Location = new Point(590, 93);
+            txtBoxSongName.Name = "txtBoxSongName";
+            txtBoxSongName.Size = new Size(100, 23);
+            txtBoxSongName.TabIndex = 24;
+            txtBoxSongName.Visible = false;
             // 
             // msktxtBoxDuration
             // 
@@ -90,17 +98,18 @@
             btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
             // 
-            // button3
+            // btnDelete
             // 
-            button3.BackgroundImage = Properties.Resources.icons8_delete_100;
-            button3.BackgroundImageLayout = ImageLayout.Stretch;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(989, 14);
-            button3.Name = "button3";
-            button3.Size = new Size(55, 48);
-            button3.TabIndex = 21;
-            button3.UseVisualStyleBackColor = true;
+            btnDelete.BackgroundImage = Properties.Resources.icons8_delete_100;
+            btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(989, 14);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(55, 48);
+            btnDelete.TabIndex = 21;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnBack
             // 
@@ -117,47 +126,36 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
-            // lblAlbum
+            // lblSongRating
             // 
-            lblAlbum.AutoSize = true;
-            lblAlbum.Font = new Font("Yu Gothic Medium", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblAlbum.ForeColor = Color.White;
-            lblAlbum.Location = new Point(213, 185);
-            lblAlbum.Name = "lblAlbum";
-            lblAlbum.Size = new Size(84, 25);
-            lblAlbum.TabIndex = 10;
-            lblAlbum.Text = "Album3";
+            lblSongRating.AutoSize = true;
+            lblSongRating.Font = new Font("Yu Gothic Medium", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSongRating.ForeColor = Color.White;
+            lblSongRating.Location = new Point(213, 142);
+            lblSongRating.Name = "lblSongRating";
+            lblSongRating.Size = new Size(42, 25);
+            lblSongRating.TabIndex = 9;
+            lblSongRating.Text = "8.1";
             // 
-            // lblRating
+            // lblSongDuration
             // 
-            lblRating.AutoSize = true;
-            lblRating.Font = new Font("Yu Gothic Medium", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblRating.ForeColor = Color.White;
-            lblRating.Location = new Point(213, 142);
-            lblRating.Name = "lblRating";
-            lblRating.Size = new Size(42, 25);
-            lblRating.TabIndex = 9;
-            lblRating.Text = "8.1";
+            lblSongDuration.AutoSize = true;
+            lblSongDuration.Font = new Font("Yu Gothic Medium", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSongDuration.ForeColor = Color.White;
+            lblSongDuration.Location = new Point(213, 102);
+            lblSongDuration.Name = "lblSongDuration";
+            lblSongDuration.Size = new Size(66, 25);
+            lblSongDuration.TabIndex = 8;
+            lblSongDuration.Text = "02:41";
             // 
-            // lblDuration
+            // cmbBoxSongAlbum
             // 
-            lblDuration.AutoSize = true;
-            lblDuration.Font = new Font("Yu Gothic Medium", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDuration.ForeColor = Color.White;
-            lblDuration.Location = new Point(213, 102);
-            lblDuration.Name = "lblDuration";
-            lblDuration.Size = new Size(66, 25);
-            lblDuration.TabIndex = 8;
-            lblDuration.Text = "02:41";
-            // 
-            // cmbBoxAlbum
-            // 
-            cmbBoxAlbum.FormattingEnabled = true;
-            cmbBoxAlbum.Location = new Point(325, 185);
-            cmbBoxAlbum.Name = "cmbBoxAlbum";
-            cmbBoxAlbum.Size = new Size(200, 23);
-            cmbBoxAlbum.TabIndex = 6;
-            cmbBoxAlbum.Visible = false;
+            cmbBoxSongAlbum.FormattingEnabled = true;
+            cmbBoxSongAlbum.Location = new Point(213, 189);
+            cmbBoxSongAlbum.Name = "cmbBoxSongAlbum";
+            cmbBoxSongAlbum.Size = new Size(200, 23);
+            cmbBoxSongAlbum.TabIndex = 6;
+            cmbBoxSongAlbum.Visible = false;
             // 
             // label4
             // 
@@ -192,16 +190,16 @@
             label2.TabIndex = 2;
             label2.Text = "Duration:";
             // 
-            // label1
+            // lblSongName
             // 
-            label1.Font = new Font("Tahoma", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(137, 34);
-            label1.Name = "label1";
-            label1.Size = new Size(804, 38);
-            label1.TabIndex = 0;
-            label1.Text = "Backseat Freestyle";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            lblSongName.Font = new Font("Tahoma", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSongName.ForeColor = Color.White;
+            lblSongName.Location = new Point(137, 34);
+            lblSongName.Name = "lblSongName";
+            lblSongName.Size = new Size(804, 38);
+            lblSongName.TabIndex = 0;
+            lblSongName.Text = "Backseat Freestyle";
+            lblSongName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MusicSong
             // 
@@ -223,18 +221,19 @@
         #endregion
 
         private Panel panel1;
-        private Label label1;
+        private Label lblSongName;
         private Label label2;
         private Label lblAlbum;
-        private Label lblRating;
-        private Label lblDuration;
+        private Label lblSongRating;
+        private Label lblSongDuration;
         private NumericUpDown nmrDuration;
-        private ComboBox cmbBoxAlbum;
+        private ComboBox cmbBoxSongAlbum;
         private Label label4;
         private Label label3;
         private Button btnBack;
-        private Button button3;
+        private Button btnDelete;
         private Button btnEdit;
         private MaskedTextBox msktxtBoxDuration;
+        private TextBox txtBoxSongName;
     }
 }
