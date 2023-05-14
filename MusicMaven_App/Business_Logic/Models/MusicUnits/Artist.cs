@@ -1,4 +1,4 @@
-﻿using Business_Logic.Enums;
+﻿    using Business_Logic.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace Business_Logic.Models.MusicUnits
             {
                 if (!Enum.IsDefined(typeof(ARTIST_TYPE), value))
                 {
-                    throw new ArgumentException("Invalid artist type.");
+                    throw new ArgumentException(ExceptionMessages.InvalidArtistType);
                 }
                 else
                 {

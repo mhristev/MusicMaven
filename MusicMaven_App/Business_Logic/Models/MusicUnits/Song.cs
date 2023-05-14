@@ -19,8 +19,8 @@ namespace Business_Logic.Models.MusicUnits
                     Album album,
                     double avgRating) : base(id, name, image, avgRating, type)
         {
-            this.album = album;
-            this.durationInSeconds = duration;
+            this.Album = album;
+            this.DurationInSeconds = duration;
         }
 
         public int DurationInSeconds { get => durationInSeconds; 
@@ -28,7 +28,7 @@ namespace Business_Logic.Models.MusicUnits
             { 
                 if(value < 1)
                 {
-                    throw new ArgumentException("Enter a valid duration.");
+                    throw new ArgumentException(ExceptionMessages.InvalidDurationInSeconds);
                 } 
                 else
                 {

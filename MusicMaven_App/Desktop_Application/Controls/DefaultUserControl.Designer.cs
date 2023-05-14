@@ -1,6 +1,6 @@
-﻿namespace Desktop_Application
+﻿namespace Desktop_Application.Controls
 {
-    partial class DefaultMusicControl
+    partial class DefaultUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,62 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblName = new Label();
+            lblUsername = new Label();
+            lblEmail = new Label();
             lblType = new Label();
-            lblRating = new Label();
             SuspendLayout();
             // 
-            // lblName
+            // lblUsername
             // 
-            lblName.AutoSize = true;
-            lblName.ForeColor = Color.White;
-            lblName.Location = new Point(21, 20);
-            lblName.Name = "lblName";
-            lblName.Size = new Size(38, 15);
-            lblName.TabIndex = 0;
-            lblName.Text = "label1";
+            lblUsername.AutoSize = true;
+            lblUsername.ForeColor = Color.White;
+            lblUsername.Location = new Point(28, 21);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(38, 15);
+            lblUsername.TabIndex = 0;
+            lblUsername.Text = "label1";
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.ForeColor = Color.White;
+            lblEmail.Location = new Point(455, 21);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(38, 15);
+            lblEmail.TabIndex = 1;
+            lblEmail.Text = "label1";
             // 
             // lblType
             // 
             lblType.AutoSize = true;
             lblType.ForeColor = Color.White;
-            lblType.Location = new Point(705, 20);
+            lblType.Location = new Point(831, 21);
             lblType.Name = "lblType";
             lblType.Size = new Size(38, 15);
-            lblType.TabIndex = 1;
+            lblType.TabIndex = 2;
             lblType.Text = "label1";
             // 
-            // lblRating
-            // 
-            lblRating.AutoSize = true;
-            lblRating.ForeColor = Color.White;
-            lblRating.Location = new Point(882, 20);
-            lblRating.Name = "lblRating";
-            lblRating.Size = new Size(38, 15);
-            lblRating.TabIndex = 2;
-            lblRating.Text = "label1";
-            // 
-            // DefaultMusicControl
+            // DefaultUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(101, 93, 140);
-            Controls.Add(lblRating);
             Controls.Add(lblType);
-            Controls.Add(lblName);
-            MaximumSize = new Size(941, 50);
-            MinimumSize = new Size(941, 50);
-            Name = "DefaultMusicControl";
-            Size = new Size(941, 50);
-            Click += DefaultMusicControl_Click;
+            Controls.Add(lblEmail);
+            Controls.Add(lblUsername);
+            MaximumSize = new Size(950, 50);
+            MinimumSize = new Size(950, 50);
+            Name = "DefaultUserControl";
+            Size = new Size(950, 50);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblName;
+        private Label lblUsername;
+        private Label lblEmail;
         private Label lblType;
-        private Label lblRating;
     }
 }

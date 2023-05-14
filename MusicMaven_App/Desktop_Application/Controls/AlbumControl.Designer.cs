@@ -36,7 +36,7 @@
             // 
             lblAlbumName.AutoSize = true;
             lblAlbumName.ForeColor = Color.White;
-            lblAlbumName.Location = new Point(43, 50);
+            lblAlbumName.Location = new Point(20, 49);
             lblAlbumName.Name = "lblAlbumName";
             lblAlbumName.Size = new Size(51, 15);
             lblAlbumName.TabIndex = 0;
@@ -45,7 +45,7 @@
             // btnDelete
             // 
             btnDelete.BackColor = Color.Red;
-            btnDelete.BackgroundImage = Desktop_Application.Properties.Resources.icons8_delete_100__1_;
+            btnDelete.BackgroundImage = Properties.Resources.icons8_delete_100__1_;
             btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
             btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.FlatStyle = FlatStyle.Flat;

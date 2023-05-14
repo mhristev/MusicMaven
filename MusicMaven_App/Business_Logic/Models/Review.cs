@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Business_Logic.Models.MusicUnits;
+﻿using Business_Logic.Models.MusicUnits;
+using System.Collections.ObjectModel;
 
 namespace Business_Logic.Models
 {
@@ -16,7 +12,7 @@ namespace Business_Logic.Models
         private double rating;
         private MusicUnit musicUnit;
         private User creator;
-        private List<User> likedBy;
+        private List<User> likedBy = new List<User>();
 
         public Review(string id,
                       string title,
@@ -27,27 +23,82 @@ namespace Business_Logic.Models
                       User creator,
                       List<User> likedBy)
         {
-            this.id = id;
-            this.title = title;
-            this.description = content;
-            this.creationDate = creationDate;
-            this.rating = rating;
-            this.musicUnit = musicUnit;
-            this.creator = creator;
-            this.likedBy = likedBy;
+            this.Id = id;
+            this.Title = title;
+            this.Description = content;
+            this.CreationDate = creationDate;
+            this.Rating = rating;
+            this.MusicUnit = musicUnit;
+            this.Creator = creator;
+            this.LikedBy = likedBy.AsReadOnly();
         }
 
 
 
-        public string Id { get => id; set => id = value; }
-        public string Title { get => title; set => title = value; }
-        public string Description { get => description; set => description = value; }
+        public string Id
+        {
+            get => id;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException(ExceptionMessages.InvalidId);
+                }
+                else
+                {
+                    id = value;
+                }
+            }
+        }
+        public string Title
+        {
+            get => title; set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException(ExceptionMessages.InvalidTitle);
+                }
+                else
+                {
+                    title = value;
+                }
+            }
+        }
+        public string Description
+        {
+            get => description; set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException(ExceptionMessages.InvalidDescription);
+                }
+                else
+                {
+                    description = value;
+                }
+            }
+        }
         public DateTime CreationDate { get => creationDate; set => creationDate = value; }
-        public double Rating { get => rating; set => rating = value; }
+        public double Rating 
+        { 
+            get => rating; 
+            set 
+            {
+                if (value < 0 || value > 10)
+                {
+                    throw new ArgumentException(ExceptionMessages.InvalidRating);
+                }
+                rating = value; 
+            } 
+        }
 
         public MusicUnit MusicUnit { get => musicUnit; set => musicUnit = value; }
         public User Creator { get => creator; set => creator = value; }
 
-        public List<User> LikedBy { get => likedBy; set => likedBy = value; }
+        public ReadOnlyCollection<User> LikedBy 
+        { 
+            get => likedBy.AsReadOnly(); 
+            set => likedBy = new List<User>(value); 
+        }
     }
 }

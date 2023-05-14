@@ -10,18 +10,18 @@ namespace Business_Logic.Factories
 {
     public static class MusicUnitFactory
     {
-        public static MusicUnit CreateMusicUnit(MUSIC_UNIT_TYPE type, string name, string img, double avgRating, GENRE_TYPE albumGenre = GENRE_TYPE.UNKNOWN, List<Artist> albumCreators = null, ARTIST_TYPE artistType = ARTIST_TYPE.UNKNOWN, int durationInSeconds = 0, Album songAlbum = null, DateTime albumReleaseDate = new DateTime())
+        public static MusicUnit CreateMusicUnit(MUSIC_UNIT_TYPE type, string name, string img, GENRE_TYPE albumGenre = GENRE_TYPE.UNKNOWN, List<Artist> albumCreators = null, ARTIST_TYPE artistType = ARTIST_TYPE.UNKNOWN, int durationInSeconds = 0, Album songAlbum = null, DateTime albumReleaseDate = new DateTime())
         {
             switch (type)
             {
                 case MUSIC_UNIT_TYPE.ALBUM: 
-                    return AlbumFactory.CreateAlbum(name, img, avgRating, type, albumGenre, albumCreators, albumReleaseDate);
+                    return AlbumFactory.CreateAlbum(name, img, type, albumGenre, albumCreators, albumReleaseDate);
                 case MUSIC_UNIT_TYPE.ARTIST: 
-                    return ArtistFactory.CreateArtist(name, img, avgRating, type, artistType);
+                    return ArtistFactory.CreateArtist(name, img, type, artistType);
                 case MUSIC_UNIT_TYPE.SONG:
-                    return SongFactory.CreateSong(name, img, avgRating, type, durationInSeconds, songAlbum);
+                    return SongFactory.CreateSong(name, img, type, durationInSeconds, songAlbum);
                 default:
-                    throw new ArgumentException("Invalid type specified.");
+                    throw new ArgumentException(ExceptionMessages.InvalidMusicUnitType);
             }
         }
     }

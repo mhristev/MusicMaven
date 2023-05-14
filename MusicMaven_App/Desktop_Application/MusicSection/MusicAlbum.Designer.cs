@@ -242,6 +242,7 @@
             // 
             cmBoxGenre.BackColor = Color.FromArgb(101, 93, 140);
             cmBoxGenre.FlatStyle = FlatStyle.Popup;
+            cmBoxGenre.ForeColor = Color.White;
             cmBoxGenre.FormattingEnabled = true;
             cmBoxGenre.Location = new Point(289, 102);
             cmBoxGenre.Name = "cmBoxGenre";

@@ -31,6 +31,7 @@
             btnCreateArtist = new Button();
             panel1 = new Panel();
             panel3 = new Panel();
+            btnClear = new Button();
             groupBox1 = new GroupBox();
             label4 = new Label();
             label3 = new Label();
@@ -38,8 +39,8 @@
             cmbBoxArtistType = new ComboBox();
             txtBoxArtistImageURL = new TextBox();
             txtBoxArtistName = new TextBox();
-            button1 = new Button();
-            textBox1 = new TextBox();
+            btnSearch = new Button();
+            txtboxSearch = new TextBox();
             flowPanelMusicUnits = new FlowLayoutPanel();
             panel2 = new Panel();
             label1 = new Label();
@@ -52,6 +53,7 @@
             // btnCreateArtist
             // 
             btnCreateArtist.BackColor = Color.FromArgb(24, 137, 149);
+            btnCreateArtist.FlatAppearance.BorderSize = 0;
             btnCreateArtist.FlatStyle = FlatStyle.Flat;
             btnCreateArtist.ForeColor = Color.White;
             btnCreateArtist.Location = new Point(772, 80);
@@ -77,15 +79,30 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(68, 61, 97);
+            panel3.Controls.Add(btnClear);
             panel3.Controls.Add(groupBox1);
-            panel3.Controls.Add(button1);
-            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(btnSearch);
+            panel3.Controls.Add(txtboxSearch);
             panel3.Controls.Add(flowPanelMusicUnits);
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 67);
             panel3.Name = "panel3";
             panel3.Size = new Size(1063, 694);
             panel3.TabIndex = 6;
+            // 
+            // btnClear
+            // 
+            btnClear.BackColor = Color.FromArgb(24, 137, 149);
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(602, 167);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(47, 29);
+            btnClear.TabIndex = 10;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // groupBox1
             // 
@@ -154,36 +171,37 @@
             txtBoxArtistName.Size = new Size(315, 23);
             txtBoxArtistName.TabIndex = 6;
             // 
-            // button1
+            // btnSearch
             // 
-            button1.BackColor = Color.FromArgb(24, 137, 149);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(513, 167);
-            button1.Name = "button1";
-            button1.Size = new Size(83, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Find";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnSearch.BackColor = Color.FromArgb(24, 137, 149);
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(513, 167);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(83, 29);
+            btnSearch.TabIndex = 1;
+            btnSearch.Text = "Find";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
-            // textBox1
+            // txtboxSearch
             // 
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(50, 167);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.RightToLeft = RightToLeft.No;
-            textBox1.Size = new Size(457, 29);
-            textBox1.TabIndex = 5;
+            txtboxSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtboxSearch.Location = new Point(50, 167);
+            txtboxSearch.Multiline = true;
+            txtboxSearch.Name = "txtboxSearch";
+            txtboxSearch.RightToLeft = RightToLeft.No;
+            txtboxSearch.Size = new Size(457, 29);
+            txtboxSearch.TabIndex = 5;
             // 
             // flowPanelMusicUnits
             // 
             flowPanelMusicUnits.AutoScroll = true;
-            flowPanelMusicUnits.Location = new Point(41, 202);
+            flowPanelMusicUnits.Location = new Point(50, 202);
             flowPanelMusicUnits.Name = "flowPanelMusicUnits";
             flowPanelMusicUnits.RightToLeft = RightToLeft.No;
-            flowPanelMusicUnits.Size = new Size(977, 481);
+            flowPanelMusicUnits.Size = new Size(968, 481);
             flowPanelMusicUnits.TabIndex = 3;
             // 
             // panel2
@@ -236,9 +254,9 @@
         private FlowLayoutPanel flowPanelMusicUnits;
         private Panel panel2;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtboxSearch;
         private Panel panel3;
-        private Button button1;
+        private Button btnSearch;
         private GroupBox groupBox1;
         private Label label4;
         private Label label3;
@@ -246,5 +264,6 @@
         private ComboBox cmbBoxArtistType;
         private TextBox txtBoxArtistImageURL;
         private TextBox txtBoxArtistName;
+        private Button btnClear;
     }
 }

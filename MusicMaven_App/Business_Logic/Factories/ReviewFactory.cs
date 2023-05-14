@@ -11,14 +11,6 @@ namespace Business_Logic.Factories
 {
     public static class ReviewFactory
     {
-        //private IMusicUnitRepository _musicUnitRepository;
-        //private IRepository<Review> _reviewRepository;
-
-        //public ReviewFactory(IMusicUnitRepository musicUnitRepository, IRepository<Review> reviewRepository)        //{
-        //    _reviewRepository = reviewRepository;
-        //    _musicUnitRepository = musicUnitRepository
-        //}
-
         
         public static Review CreateReview(string title, string description, MusicUnit reviewable, User creator, double rating)
         {

@@ -10,9 +10,9 @@ namespace Business_Logic.Factories
 {
     public static class AlbumFactory
     {
-        public static Album CreateAlbum(string name, string image, double avgRating, MUSIC_UNIT_TYPE type, GENRE_TYPE genre, List<Artist> albumCreators, DateTime releaseDate)
+        public static Album CreateAlbum(string name, string image, MUSIC_UNIT_TYPE type, GENRE_TYPE genre, List<Artist> albumCreators, DateTime releaseDate)
         {
-            return new Album(Guid.NewGuid().ToString(), name, image, type, genre, albumCreators, avgRating, releaseDate);
+            return new Album(Guid.NewGuid().ToString(), name, image, type, genre, albumCreators, 0, releaseDate);
         }
     }
 }

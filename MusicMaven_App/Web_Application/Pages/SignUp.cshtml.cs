@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.Models;
 using Business_Logic.Interfaces.IServices;
+using Business_Logic.Factories;
+using Business_Logic.Models;
+using Business_Logic.Models.Enums;
 
 namespace Web_Application.Pages
 {
@@ -33,7 +36,8 @@ namespace Web_Application.Pages
             {
                 try
                 {
-                    _userService.CreateUser(RegisterModel.Email, RegisterModel.Username, RegisterModel.Password);
+                    User user = UserFactory.CreateUser(RegisterModel.Username, RegisterModel.Email, RegisterModel.Password, "NONE");
+                    _userService.CreateUser(user);
                     return RedirectToPage("/SignIn");
                 } catch (ArgumentException ex) {
 

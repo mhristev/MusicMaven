@@ -1,15 +1,5 @@
 ﻿using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
-using Desktop_Application.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Desktop_Application.MusicSection
 {
@@ -63,28 +53,38 @@ namespace Desktop_Application.MusicSection
         }
         private void MusicSong_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                if (msktxtBoxDuration.Visible)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    lblSongDuration.Text = msktxtBoxDuration.Text;
-                    lblSongDuration.Size = msktxtBoxDuration.Size;
-                    msktxtBoxDuration.Hide();
-                    lblSongDuration.Show();
+                    if (msktxtBoxDuration.Visible)
+                    {
+                        lblSongDuration.Text = msktxtBoxDuration.Text;
+                        lblSongDuration.Size = msktxtBoxDuration.Size;
 
-                    cmbBoxSongAlbum.Enabled = false;
+                        lblSongName.Text = txtBoxSongName.Text;
+                        lblSongName.Size = txtBoxSongName.Size;
 
-                    lblSongName.Text = txtBoxSongName.Text;
-                    lblSongName.Size = txtBoxSongName.Size;
-                    txtBoxSongName.Hide();
-                    lblSongName.Show();
 
-                    song.Name = txtBoxSongName.Text;
-                    song.DurationInMinutesAndSeconds = msktxtBoxDuration.Text;
-                    song.Album = (Album)cmbBoxSongAlbum.SelectedItem;
+                        song.Name = txtBoxSongName.Text;
+                        song.DurationInMinutesAndSeconds = msktxtBoxDuration.Text;
+                        song.Album = (Album)cmbBoxSongAlbum.SelectedItem;
 
-                    musicUnitService.UpdateMusicUnit(song);
+                        musicUnitService.UpdateMusicUnit(song);
+
+                        msktxtBoxDuration.Hide();
+                        lblSongDuration.Show();
+
+                        txtBoxSongName.Hide();
+                        lblSongName.Show();
+
+                        cmbBoxSongAlbum.Enabled = false;
+                    }
                 }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -100,8 +100,8 @@ namespace Desktop_Application.MusicSection
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult result = 
-                MessageBox.Show("Are you sure you want to delete this song?", "Confirmation", 
+            DialogResult result =
+                MessageBox.Show("Are you sure you want to delete this song?", "Confirmation",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -117,7 +117,6 @@ namespace Desktop_Application.MusicSection
             if (this.ParentForm is IMusicForm)
             {
                 IMusicForm underneathForm = (IMusicForm)this.ParentForm;
-                // Do something with the underneathForm
                 underneathForm.RefreshMusicForm();
             }
 

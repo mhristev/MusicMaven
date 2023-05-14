@@ -28,7 +28,6 @@
                     <div class="mb-3">
                         <label asp-for="Rating" class="form-label">Rating</label>
                         <input asp-for="Rating" class="form-control" type="text" data-val="true" data-val-regex-pattern="^[1-9](\,[0-9])?$|^10(\,0)?$" data-val-regex="Please enter a valid rating between 1 and 10 in the format 0,F1" />
-            
                         <span asp-validation-for="Rating" class="text text-danger"></span>
                     </div>
 

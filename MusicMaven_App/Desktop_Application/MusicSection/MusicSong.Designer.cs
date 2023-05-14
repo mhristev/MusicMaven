@@ -61,7 +61,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1047, 617);
+            panel1.Size = new Size(1047, 655);
             panel1.TabIndex = 0;
             // 
             // txtBoxSongName
@@ -206,10 +206,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(68, 61, 97);
-            ClientSize = new Size(1047, 617);
+            ClientSize = new Size(1047, 655);
             Controls.Add(panel1);
-            MaximumSize = new Size(1063, 656);
-            MinimumSize = new Size(1063, 656);
+            MaximumSize = new Size(1063, 694);
+            MinimumSize = new Size(1063, 694);
             Name = "MusicSong";
             Text = "MusicSong";
             PreviewKeyDown += MusicSong_PreviewKeyDown;

@@ -25,13 +25,18 @@ namespace Business_Logic.Services
         {
             return _userRepository.GetById(id);
         }
-
-        public void CreateUser(string email, string username, string password) 
+        public void CreateUser(User user)
         {
-            _userRepository.Insert(UserFactory.CreateUser(username, email, password, USER_TYPE.NORMAL));
+            _userRepository.Insert(user);
         }
 
         public User? GetUserByEmail(string email)
         {            if (string.IsNullOrEmpty(email))            {                throw new EmptyEmailException();            }            if (!EmailFormatter.IsValid(email))            {                throw new InvalidEmailException(email);            }            return _userRepository.GetUserByEmail(email);
-        }        public List<User> FindUsersByKeywordInUsername(string keyword)        {            return _userRepository.FindUsersByKeywordInUsername(keyword);        }    }
+        }        public List<User> FindUsersByKeywordInUsername(string keyword)        {            return _userRepository.FindUsersByKeywordInUsername(keyword);        }
+
+        public List<User> GetAllUsers()
+        {
+            return _userRepository.GetAll();
+        }
+    }
 }

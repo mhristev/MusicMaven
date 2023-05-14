@@ -134,6 +134,7 @@
             Controls.Add(panel2);
             Controls.Add(sidebarPanel);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             sidebarPanel.ResumeLayout(false);
             ResumeLayout(false);

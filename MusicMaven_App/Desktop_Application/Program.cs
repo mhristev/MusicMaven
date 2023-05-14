@@ -27,10 +27,12 @@ namespace Desktop_Application
             MusicUnitRepository musicUnitRepository = new MusicUnitRepository(albumRepository, artistRepository);
             MusicUnitService musicUnitService = new MusicUnitService(albumService, songService, artistService, musicUnitRepository);
 
+            UserRepository userRepository = new UserRepository();
+            UserService userService = new UserService(userRepository);
 
 
 
-            Application.Run(new MainForm(musicUnitService));
+            Application.Run(new MainForm(musicUnitService, userService));
         }
     }
 }

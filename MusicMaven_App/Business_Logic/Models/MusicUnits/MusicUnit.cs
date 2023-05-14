@@ -1,9 +1,4 @@
 ﻿using Business_Logic.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business_Logic.Models.MusicUnits
 {
@@ -22,26 +17,44 @@ namespace Business_Logic.Models.MusicUnits
             this.Type = type;
         }
 
-        public string Id { get => id; set => id = value; }
-        public string Name { get => name; 
-            set 
+        public string Id
+        {
+            get => id;
+            set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Enter a valid name.");
+                    throw new ArgumentException(ExceptionMessages.InvalidId);
+                }
+                else
+                {
+                    id = value;
+                }
+            }
+        }
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException(ExceptionMessages.InvalidMusicUnitName);
                 }
                 else
                 {
                     name = value;
                 }
-            } 
+            }
         }
-        public string Image { get => image; 
+        public string Image
+        {
+            get => image;
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Enter a valid URL");
+                    throw new ArgumentException(ExceptionMessages.InvalidImage);
                 }
                 else
                 {
@@ -56,7 +69,7 @@ namespace Business_Logic.Models.MusicUnits
             {
                 if (value < 0 || value > 10)
                 {
-                    throw new ArgumentException("Enter a valid Rating");
+                    throw new ArgumentException(ExceptionMessages.InvalidRating);
                 }
                 else
                 {
@@ -64,12 +77,14 @@ namespace Business_Logic.Models.MusicUnits
                 }
             }
         }
-        public MUSIC_UNIT_TYPE Type { get => type; 
+        public MUSIC_UNIT_TYPE Type
+        {
+            get => type;
             set
             {
                 if (!Enum.IsDefined(typeof(MUSIC_UNIT_TYPE), value))
                 {
-                    throw new ArgumentException("Enter a valid music unit type.");
+                    throw new ArgumentException(ExceptionMessages.InvalidMusicUnitType);
                 }
                 else
                 {

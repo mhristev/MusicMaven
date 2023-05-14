@@ -26,7 +26,6 @@ namespace Desktop_Application
         public MusicForm(IMusicUnitService musicUnitService)
         {
             InitializeComponent();
-            // flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
             this.musicUnitService = musicUnitService;
             fillMusicUnits();
             cmbBoxArtistType.DataSource = Enum.GetValues(typeof(ARTIST_TYPE));
@@ -53,10 +52,6 @@ namespace Desktop_Application
             fillMusicUnits();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         public void fillMusicUnits()
         {
             flowPanelMusicUnits.Controls.Clear();
@@ -82,17 +77,17 @@ namespace Desktop_Application
                 string imageURL = txtBoxArtistImageURL.Text;
                 string artistTypeSelectedText = cmbBoxArtistType.Text;
 
-               
+
                 ARTIST_TYPE artistType = (ARTIST_TYPE)Enum.Parse(typeof(ARTIST_TYPE), artistTypeSelectedText);
-               
-                MusicUnit unit = MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, name, imageURL, 0, artistType: artistType);
+
+                MusicUnit unit = MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, name, imageURL, artistType: artistType);
                 musicUnitService.CreateMusicUnit(unit);
                 flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(musicUnitService, unit));
 
                 txtBoxArtistName.Text = string.Empty;
                 txtBoxArtistImageURL.Text = string.Empty;
                 cmbBoxArtistType.Text = string.Empty;
-            } 
+            }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -108,6 +103,29 @@ namespace Desktop_Application
         public void RefreshParentMusicForm()
         {
             throw new NotImplementedException();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<MusicUnit> units = musicUnitService.FindMusicUnitsByKeywordOrderedByHighestRated(txtboxSearch.Text.Trim().ToLower());
+            flowPanelMusicUnits.Controls.Clear();
+            List<DefaultMusicControl> components = new List<DefaultMusicControl>();
+            foreach (MusicUnit unit in units)
+            {
+                components.Add(new DefaultMusicControl(musicUnitService, unit));
+
+            }
+
+            foreach (DefaultMusicControl auc in components)
+            {
+                flowPanelMusicUnits.Controls.Add(auc);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            this.txtboxSearch.Text = string.Empty;
+            this.fillMusicUnits();
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Business_Logic.Factories
 {
     public static class ArtistFactory
     {
-        public static Artist CreateArtist(string name, string img, double avgRating, MUSIC_UNIT_TYPE type, ARTIST_TYPE artistType)
+        public static Artist CreateArtist(string name, string img, MUSIC_UNIT_TYPE type, ARTIST_TYPE artistType)
         {
-            return new Artist(Guid.NewGuid().ToString(), name, img, type, artistType, avgRating);
+            return new Artist(Guid.NewGuid().ToString(), name, img, type, artistType, 0);
         }
     }
 }

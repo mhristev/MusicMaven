@@ -10,9 +10,9 @@ namespace Business_Logic.Factories
 {
     public static class SongFactory
     {
-        public static Song CreateSong(string name, string img, double avgRating, MUSIC_UNIT_TYPE type, int durationInSeconds, Album songAlbum)
+        public static Song CreateSong(string name, string img, MUSIC_UNIT_TYPE type, int durationInSeconds, Album songAlbum)
         {
-            return new Song(Guid.NewGuid().ToString(), name, img, type, durationInSeconds, songAlbum, avgRating);
+            return new Song(Guid.NewGuid().ToString(), name, img, type, durationInSeconds, songAlbum, 0);
         } 
     }
 }

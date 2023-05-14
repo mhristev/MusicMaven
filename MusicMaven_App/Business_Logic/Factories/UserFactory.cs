@@ -11,10 +11,13 @@ namespace Business_Logic.Factories
 {
     public static class UserFactory
     {
-        public static User CreateUser(string username, string email, string password, USER_TYPE type = USER_TYPE.NORMAL)
+        public static User CreateUser(string username, string email, string password, string image, USER_TYPE type = USER_TYPE.NORMAL)
         {
+            if (string.IsNullOrEmpty(password))            {
+                throw new ArgumentException(ExceptionMessages.InvalidPassword);
+            }
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-            return new User(Guid.NewGuid().ToString(), username, email, hashedPassword, new List<User>(), new List<User>(), type, "image");
+            return new User(Guid.NewGuid().ToString(), username, email, hashedPassword, new List<User>(), new List<User>(), type, image);
         }
     }
 }

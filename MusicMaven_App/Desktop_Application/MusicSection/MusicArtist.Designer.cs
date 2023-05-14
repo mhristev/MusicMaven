@@ -35,7 +35,7 @@
             groupBox1 = new GroupBox();
             btnAddArtist = new Button();
             flowPanelAddArtists = new FlowLayoutPanel();
-            label8 = new Label();
+            lblCreateAlbumArtist = new Label();
             label6 = new Label();
             label5 = new Label();
             label7 = new Label();
@@ -120,7 +120,7 @@
             // 
             groupBox1.Controls.Add(btnAddArtist);
             groupBox1.Controls.Add(flowPanelAddArtists);
-            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(lblCreateAlbumArtist);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label7);
@@ -162,15 +162,15 @@
             flowPanelAddArtists.Size = new Size(556, 46);
             flowPanelAddArtists.TabIndex = 26;
             // 
-            // label8
+            // lblCreateAlbumArtist
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(345, 41);
-            label8.Name = "label8";
-            label8.Size = new Size(141, 17);
-            label8.TabIndex = 25;
-            label8.Text = "Artists: Kendrick Lamar";
+            lblCreateAlbumArtist.AutoSize = true;
+            lblCreateAlbumArtist.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCreateAlbumArtist.Location = new Point(345, 41);
+            lblCreateAlbumArtist.Name = "lblCreateAlbumArtist";
+            lblCreateAlbumArtist.Size = new Size(141, 17);
+            lblCreateAlbumArtist.TabIndex = 25;
+            lblCreateAlbumArtist.Text = "Artists: Kendrick Lamar";
             // 
             // label6
             // 
@@ -250,6 +250,7 @@
             // 
             txtBoxCreateAlbumImageURL.BackColor = Color.FromArgb(101, 93, 140);
             txtBoxCreateAlbumImageURL.BorderStyle = BorderStyle.FixedSingle;
+            txtBoxCreateAlbumImageURL.ForeColor = Color.White;
             txtBoxCreateAlbumImageURL.Location = new Point(108, 69);
             txtBoxCreateAlbumImageURL.Name = "txtBoxCreateAlbumImageURL";
             txtBoxCreateAlbumImageURL.Size = new Size(213, 25);
@@ -259,6 +260,7 @@
             // 
             txtBoxCreateAlbumName.BackColor = Color.FromArgb(101, 93, 140);
             txtBoxCreateAlbumName.BorderStyle = BorderStyle.FixedSingle;
+            txtBoxCreateAlbumName.ForeColor = Color.White;
             txtBoxCreateAlbumName.Location = new Point(108, 33);
             txtBoxCreateAlbumName.Name = "txtBoxCreateAlbumName";
             txtBoxCreateAlbumName.Size = new Size(213, 25);
@@ -462,7 +464,7 @@
         private TextBox txtBoxCreateAlbumImageURL;
         private TextBox txtBoxCreateAlbumName;
         private ComboBox cmbBoxCreateAlbumGenre;
-        private Label label8;
+        private Label lblCreateAlbumArtist;
         private Label label7;
         private Label label6;
         private Label label5;

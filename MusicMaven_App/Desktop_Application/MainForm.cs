@@ -8,11 +8,13 @@ namespace Desktop_Application
     {
         private Form? _activeForm;
         private IMusicUnitService musicUnitService;
-        public MainForm(IMusicUnitService musicUnitService)
+        private IUserService userService;
+        public MainForm(IMusicUnitService musicUnitService, IUserService userService)
         {
             InitializeComponent();
             this.musicUnitService = musicUnitService;
-            //OpenChildForm(new MusicForm(), this);
+            this.userService = userService;
+            OpenChildForm(new MusicForm(this.musicUnitService), this);
         }
 
         private void OpenChildForm(Form childForm, object btnSender)
@@ -40,7 +42,7 @@ namespace Desktop_Application
 
         private void btnUsers_Click_1(object sender, EventArgs e)
         {
-            OpenChildForm(new UsersForm(), sender);
+            OpenChildForm(new UsersForm(userService), sender);
         }
     }
 }

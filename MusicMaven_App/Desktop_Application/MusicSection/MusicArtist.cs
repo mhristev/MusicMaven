@@ -36,6 +36,7 @@ namespace Desktop_Application
             txtBoxImage.Hide();
             cmBoxArtistType.DataSource = Enum.GetValues(typeof(ARTIST_TYPE));
             cmbBoxCreateAlbumGenre.DataSource = Enum.GetValues(typeof(GENRE_TYPE));
+            lblCreateAlbumArtist.Text = "Artist: " + artist.Name;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -114,29 +115,42 @@ namespace Desktop_Application
 
         private void MusicArtist_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                if (txtBoxImage.Visible)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    this.lblName.Text = textBox2.Text;
-                    lblName.Size = textBox2.Size;
-                    artist.Name = textBox2.Text;
-                    textBox2.Hide();
-                    lblName.Show();
+                    if (txtBoxImage.Visible)
+                    {
+                        this.lblName.Text = textBox2.Text;
+                        lblName.Size = textBox2.Size;
+                        artist.Name = textBox2.Text;
 
-                    lblImage.Text = txtBoxImage.Text;
-                    lblImage.Size = txtBoxImage.Size;
-                    artist.Image = txtBoxImage.Text;
-                    txtBoxImage.Hide();
-                    lblImage.Show();
 
-                    lblArtistType.Text = cmBoxArtistType.Text;
-                    lblArtistType.Size = cmBoxArtistType.Size;
-                    artist.ArtistType = (ARTIST_TYPE)Enum.Parse(typeof(ARTIST_TYPE), cmBoxArtistType.Text);
-                    cmBoxArtistType.Hide();
-                    lblArtistType.Show();
-                    musicUnitService.UpdateMusicUnit(artist);
+                        lblImage.Text = txtBoxImage.Text;
+                        lblImage.Size = txtBoxImage.Size;
+                        artist.Image = txtBoxImage.Text;
+
+
+                        lblArtistType.Text = cmBoxArtistType.Text;
+                        lblArtistType.Size = cmBoxArtistType.Size;
+                        artist.ArtistType = (ARTIST_TYPE)Enum.Parse(typeof(ARTIST_TYPE), cmBoxArtistType.Text);
+
+                        musicUnitService.UpdateMusicUnit(artist);
+
+                        textBox2.Hide();
+                        lblName.Show();
+
+                        txtBoxImage.Hide();
+                        lblImage.Show();
+
+                        cmBoxArtistType.Hide();
+                        lblArtistType.Show();
+                    }
                 }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -184,51 +198,33 @@ namespace Desktop_Application
 
         private void btnCreateAlbum_Click(object sender, EventArgs e)
         {
-            string? name = txtBoxCreateAlbumName.Text;
-            string? image = txtBoxCreateAlbumImageURL.Text;
-            GENRE_TYPE genre = (GENRE_TYPE)Enum.Parse(typeof(GENRE_TYPE), cmbBoxCreateAlbumGenre.Text);
-            DateTime creationDate = dtPickerCreateAlbumReleaseDate.Value;
-
-            List<Artist> artists = new List<Artist>();
-            artists.Add(artist);
-
-            foreach (AddArtistAlbumCreationControl control in flowPanelAddArtists.Controls)
+            try
             {
-                artists.Add(control.GetSelectedArtist());
-            }
-            bool hasDuplicateId = false;
-            for (int i = 0; i < artists.Count - 1; i++)
-            {
-                for (int j = i + 1; j < artists.Count; j++)
+                string? name = txtBoxCreateAlbumName.Text;
+                string? image = txtBoxCreateAlbumImageURL.Text;
+                GENRE_TYPE genre = (GENRE_TYPE)Enum.Parse(typeof(GENRE_TYPE), cmbBoxCreateAlbumGenre.Text);
+                DateTime creationDate = dtPickerCreateAlbumReleaseDate.Value;
+
+                List<Artist> artists = new List<Artist>();
+                artists.Add(artist);
+
+                foreach (AddArtistAlbumCreationControl control in flowPanelAddArtists.Controls)
                 {
-                    if (artists[i].Id == artists[j].Id)
-                    {
-                        hasDuplicateId = true;
-                        break;
-                    }
+                    artists.Add(control.GetSelectedArtist());
                 }
 
-                if (hasDuplicateId)
-                {
-                    break;
-                }
-            }
-
-            if (hasDuplicateId)
-            {
-                MessageBox.Show("You have duplicated artists in this album.");
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(image) && genre != null && creationDate != null)
-            {
-                Album album = (Album)MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, name, image, 0, albumGenre: genre, albumCreators: artists, albumReleaseDate: creationDate);
+                Album album = (Album)MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, name, image, albumGenre: genre, albumCreators: artists, albumReleaseDate: creationDate);
                 musicUnitService.CreateMusicUnit(album);
                 flowLayoutPanel1.Controls.Add(new AlbumControl(musicUnitService, album));
                 txtBoxCreateAlbumName.Text = String.Empty;
                 txtBoxCreateAlbumImageURL.Text = String.Empty;
                 cmbBoxCreateAlbumGenre.SelectedItem = 0;
                 dtPickerCreateAlbumReleaseDate.Value = DateTime.Today;
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
