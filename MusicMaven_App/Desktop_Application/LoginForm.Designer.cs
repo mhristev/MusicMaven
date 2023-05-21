@@ -30,9 +30,9 @@
         {
             panel1 = new Panel();
             label1 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            textBox2 = new TextBox();
+            txtBoxEmail = new TextBox();
+            btnLogin = new Button();
+            txtBoxPassword = new TextBox();
             SuspendLayout();
             // 
             // panel1
@@ -53,49 +53,55 @@
             label1.TabIndex = 1;
             label1.Text = "Login to your account";
             // 
-            // textBox1
+            // txtBoxEmail
             // 
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(356, 201);
-            textBox1.MaximumSize = new Size(0, 30);
-            textBox1.MinimumSize = new Size(0, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(430, 30);
-            textBox1.TabIndex = 2;
-            textBox1.Text = "Email";
-            textBox1.Enter += textBox1_Enter;
-            textBox1.Leave += textBox1_Leave;
+            txtBoxEmail.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxEmail.Location = new Point(356, 206);
+            txtBoxEmail.MaximumSize = new Size(0, 30);
+            txtBoxEmail.MinimumSize = new Size(0, 30);
+            txtBoxEmail.Name = "txtBoxEmail";
+            txtBoxEmail.Size = new Size(430, 30);
+            txtBoxEmail.TabIndex = 2;
+            txtBoxEmail.Text = "Email";
+            txtBoxEmail.Enter += txtBoxEmail_Enter;
+            txtBoxEmail.Leave += txtBoxEmail_Leave;
             // 
-            // button1
+            // btnLogin
             // 
-            button1.Font = new Font("Yu Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(356, 313);
-            button1.Name = "button1";
-            button1.Size = new Size(187, 37);
-            button1.TabIndex = 4;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
+            btnLogin.Font = new Font("Yu Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLogin.Location = new Point(356, 306);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(187, 37);
+            btnLogin.TabIndex = 4;
+            btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
-            // textBox2
+            // txtBoxPassword
             // 
-            textBox2.Location = new Point(356, 257);
-            textBox2.MaximumSize = new Size(0, 30);
-            textBox2.MinimumSize = new Size(0, 30);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(430, 30);
-            textBox2.TabIndex = 5;
+            txtBoxPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxPassword.Location = new Point(356, 255);
+            txtBoxPassword.MaximumSize = new Size(0, 30);
+            txtBoxPassword.MinimumSize = new Size(0, 30);
+            txtBoxPassword.Name = "txtBoxPassword";
+            txtBoxPassword.Size = new Size(430, 30);
+            txtBoxPassword.TabIndex = 5;
+            txtBoxPassword.Text = "Password";
+            txtBoxPassword.Enter += txtBoxPassword_Enter;
+            txtBoxPassword.Leave += txtBoxPassword_Leave;
             // 
-            // Login
+            // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(873, 529);
-            Controls.Add(textBox2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(txtBoxPassword);
+            Controls.Add(btnLogin);
+            Controls.Add(txtBoxEmail);
             Controls.Add(label1);
             Controls.Add(panel1);
-            Name = "Login";
+            Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ResumeLayout(false);
             PerformLayout();
@@ -105,8 +111,8 @@
 
         private Panel panel1;
         private Label label1;
-        private TextBox textBox1;
-        private Button button1;
-        private TextBox textBox2;
+        private TextBox txtBoxEmail;
+        private Button btnLogin;
+        private TextBox txtBoxPassword;
     }
 }

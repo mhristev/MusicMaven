@@ -1,3 +1,4 @@
+using Business_Logic.Interfaces.IServices;
 using Business_Logic.Services;
 using Data_Access_Layer.Repositories;
 
@@ -15,24 +16,10 @@ namespace Desktop_Application
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             // Application.Run(new LoginForm());
-            ArtistRepository artistRepository = new ArtistRepository();
-            ArtistService artistService = new ArtistService(artistRepository);
-
-            AlbumRepository albumRepository = new AlbumRepository(artistRepository);
-            AlbumService albumService = new AlbumService(albumRepository);
-
-            SongRepository songRepository = new SongRepository(albumRepository);
-            SongService songService = new SongService(songRepository);
-
-            MusicUnitRepository musicUnitRepository = new MusicUnitRepository(albumRepository, artistRepository);
-            MusicUnitService musicUnitService = new MusicUnitService(albumService, songService, artistService, musicUnitRepository);
-
             UserRepository userRepository = new UserRepository();
             UserService userService = new UserService(userRepository);
-
-
-
-            Application.Run(new MainForm(musicUnitService, userService));
+            IUserAuthenticationService authenticationService = new UserAuthenticationService(userService);
+            Application.Run(new LoginForm(authenticationService));
         }
     }
 }

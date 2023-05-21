@@ -9,11 +9,13 @@ namespace Desktop_Application
         private Form? _activeForm;
         private IMusicUnitService musicUnitService;
         private IUserService userService;
-        public MainForm(IMusicUnitService musicUnitService, IUserService userService)
+        private LoginForm loginForm;
+        public MainForm(IMusicUnitService musicUnitService, IUserService userService, LoginForm loginForm)
         {
             InitializeComponent();
             this.musicUnitService = musicUnitService;
             this.userService = userService;
+            this.loginForm = loginForm;
             OpenChildForm(new MusicForm(this.musicUnitService), this);
         }
 
@@ -43,6 +45,18 @@ namespace Desktop_Application
         private void btnUsers_Click_1(object sender, EventArgs e)
         {
             OpenChildForm(new UsersForm(userService), sender);
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            loginForm.ClearTextBoxes();
+            loginForm.Show();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginForm.Close();
         }
     }
 }

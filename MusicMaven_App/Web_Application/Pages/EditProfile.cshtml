@@ -1,15 +1,15 @@
 ﻿@page
 @model Web_Application.Pages.Single.EditProfileModel
 @{
-     ViewData["Title"] = "Edit Profile";
+//ViewData["Title"] = "Edit Profile";
 }
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1>@ViewData["Title"]</h1>
+            @*<h1>@ViewData["Title"]</h1>*@
             <hr />
-            <form method="post" asp-route-editedUser="@Model.editedUser">
+            <form method="post">
                 <div class="form-group mb-3">
                     <label asp-for="@Model.editedUser.Email">Email address</label>
                     <input type="email" class="form-control" asp-for="@Model.editedUser.Email" value="@Model.userDTO.Email" />
@@ -21,7 +21,7 @@
                     <span asp-validation-for="@Model.editedUser.Username" class="text text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="currentPassword">Current Password</label>
+                    <label for="currentPassword">Confirmation Code</label>
                     <input type="password" class="form-control" id="currentPassword" name="CurrentPassword">
                 </div>
                 <div class="form-group mb-3">
@@ -33,6 +33,9 @@
                     <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" />
                 </div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
+                @*<form method="post" asp-route-email="@Model.editedUser">
+                    <button type="button" class="btn btn-link">Send Confirmation Code</button>
+                </form>*@
             </form>
         </div>
     </div>

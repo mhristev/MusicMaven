@@ -27,5 +27,8 @@ namespace Business_Logic
 
         public static string InvalidFormatEmail = "Invalid email format.";
         public static string DuplicateArtistsInAlbum = "This album has duplicate artists";
+
+        public static string EmptyRequiredFields = "Please fill in all the required fields to proceed with the operation.";
+        public static string AuthenticationFailed = "Authentication failed.";
     }
 }

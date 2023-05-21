@@ -20,6 +20,7 @@ namespace Desktop_Application.UsersSection
 {
     public partial class UsersForm : Form
     {
+        private Form _activeForm;
         private IUserService userService;
         public UsersForm(IUserService userService)
         {
@@ -44,6 +45,28 @@ namespace Desktop_Application.UsersSection
             {
                 flowLayoutPanelUsers.Controls.Add(auc);
             }
+        }
+        public void OpenChildForm(Form childForm, object btnSender)
+        {
+
+            if (_activeForm != null)
+            {
+                _activeForm.Close();
+            }
+            _activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.RightToLeft = RightToLeft.No;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panel1.Controls.Add(childForm);
+            this.panel1.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+
+        public void RefreshUsers()
+        {
+            FillUsers();
         }
         private void btnCreateUser_Click(object sender, EventArgs e)
         {

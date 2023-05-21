@@ -75,6 +75,7 @@
             MinimumSize = new Size(950, 50);
             Name = "DefaultUserControl";
             Size = new Size(950, 50);
+            Click += DefaultUserControl_Click;
             ResumeLayout(false);
             PerformLayout();
         }

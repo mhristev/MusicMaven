@@ -114,6 +114,7 @@
             btnLogout.TextAlign = ContentAlignment.MiddleLeft;
             btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // panel2
             // 
@@ -135,7 +136,8 @@
             Controls.Add(sidebarPanel);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "MusicMaven";
+            FormClosed += MainForm_FormClosed;
             sidebarPanel.ResumeLayout(false);
             ResumeLayout(false);
         }

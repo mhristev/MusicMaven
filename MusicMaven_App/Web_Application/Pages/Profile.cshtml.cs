@@ -10,8 +10,9 @@ using Web_Application.DTOs;using Web_Application.DTOs.MusicUnitDTOs;using Busi
 
         public void OnGet(string id)
         {
-            User? user = _userService.GetUserById(id);
-            if (user != null)            {
+
+                User? user = _userService.GetUserById(id);
+            if (user != null)               {
                 CurrentUser = UserDTO.FromUser(user);
                 List<Review> reviews = _reviewService.GetReviewsForUser(user).ToList();
                 Reviews = reviews.Select(review => ReviewDTO.FromReview(review)).ToList();
