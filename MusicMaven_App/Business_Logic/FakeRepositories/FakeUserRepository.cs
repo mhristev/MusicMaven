@@ -42,7 +42,7 @@ namespace Business_Logic.FakeRepositories
         }
 
         public User? GetUserByEmail(string email)        {            return _users.FirstOrDefault(user => user.Email == email);        }        public void Insert(User entity)
-        {            if (_users.Any(u => u.Email == entity.Email))            {                throw new EmailExistException(entity.Email);            }            if (_users.Any(u => u.Username == entity.Username))            {                throw new UsernameExistException(entity.Username);            }            _users.Add(entity);
+        {            if (_users.Any(u => u.Email == entity.Email))            {                throw new ArgumentException(ExceptionMessages.EmailExists);            }            if (_users.Any(u => u.Username == entity.Username))            {                throw new ArgumentException(ExceptionMessages.UsernameExists);            }            _users.Add(entity);
         }
 
         public void Update(User entity)

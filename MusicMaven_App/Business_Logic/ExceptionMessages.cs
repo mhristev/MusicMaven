@@ -30,5 +30,8 @@ namespace Business_Logic
 
         public static string EmptyRequiredFields = "Please fill in all the required fields to proceed with the operation.";
         public static string AuthenticationFailed = "Authentication failed.";
+
+        public static string EmailExists = "This email alreay exists in the system.";
+        public static string UsernameExists = "This username alreay exists in the system.";
     }
 }
