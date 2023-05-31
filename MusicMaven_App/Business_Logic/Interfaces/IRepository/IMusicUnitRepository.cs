@@ -5,6 +5,6 @@ namespace Business_Logic.Interfaces
 {
 	public interface IMusicUnitRepository : IRepository<MusicUnit>
 	{
-		List<MusicUnit> GetHighestRatedUnits(int unitCount);		List<MusicUnit> GetMusicUnitsByKeywordInNameOrderedByHighestRated(string keyword);    }
+		List<MusicUnit> GetHighestRatedUnits(int unitCount);		List<MusicUnit> GetMusicUnitsByKeywordInNameOrderedByHighestRated(string keyword);		List<MusicUnit> GetUnratedUnits(string userId);    }
 }
 

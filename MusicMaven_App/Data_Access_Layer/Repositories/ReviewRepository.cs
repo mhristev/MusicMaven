@@ -54,7 +54,6 @@ namespace Data_Access_Layer.Repositories
                    WHERE id = @id;                   UPDATE MusicUnit
                    SET avgRating = (SELECT AVG(rating) FROM Review WHERE musicUnitId = @musicUnitId)
                    WHERE id = @musicUnitId";            ExecuteNonQuery(sql, command =>            {                command.Parameters.Add(new SqlParameter("@id", SqlDbType.NVarChar) { Value = entity.Id });                command.Parameters.Add(new SqlParameter("@title", SqlDbType.NVarChar) { Value = entity.Title });                command.Parameters.Add(new SqlParameter("@description", SqlDbType.Text) { Value = entity.Description });                command.Parameters.Add(new SqlParameter("@rating", SqlDbType.Float) { Value = entity.Rating });            });
-        }
-    }
+        }        public double GetRatingFor(string userId, string reviewedMusicUnitId)        {            string sql = "SELECT rating FROM Review WHERE musicUnitId = @musicUnitId AND creatorId = @creatorId";            return ExecuteScalar(sql, command =>            {                command.Parameters.Add(new SqlParameter("@musicUnitId", SqlDbType.NVarChar) { Value = reviewedMusicUnitId });                command.Parameters.Add(new SqlParameter("@creatorId", SqlDbType.NVarChar) { Value = userId });            });        }    }
 }
 

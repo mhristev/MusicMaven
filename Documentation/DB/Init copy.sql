@@ -53,7 +53,7 @@ CREATE TABLE Review (
     rating FLOAT NOT NULL,
     musicUnitId NVARCHAR(100) NOT NULL,
     creatorId NVARCHAR(100) NOT NULL,
-    FOREIGN KEY (musicUnitId) REFERENCES MusicUnit(id),
+    FOREIGN KEY (musicUnitId) REFERENCES MusicUnit(id) ON DELETE CASCADE,
     FOREIGN KEY (creatorId) REFERENCES [User](id)
 );
 
@@ -61,7 +61,7 @@ CREATE TABLE ReviewLike (
     reviewId NVARCHAR(100) NOT NULL,
     userId NVARCHAR(100) NOT NULL,
     PRIMARY KEY (reviewId, userId),
-    FOREIGN KEY (reviewId) REFERENCES Review(id),
+    FOREIGN KEY (reviewId) REFERENCES Review(id) ON DELETE CASCADE,
     FOREIGN KEY (userId) REFERENCES [User](id)
 );
 

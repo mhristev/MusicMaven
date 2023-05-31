@@ -14,6 +14,8 @@ namespace Business_Logic.Models
         private User creator;
         private List<User> likedBy = new List<User>();
 
+        public Review() { }
+
         public Review(string id,
                       string title,
                       string content,
