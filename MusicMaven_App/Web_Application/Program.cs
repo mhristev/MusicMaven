@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using Business_Logic.Interfaces.IServices;using Microsoft.AspNetCore.Localization;using Data_Access_Layer.Repositories;using System.Globalization;var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IUserRepository, UserRepository>();
-builder.Services.AddSingleton<IAlbumRepository, AlbumRepository>();
-builder.Services.AddSingleton<ISongRepository, SongRepository>();
-builder.Services.AddSingleton<IMusicUnitRepository, MusicUnitRepository>();
-builder.Services.AddSingleton<IReviewRepository, ReviewRepository>();
-builder.Services.AddSingleton<IArtistRepository, ArtistRepository>();
-builder.Services.AddSingleton<IRepository<Album>, AlbumRepository>();
-builder.Services.AddSingleton<IRepository<Artist>, ArtistRepository>();
-builder.Services.AddSingleton<IRepository<Song>, SongRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IAlbumRepository, AlbumRepository>();
+builder.Services.AddTransient<ISongRepository, SongRepository>();
+builder.Services.AddTransient<IMusicUnitRepository, MusicUnitRepository>();
+builder.Services.AddTransient<IReviewRepository, ReviewRepository>();
+builder.Services.AddTransient<IArtistRepository, ArtistRepository>();
+builder.Services.AddTransient<IRepository<Album>, AlbumRepository>();
+builder.Services.AddTransient<IRepository<Artist>, ArtistRepository>();
+builder.Services.AddTransient<IRepository<Song>, SongRepository>();
 
 builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<ICurrentUserProvider, CurrentUserProvider>();
@@ -22,6 +22,7 @@ builder.Services.AddTransient<ICurrentUserProvider, CurrentUserProvider>();
 builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddTransient<IMusicUnitService, MusicUnitService>();
+builder.Services.AddSingleton<IRecommendationService, RecommendationService>();
 builder.Services.AddTransient<IAlbumService, AlbumService>();
 builder.Services.AddTransient<IArtistService, ArtistService>();
 builder.Services.AddTransient<ISongService, SongService>();

@@ -1,20 +1,6 @@
 ﻿using Business_Logic.Enums;
-using Business_Logic.Factories;
-using Business_Logic.Interfaces;
 using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
-using Business_Logic.Services;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Desktop_Application
 {
@@ -80,9 +66,9 @@ namespace Desktop_Application
 
                 ARTIST_TYPE artistType = (ARTIST_TYPE)Enum.Parse(typeof(ARTIST_TYPE), artistTypeSelectedText);
 
-                MusicUnit unit = MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ARTIST, name, imageURL, artistType: artistType);
-                musicUnitService.CreateMusicUnit(unit);
-                flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(musicUnitService, unit));
+                Artist artist = new Artist(Guid.NewGuid().ToString(), name, imageURL, MUSIC_UNIT_TYPE.ARTIST, artistType, 0);
+                musicUnitService.CreateMusicUnit(artist);
+                flowPanelMusicUnits.Controls.Add(new DefaultMusicControl(musicUnitService, artist));
 
                 txtBoxArtistName.Text = string.Empty;
                 txtBoxArtistImageURL.Text = string.Empty;

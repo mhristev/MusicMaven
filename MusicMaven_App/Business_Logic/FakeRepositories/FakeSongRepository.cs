@@ -1,13 +1,12 @@
-﻿using System;
-using Business_Logic.Enums;using Business_Logic.Factories;using Business_Logic.Interfaces;
+﻿using Business_Logic.Interfaces;
 using Business_Logic.Models.MusicUnits;
 
 namespace Business_Logic.FakeRepositories
 {
-	public class FakeSongRepository: ISongRepository
-	{
+    public class FakeSongRepository : ISongRepository
+    {
         private readonly List<Song> _songs = new List<Song>();        private IAlbumRepository _albumRepository;        public FakeSongRepository(IAlbumRepository albumRepository)
-		{
+        {
             //_albumRepository = albumRepository;
             //Album? igor = _albumRepository.GetById("4");
             //if (igor != null)            //{            //    _songs.Add(new Song("7", "IGOR'S THEME", "images/song.png", MUSIC_UNIT_TYPE.SONG, 128, igor, 8));            //    _songs.Add(new Song("8", "EARFQUAKE", "images/song.png", MUSIC_UNIT_TYPE.SONG, 138, igor, 9));            //    _songs.Add(new Song("9", "I THINK", "images/song.png", MUSIC_UNIT_TYPE.SONG, 133, igor, 10));            //    _songs.Add(new Song("10", "EXACTLY WHAT YOU RUN FROM", "images/song.png", MUSIC_UNIT_TYPE.SONG, 90, igor, 8));            //}            //Album? flowerBoy = _albumRepository.GetById("5");
@@ -21,7 +20,7 @@ namespace Business_Logic.FakeRepositories
         {
             Song? songToRemove = _songs.FirstOrDefault(u => u.Id == id);            if (songToRemove != null)            {                _songs.Remove(songToRemove);            }
         }
-         
+
         public List<Song> GetAll()
         {
             return _songs;

@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Business_Logic.Services;
+﻿using Business_Logic.Interfaces.IServices;
+using Business_Logic.Models;
+using Business_Logic.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.Models;
-using Business_Logic.Interfaces.IServices;
-using Business_Logic.Factories;
-using Business_Logic.Models;
-using Business_Logic.Models.Enums;
 
 namespace Web_Application.Pages
 {
-	public class SignUpModel : PageModel
+    public class SignUpModel : PageModel
     {
         [BindProperty]
         public RegisterModel RegisterModel { get; set; }
@@ -27,7 +21,7 @@ namespace Web_Application.Pages
 
         public void OnGet()
         {
-            }
+        }
 
         public IActionResult OnPost()
         {
@@ -36,10 +30,14 @@ namespace Web_Application.Pages
             {
                 try
                 {
-                    User user = UserFactory.CreateUser(RegisterModel.Username, RegisterModel.Email, RegisterModel.Password, "NONE");
+
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(RegisterModel.Password);
+                    User user = new User(Guid.NewGuid().ToString(), RegisterModel.Username, RegisterModel.Email, hashedPassword , new List<User>(), new List<User>(), USER_TYPE.NORMAL, "NONE");
                     _userService.CreateUser(user);
                     return RedirectToPage("/SignIn");
-                } catch (ArgumentException ex) {
+                }
+                catch (ArgumentException ex)
+                {
 
                     ModelState.AddModelError("Exist", ex.Message);
                 }
@@ -49,5 +47,5 @@ namespace Web_Application.Pages
         }
 
     }
-    
+
 }

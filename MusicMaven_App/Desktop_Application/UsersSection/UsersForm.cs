@@ -1,20 +1,7 @@
-﻿using Business_Logic.Enums;
-using Business_Logic.Factories;
-using Business_Logic.Interfaces.IServices;
+﻿using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models;
 using Business_Logic.Models.Enums;
-using Business_Logic.Models.MusicUnits;
-using Business_Logic.Services;
 using Desktop_Application.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Desktop_Application.UsersSection
 {
@@ -88,7 +75,8 @@ namespace Desktop_Application.UsersSection
 
                 USER_TYPE userType = (USER_TYPE)Enum.Parse(typeof(USER_TYPE), userTypeSelectedText);
 
-                User user = UserFactory.CreateUser(username, email, password, imageURL, userType);
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+                User user = new User(Guid.NewGuid().ToString(), username, email, hashedPassword, new List<User>(), new List<User>(), userType, imageURL);
                 userService.CreateUser(user);
                 flowLayoutPanelUsers.Controls.Add(new DefaultUserControl(userService, user));
 

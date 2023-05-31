@@ -1,5 +1,4 @@
 ﻿using Business_Logic.Enums;
-using Business_Logic.Factories;
 using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
 using Desktop_Application.Controls;
@@ -123,22 +122,22 @@ namespace Desktop_Application.MusicSection
                     {
                         lblName.Text = txtBoxName.Text;
                         lblName.Size = txtBoxName.Size;
-                        
+
 
                         lblGenre.Text = cmBoxGenre.Text;
                         lblGenre.Size = cmBoxGenre.Size;
-                        
+
 
                         lblReleaseDate.Text = dtpReleaseDate.Value.ToString("dd-MM-yyyy");
                         lblReleaseDate.Size = dtpReleaseDate.Size;
-                        
+
 
                         List<Artist> newArtists = new List<Artist>();
                         foreach (AddArtistAlbumCreationControl c in flowPanelArtists.Controls)
                         {
                             newArtists.Add(c.GetSelectedArtist());
                         }
-                        
+
 
                         album.Name = lblName.Text;
                         album.Genre = (GENRE_TYPE)Enum.Parse(typeof(GENRE_TYPE), lblGenre.Text);
@@ -163,7 +162,7 @@ namespace Desktop_Application.MusicSection
                         btnAddArtist.Hide();
                     }
                 }
-            } 
+            }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -196,11 +195,11 @@ namespace Desktop_Application.MusicSection
                 string? name = txtBoxNameCreateSong.Text;
                 string? img = txtBoxImgCreateSong.Text;
                 int duration = (int)nmrDurationInSecondsCreateSong.Value;
-                MusicUnit song = MusicUnitFactory.CreateMusicUnit(Business_Logic.Enums.MUSIC_UNIT_TYPE.SONG, name, img, durationInSeconds: duration, songAlbum: album);
+                Song song = new Song(Guid.NewGuid().ToString(), name, img, MUSIC_UNIT_TYPE.SONG, duration, album, 0);
                 musicUnitService.CreateMusicUnit(song);
                 flowLayoutPanel1.Controls.Add(new SongControl(musicUnitService, (Song)song));
-                
-            } 
+
+            }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);

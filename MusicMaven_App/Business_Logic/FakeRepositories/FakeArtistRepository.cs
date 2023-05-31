@@ -1,18 +1,18 @@
-﻿using System;
-using Business_Logic.Enums;
-using Business_Logic.Factories;
-using Business_Logic.Interfaces;
-using Business_Logic.Models;
+﻿using Business_Logic.Interfaces;
 using Business_Logic.Models.MusicUnits;
 
 namespace Business_Logic.FakeRepositories
 {
-	public class FakeArtistRepository: IArtistRepository
-	{
+    public class FakeArtistRepository : IArtistRepository
+    {
         private readonly List<Artist> _artists = new List<Artist>();
 
         public FakeArtistRepository()
-		{            //_artists.Add(new Artist("1", "Tyler, The Creator", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5));            //_artists.Add(new Artist("2", "Kendrick Lamar", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5));            //_artists.Add(new Artist("3", "Joeyy Bada$$", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 8));        }
+        {
+            //_artists.Add(new Artist("1", "Tyler, The Creator", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5));
+            //_artists.Add(new Artist("2", "Kendrick Lamar", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 5));
+            //_artists.Add(new Artist("3", "Joeyy Bada$$", "images/artist.png", MUSIC_UNIT_TYPE.ARTIST, ARTIST_TYPE.SOLO, 8));
+        }
 
         public void Delete(string id)
         {
@@ -46,7 +46,7 @@ namespace Business_Logic.FakeRepositories
         public void Update(Artist entity)
         {
             Artist? artist = _artists.FirstOrDefault(a => a.Id == entity.Id);            if (artist != null)            {                artist.Name = entity.Name;                artist.Image = entity.Image;                artist.ArtistType = entity.ArtistType;                artist.AvrgRating = entity.AvrgRating;            }
-           
+
         }
     }
 }

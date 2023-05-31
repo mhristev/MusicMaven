@@ -1,15 +1,7 @@
-﻿using Business_Logic.Enums;
-using Business_Logic.Factories;
-using Business_Logic.Interfaces;
-using Business_Logic.Models;
-using Business_Logic.Models.Enums;
-using Business_Logic.Models.MusicUnits;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business_Logic.Interfaces;
 using Business_Logic.Interfaces.IServices;
+using Business_Logic.Models;
+using Business_Logic.Models.MusicUnits;
 
 namespace Business_Logic.Services
 {
@@ -31,8 +23,8 @@ namespace Business_Logic.Services
 
         public void AddReview(string title, string description, double rating, MusicUnit musicUnit, User creator)
         {
-            Review r = ReviewFactory.CreateReview(title, description, musicUnit, creator, rating);
-            _reviewRepository.Insert(r);
+            Review review = new Review(Guid.NewGuid().ToString(), title, description, DateTime.UtcNow, rating, musicUnit, creator, new List<User>());
+            _reviewRepository.Insert(review);
         }
 
 

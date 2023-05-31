@@ -1,18 +1,7 @@
 ﻿using Business_Logic.Enums;
-using Business_Logic.Factories;
 using Business_Logic.Interfaces.IServices;
 using Business_Logic.Models.MusicUnits;
 using Desktop_Application.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Desktop_Application
 {
@@ -213,7 +202,7 @@ namespace Desktop_Application
                     artists.Add(control.GetSelectedArtist());
                 }
 
-                Album album = (Album)MusicUnitFactory.CreateMusicUnit(MUSIC_UNIT_TYPE.ALBUM, name, image, albumGenre: genre, albumCreators: artists, albumReleaseDate: creationDate);
+                Album album = new Album(Guid.NewGuid().ToString(), name, image, MUSIC_UNIT_TYPE.ALBUM, genre, artists, 0, creationDate);
                 musicUnitService.CreateMusicUnit(album);
                 flowLayoutPanel1.Controls.Add(new AlbumControl(musicUnitService, album));
                 txtBoxCreateAlbumName.Text = String.Empty;

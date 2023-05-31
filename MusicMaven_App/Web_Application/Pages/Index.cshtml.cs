@@ -6,30 +6,43 @@ using Web_Application.DTOs;
 using Web_Application.DTOs.MusicUnitDTOs;
 using Web_Application.Pages.Shared;
 using Business_Logic.Interfaces.IServices;
-using Business_Logic.Enums;using Web_Application.Helpers;namespace Web_Application.Pages
+using Business_Logic.Enums;using Web_Application.Helpers;using Business_Logic.Interfaces;namespace Web_Application.Pages
 {
     public class IndexModel : PageModel
     {
-        private IMusicUnitService _musicUnitService;
-        private IReviewService _reviewService;
+        private IMusicUnitService musicUnitService;
+        private IReviewService reviewService;
+        private IRecommendationService recommendationService;
+        private ICurrentUserProvider currentUserProvider;
+        private IUserService userService;
 
         public List<ArtistDTO> Artists { get; private set; }
         public List<ReviewDTO> Reviews { get; private set; }
         public List<AlbumDTO> NewAlbums { get; private set; }
         public List<MusicUnitDTO> HighestRatedMusicUnits { get; private set; }
+        public List<MusicUnitDTO> Recommendations { get; private set; }
 
-        public IndexModel(IMusicUnitService musicUnitService, IReviewService reviewService)        {
-            _musicUnitService = musicUnitService;
-            _reviewService = reviewService;
+        public IndexModel(IMusicUnitService musicUnitService, IReviewService reviewService, IRecommendationService recommendationService, ICurrentUserProvider currentUserProvider, IUserService userService)        {
+            this.musicUnitService = musicUnitService;
+            this.reviewService = reviewService;
+            this.recommendationService = recommendationService;
+            this.currentUserProvider = currentUserProvider;
+            this.userService = userService;
         }
 
 
         public void OnGet()
         {
-            Artists = _musicUnitService.GetArtists().Select(a => ArtistDTO.FromArtist(a)).ToList();
-            Reviews = _reviewService.GetAll().Select(r => ReviewDTO.FromReview(r)).ToList();
-            NewAlbums = _musicUnitService.GetNewReleasedAlbums(5).Select(a => AlbumDTO.FromAlbum(a)).ToList();
-            HighestRatedMusicUnits = _musicUnitService.GetHighestRatedMusicUnits(5).Select(u => MusicUnitDTO.FromMusicUnit(u)).ToList();
+            Artists = musicUnitService.GetArtists().Select(a => ArtistDTO.FromArtist(a)).ToList();
+            Reviews = reviewService.GetAll().Select(r => ReviewDTO.FromReview(r)).ToList();
+            NewAlbums = musicUnitService.GetNewReleasedAlbums(5).Select(a => AlbumDTO.FromAlbum(a)).ToList();
+            HighestRatedMusicUnits = musicUnitService.GetHighestRatedMusicUnits(5).Select(u => MusicUnitDTO.FromMusicUnit(u)).ToList();
+            string? id = currentUserProvider.GetCurrentUserId();
+            if (id != null)            {                Recommendations = recommendationService.GetRecommendationsForUser(userService.GetUserById(id), 10).Select(m => MusicUnitDTO.FromMusicUnit(m)).ToList();
+            }
+            else            {
+                Recommendations = HighestRatedMusicUnits;
+            }
         }
 
         public IActionResult OnGetHighestRatedUnit(string id, MUSIC_UNIT_TYPE unitTyoe)        {

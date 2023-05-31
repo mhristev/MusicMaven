@@ -1,18 +1,14 @@
-﻿using System;
-using Business_Logic.Factories;
-using Business_Logic.Interfaces;
+﻿using Business_Logic.Interfaces;
 using Business_Logic.Models;
-using Business_Logic.Models.Enums;
-using Business_Logic.Exceptions;
 
 namespace Business_Logic.FakeRepositories
 {
-	public class FakeUserRepository: IUserRepository
+    public class FakeUserRepository : IUserRepository
     {
         private List<User> _users = new List<User>();
 
-		public FakeUserRepository()
-		{
+        public FakeUserRepository()
+        {
             //_users.Add(new User("1", "admin", "admin@admin.com", BCrypt.Net.BCrypt.HashPassword("admin"), new List<User>(), new List<User>(), type: USER_TYPE.ADMIN, "image"));
             //_users.Add(new User("2", "JohnSmith", "JohnSmith@app.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL, "image"));
             //_users.Add(new User("3", "JaneDoe", "JaneDoe@admin.com", BCrypt.Net.BCrypt.HashPassword("password"), new List<User>(), new List<User>(), type: USER_TYPE.NORMAL, "image"));
