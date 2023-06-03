@@ -1,0 +1,11 @@
+﻿using System;
+using Business_Logic.Interfaces;using Business_Logic.Models.MusicUnits;using Business_Logic.Services;using System.Collections.Generic;using Microsoft.VisualStudio.TestTools.UnitTesting;using Business_Logic.FakeRepositories;using Business_Logic.Interfaces.IServices;namespace BusinessLogicTests.Services
+{    [TestClass]    public class MusicUnitServiceTests
+	{        private IMusicUnitService musicUnitService;        [TestInitialize]        public void Initialize()        {            var artistRepository = new FakeArtistRepository();            var albumRepository = new FakeAlbumRepository(artistRepository);            var songRepository = new FakeSongRepository(albumRepository);            var userRepository = new FakeUserRepository();            var reviewRepository = new FakeReviewRepository(userRepository, artistRepository);            var musicUnitRepository = new FakeMusicUnitRepository(albumRepository, artistRepository, songRepository, reviewRepository);            IArtistService artistService = new ArtistService(artistRepository);            IAlbumService albumService = new AlbumService(albumRepository);            ISongService songService = new SongService(songRepository);            musicUnitService = new MusicUnitService(albumService, songService, artistService, musicUnitRepository);        }        [TestMethod]        public void FindMusicUnitsByKeywordOrderedByHighestRated_ReturnsMusicUnits()        {            //// Arrange            //string keyword = "example keyword";            //List<MusicUnit> expectedMusicUnits = new List<MusicUnit>
+            //{
+            //    new MusicUnit { Id = "1", Name = "Music Unit 1", AvrgRating = 4.5 },
+            //    new MusicUnit { Id = "2", Name = "Music Unit 2", AvrgRating = 3.9 },
+            //    new MusicUnit { Id = "3", Name = "Music Unit 3", AvrgRating = 4.8 }
+            //};            //musicUnitService.            //var musicUnitService1 = new MusicUnitService(musicUnitRepositoryMock.Object);            //// Act            //                     var actualMusicUnits = musicUnitService.FindMusicUnitsByKeywordOrderedByHighestRated(keyword);            //// Assert            //                        Assert.Equal(expectedMusicUnits, actualMusicUnits);        }    }
+}
+
