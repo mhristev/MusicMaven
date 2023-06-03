@@ -54,6 +54,5 @@ namespace Business_Logic.Services
         }
 
         public double GetAverageRatingForReviews(List<Review> reviews)        {            if (reviews == null || reviews.Count == 0)            {                return 0.0;            }            double totalRating = 0.0;            foreach (var review in reviews)            {                totalRating += review.Rating;            }            double averageRating = totalRating / reviews.Count;            return Math.Round(averageRating, 2);
-        }
-    }
+        }        public string GetDescriptionOfHighestRatedReviewForMusicUnit(MusicUnit musicUnit)        {            return _reviewRepository.GetDescriptionOfHighestRatedReviewForMusicUnit(musicUnit.Id);        }        public List<Review> GetLatestReviews(int count)        {            return _reviewRepository.GetLatestReviews(count);        }    }
 }

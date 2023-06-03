@@ -1,4 +1,5 @@
-﻿using Business_Logic.Enums;
+﻿using System.Globalization;
+using Business_Logic.Enums;
 using Business_Logic.Models.MusicUnits;
 
 namespace Web_Application.DTOs.MusicUnitDTOs
@@ -7,6 +8,20 @@ namespace Web_Application.DTOs.MusicUnitDTOs
     {
         public int DurationInSeconds { get; set; }
         public AlbumDTO Album { get; set; }
+
+
+        public string DurationInMinutesAndSeconds        {            get            {
+                TimeSpan duration = TimeSpan.FromSeconds(DurationInSeconds);
+                return duration.ToString("mm\\:ss");
+            }
+
+            set
+            {
+                TimeSpan duration = TimeSpan.ParseExact(value, "mm\\:ss", CultureInfo.InvariantCulture);
+                DurationInSeconds = (int)duration.TotalSeconds;
+            }
+
+        }
 
         public static SongDTO FromSong(Song s)
         {

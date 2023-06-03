@@ -8,6 +8,9 @@ using Business_Logic.Models;namespace Business_Logic.Interfaces.IServices
         void UpdateUser(User user);
 
         void DeleteUser(User user);
+
+        void FollowUserFromUser(User toFollow, User fromUser);
+        void UnFollowUserFromUser(User toUnFollow, User fromUser);
     }
 }
 

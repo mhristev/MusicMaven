@@ -22,7 +22,7 @@ namespace Business_Logic.FakeRepositories
             {
                 _users.Remove(userToRemove);
             }
-        }        public List<User> FindUsersByKeywordInUsername(string keyword)        {            return _users.Where(a => a.Username.ToLower().Contains(keyword.ToLower()))                .ToList();        }        public List<User> GetAll()
+        }        public List<User> FindUsersByKeywordInUsername(string keyword)        {            return _users.Where(a => a.Username.ToLower().Contains(keyword.ToLower()))                .ToList();        }        public void FollowUserFromUser(string toFollowId, string fromUserId)        {            throw new NotImplementedException();        }        public List<User> GetAll()
         {
             return _users;
         }
@@ -39,9 +39,7 @@ namespace Business_Logic.FakeRepositories
 
         public User? GetUserByEmail(string email)        {            return _users.FirstOrDefault(user => user.Email == email);        }        public void Insert(User entity)
         {            if (_users.Any(u => u.Email == entity.Email))            {                throw new ArgumentException(ExceptionMessages.EmailExists);            }            if (_users.Any(u => u.Username == entity.Username))            {                throw new ArgumentException(ExceptionMessages.UsernameExists);            }            _users.Add(entity);
-        }
-
-        public void Update(User entity)
+        }        public void UnFollowUserFromUser(string toUnFollowId, string fromUserId)        {            throw new NotImplementedException();        }        public void Update(User entity)
         {
             User? user = _users.FirstOrDefault(u => u.Id == entity.Id);            if (user != null)            {                user.Username = entity.Username;                user.Email = entity.Email;                user.Password = entity.Password;                user.Type = entity.Type;                user.Following = entity.Following;            }
         }

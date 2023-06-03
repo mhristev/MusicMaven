@@ -9,13 +9,13 @@
         <div class="row"></div>
         <div class="row">
             <div class="col-md-auto">
-                <img src="@Model.Song.Image" class="singleUnitImage" />
+                <img src="@Model.Song.Image" class="singleUnitImage rounded-circle" />
             </div>
             <div class="col d-flex flex-column">
 
                 <div class="mt-auto">
                     <h2>@Model.Song.Name</h2>
-                    <h5>Duration: @Model.Song.DurationInSeconds</h5>
+                    <h5>Duration: @Model.Song.DurationInMinutesAndSeconds</h5>
                 </div>
             </div>
             <div class="col d-flex flex-column text-center">
@@ -26,7 +26,7 @@
                     <h2>@Model.Song.AvrgRating/10 *</h2>
                 </div>
                 <div class="row">
-                    <h3>Total reviews: 1289</h3>
+                    <h3>Total reviews: @Model.Reviews.Count</h3>
                 </div>
                 <div class="row d-flex align-items-center">
                     @await Html.PartialAsync("_CreateReviewModalPartial", model: new Models.CreateReviewModel() { ReviewDTO = Model.ReviewDTO, MusicUnitId = Model.Song.Id })

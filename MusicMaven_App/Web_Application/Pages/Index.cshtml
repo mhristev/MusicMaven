@@ -3,7 +3,7 @@
 @using Helpers
 @model IndexModel
 @{
-                      ViewData["Title"] = "Home page";
+   ViewData["Title"] = "Home page";
 }
 
 <!--
@@ -39,39 +39,10 @@ else
         <div class="col-md-8 order-sm-first order-last">
             <h2>Popular</h2>
             <div class="">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="tab1" data-bs-toggle="tab" href="#content1">Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab2" data-bs-toggle="tab" href="#content2">Discover More</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="content1">
-                        @foreach (var r in Model.Reviews)
-                        {
-            @await Html.PartialAsync("_ReviewCardPartial", model: r);
-        }
-                    </div>
-                    <div class="tab-pane fade" id="content2">
-                        <div class="row">
-                            @foreach (var unit in Model.Recommendations)
-                            {
-                <div class="col-md-6">
-                    <div class="card" style="width: 100%;">
-                        <img src="@unit.Image" class="card-img-top" alt="Image">
-                        <div class="card-body">
-                            <h5 class="card-title">@unit.Name</h5>
-                            <h5 class="card-title">@unit.AvrgRating</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id luctus leo, vel convallis est. Mauris finibus ultrices enim, at vestibulum est consequat at. Nullam lobortis felis eget enim consectetur, in pellentesque justo lacinia.</p>
-                        </div>
-                    </div>
-                </div>
-                                  }
-                        </div>
-                    </div>
-                </div>
+                @foreach (var r in Model.Reviews)
+                {
+        @await Html.PartialAsync("_ReviewCardPartial", model: r);
+    }
 
             </div>
         </div>
@@ -80,7 +51,7 @@ else
 
         <div class="col-md-4">
 
-            <h3>Highest Rated</h3>
+            <h2>Highest Rated</h2>
             <div>
                 @foreach (var unit in Model.HighestRatedMusicUnits)
                 {
@@ -104,31 +75,9 @@ else
                           }
 
             </div>
-            <h2>Top Artists</h2>
-            <div class="">
-                @foreach (var artist in Model.Artists)
-                {
-        <div class="card">
-            <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleArtist" asp-route-id="@artist.Id">
-                <div class="row no-gutters">
+            
 
-                    <div class="col-md-4">
-                        <img src="@artist.Image" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">@artist.Name</h5>
-                            <p class="card-text">@artist.ArtistType</p>
-                        </div>
-                    </div>
-
-                </div>
-            </a>
-        </div>
-                          }
-            </div>
-
-            <h3>New releases</h3>
+            <h2>New releases</h2>
             <div>
                 @foreach (var album in Model.NewAlbums)
                 {

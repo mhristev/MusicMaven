@@ -23,7 +23,6 @@ CREATE TABLE Album (
 CREATE TABLE AlbumArtists (
     albumId NVARCHAR(100)  NOT NULL ,
     artistId NVARCHAR(100) NOT NULL,
-    PRIMARY KEY (albumId, artistId),
     FOREIGN KEY (albumId) REFERENCES Album(id),
     FOREIGN KEY (artistId) REFERENCES Artist(Id)
 );

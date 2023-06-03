@@ -34,7 +34,7 @@ namespace Business_Logic.FakeRepositories
         public Review? GetById(string id)
         {
             return _reviews.FirstOrDefault(review => review.Id == id);
-        }        public double GetRatingFor(string userId, string reviewedMusicUnitId)        {            var review = _reviews.FirstOrDefault(r => r.Creator.Id == userId && r.MusicUnit.Id == reviewedMusicUnitId);            if (review != null)            {                return review.Rating;            }            return 0; // Rating not found
+        }        public string GetDescriptionOfHighestRatedReviewForMusicUnit(string musicUnitId)        {            throw new NotImplementedException();        }        public List<Review> GetLatestReviews(int count)        {            throw new NotImplementedException();        }        public double GetRatingFor(string userId, string reviewedMusicUnitId)        {            var review = _reviews.FirstOrDefault(r => r.Creator.Id == userId && r.MusicUnit.Id == reviewedMusicUnitId);            if (review != null)            {                return review.Rating;            }            return 0; // Rating not found
         }        public List<Review> GetReviewsForMusicUnitId(string id)        {            return _reviews                .Where(review => review.MusicUnit.Id == id)                .OrderByDescending(r => r.CreationDate)                .ToList();        }        public List<Review> GetReviewsForuserId(string id)        {            return _reviews                .Where(review => review.Creator.Id == id)                .OrderByDescending(r => r.CreationDate)                .ToList();        }        public void Insert(Review entity)
         {
             _reviews.Add(entity);

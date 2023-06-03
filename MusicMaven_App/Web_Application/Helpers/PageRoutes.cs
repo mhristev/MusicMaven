@@ -12,9 +12,9 @@ namespace Web_Application.Helpers
         public const string LikeReview = "/LikeReview";
         public const string SingleSong = "/Single/SingleSong";
         public const string SingleAlbum = "/Single/SingleAlbum";
-        public const string SingleArtist = "/Single/SingleArtist";
-        public const string Profile = "/Profile";        public const string EditProfile = "/EditProfile";
+        public const string SingleArtist = "/Single/SingleArtist";        public const string Profile = "/Profile";        public const string EditProfile = "/EditProfile";
         public const string Search = "/Search";
+        public const string Discover = "/Discover";
     }
 }
 

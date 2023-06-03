@@ -44,8 +44,14 @@ using Business_Logic.Models.Enums;using Microsoft.Data.SqlClient;namespace Da
             });
         }
 
-        public List<User> GetLikedByUsersForReviewId(string reviewId)        {            var sql = "SELECT * FROM [User] u JOIN ReviewLike rl ON rl.userId = u.id WHERE rl.reviewId = @reviewId";            var users = ExecuteQuery(sql, MapUser, command =>            {                command.Parameters.Add(new SqlParameter("@reviewId", SqlDbType.NVarChar) { Value = reviewId });            });            return users;        }
+        public List<User> GetLikedByUsersForReviewId(string reviewId)        {            var sql = "SELECT * FROM [User] u JOIN ReviewLike rl ON rl.userId = u.id WHERE rl.reviewId = @reviewId";            var users = ExecuteQuery(sql, MapUser, command =>            {                command.Parameters.Add(new SqlParameter("@reviewId", SqlDbType.NVarChar) { Value = reviewId });            });            return users;        }        public void FollowUserFromUser(string toFollowId, string fromUserId)        {            string sql = "INSERT INTO UserFollowing (userId, followingId) VALUES (@fromUserId, @toFollowId);";            ExecuteNonQuery(sql, command => {
+                command.Parameters.Add(new SqlParameter("@fromUserId", SqlDbType.NVarChar) { Value = fromUserId });
+                command.Parameters.Add(new SqlParameter("@toFollowId", SqlDbType.NVarChar) { Value = toFollowId });
+            });        }        public void UnFollowUserFromUser(string toUnFollowId, string fromUserId)        {            string sql = "DELETE FROM UserFollowing WHERE userId = @fromUserId AND followingId = @toUnFollowId";
 
-    }
+            ExecuteNonQuery(sql, command => {
+                command.Parameters.Add(new SqlParameter("@fromUserId", SqlDbType.NVarChar) { Value = fromUserId });
+                command.Parameters.Add(new SqlParameter("@toUnFollowId", SqlDbType.NVarChar) { Value = toUnFollowId });
+            });        }    }
 }
 

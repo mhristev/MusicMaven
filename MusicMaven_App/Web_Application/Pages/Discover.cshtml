@@ -1,0 +1,35 @@
+﻿@page
+@model Web_Application.Pages.Shared.DiscoverModel
+@using Helpers
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<div class="container mt-4">
+    <h1>Discover New Music!</h1>
+    <hr>
+
+    <div class="row">
+        
+        @foreach (var unit in Model.Recommendations)
+        {
+    <div class="col-md-6">
+        <div class="card" style="width: 100%;">
+            <a class="text-decoration-none text-dark" asp-page-handler="RedirectToMusicUnit" asp-route-id="@unit.Key.Id" asp-route-unitType="@unit.Key.Type">
+                <img src="@unit.Key.Image" class="card-img-top" alt="Image">
+                <div class="card-body">
+                    <h3 class="card-title">@unit.Key.Name</h3>
+                    <h4 class="card-title">@unit.Key.AvrgRating</h4>
+                    <h5 class="card-text">@unit.Key.Type</h5>
+                    <p class="card-text">@unit.Value</p>
+                </div>
+            </a>
+        </div>
+    </div>
+                      }
+    </div>
+  
+</div>
+
+
+

@@ -18,6 +18,15 @@ namespace Web_Application.DTOs
 
         public string Image { get; set; }
 
+
+        public bool IsFollowing(string id)        {
+            foreach (UserDTO u in Following)            {
+                if (u.Id == id)
+                    return true;
+            }
+            return false;
+        }
+
         public static UserDTO FromUser(User user)
         {
             UserDTO userDTO = new UserDTO();

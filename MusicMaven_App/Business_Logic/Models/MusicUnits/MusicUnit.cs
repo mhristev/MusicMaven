@@ -73,7 +73,8 @@ namespace Business_Logic.Models.MusicUnits
                 }
                 else
                 {
-                    avgRating = value;
+                    double roundedNumber = Math.Round(value, 2);
+                    avgRating = roundedNumber;
                 }
             }
         }

@@ -39,6 +39,5 @@ namespace Business_Logic.Services
         public void DeleteUser(User user)
         {
             _userRepository.Delete(user.Id);
-        }
-    }
+        }        public void FollowUserFromUser(User toFollow, User fromUser)        {            _userRepository.FollowUserFromUser(toFollow.Id, fromUser.Id);        }        public void UnFollowUserFromUser(User toUnFollow, User fromUser)        {            _userRepository.UnFollowUserFromUser(toUnFollow.Id, fromUser.Id);        }    }
 }
