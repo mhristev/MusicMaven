@@ -102,5 +102,17 @@ namespace Business_Logic.Models
             get => likedBy.AsReadOnly(); 
             set => likedBy = new List<User>(value); 
         }
+
+
+        public bool Equals(Review other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            // Compare the relevant properties for equality
+            return Id == other.Id && Description == other.Description && Rating == other.Rating;
+        }
     }
 }

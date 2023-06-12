@@ -28,7 +28,7 @@ namespace Web_Application.Pages
 
         public void OnGet(string id)
         {
-
+            // TODO FIX this???????
             Artist? artist = (Artist?)_musicUnitService.GetMusicUnitWithId(id);
             if (artist != null)
             {

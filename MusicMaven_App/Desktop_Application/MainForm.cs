@@ -50,8 +50,8 @@ namespace Desktop_Application
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            loginForm.ClearTextBoxes();
-            loginForm.Show();
+           // loginForm.ClearTextBoxes();
+           // loginForm.Show();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

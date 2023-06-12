@@ -46,10 +46,10 @@
             btnCreateUser = new Button();
             txtBoxUsername = new TextBox();
             cmbBoxArtistType = new ComboBox();
+            panel1 = new Panel();
             btnClear = new Button();
             btnSearch = new Button();
             txtboxSearch = new TextBox();
-            panel1 = new Panel();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
@@ -227,19 +227,33 @@
             cmbBoxArtistType.Size = new Size(121, 23);
             cmbBoxArtistType.TabIndex = 0;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(68, 61, 97);
+            panel1.Controls.Add(btnClear);
+            panel1.Controls.Add(btnSearch);
+            panel1.Controls.Add(txtboxSearch);
+            panel1.Controls.Add(groupBox1);
+            panel1.Controls.Add(flowLayoutPanelUsers);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 28);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1061, 694);
+            panel1.TabIndex = 21;
+            // 
             // btnClear
             // 
             btnClear.BackColor = Color.FromArgb(24, 137, 149);
             btnClear.FlatAppearance.BorderSize = 0;
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(624, 190);
+            btnClear.Location = new Point(613, 190);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(47, 29);
-            btnClear.TabIndex = 20;
+            btnClear.TabIndex = 14;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
-            btnClear.Visible = false;
+            btnClear.Click += btnClear_Click;
             // 
             // btnSearch
             // 
@@ -247,37 +261,23 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(535, 190);
+            btnSearch.Location = new Point(524, 190);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(83, 29);
-            btnSearch.TabIndex = 18;
+            btnSearch.TabIndex = 12;
             btnSearch.Text = "Find";
             btnSearch.UseVisualStyleBackColor = false;
-            btnSearch.Visible = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtboxSearch
             // 
             txtboxSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtboxSearch.Location = new Point(59, 190);
+            txtboxSearch.Location = new Point(61, 190);
             txtboxSearch.Multiline = true;
             txtboxSearch.Name = "txtboxSearch";
             txtboxSearch.RightToLeft = RightToLeft.No;
             txtboxSearch.Size = new Size(457, 29);
-            txtboxSearch.TabIndex = 19;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(68, 61, 97);
-            panel1.Controls.Add(groupBox1);
-            panel1.Controls.Add(btnClear);
-            panel1.Controls.Add(flowLayoutPanelUsers);
-            panel1.Controls.Add(btnSearch);
-            panel1.Controls.Add(txtboxSearch);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 28);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1061, 694);
-            panel1.TabIndex = 21;
+            txtboxSearch.TabIndex = 13;
             // 
             // UsersForm
             // 
@@ -322,14 +322,14 @@
         private TextBox txtBoxArtistImageURL;
         private Button btnCreateUser;
         private TextBox txtBoxUsername;
-        private Button btnClear;
-        private Button btnSearch;
-        private TextBox txtboxSearch;
         private TextBox txtBoxEmail;
         private TextBox txtBoxRepeatPassword;
         private TextBox txtBoxPassword;
         private ComboBox cmbBoxUserType;
         private TextBox txtBoxImageURL;
         private Panel panel1;
+        private Button btnClear;
+        private Button btnSearch;
+        private TextBox txtboxSearch;
     }
 }

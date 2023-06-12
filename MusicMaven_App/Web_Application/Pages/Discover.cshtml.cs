@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web_Application.DTOs.MusicUnitDTOs;using Web_Application.Helpers;namespace Web_Application.Pages.Shared
 {
     public class DiscoverModel : PageModel
-    {        private IRecommendationService recommendationService;        private IUserService userService;        private ICurrentUserProvider currentUserProvider;        private IReviewService reviewService;        public DiscoverModel(IRecommendationService recommendationService, IUserService userService, ICurrentUserProvider currentUserProvider, IReviewService reviewService)        {            this.recommendationService = recommendationService;            this.userService = userService;            this.currentUserProvider = currentUserProvider;            this.reviewService = reviewService;        }        public Dictionary<MusicUnitDTO, string> Recommendations { get; private set; }        public async Task OnGet()
+    {        private IRecommendationService recommendationService;        private IUserService userService;        private ICurrentUserProvider currentUserProvider;        private IReviewService reviewService;        private IMusicUnitService musicUnitService;        public DiscoverModel(IRecommendationService recommendationService, IUserService userService, ICurrentUserProvider currentUserProvider, IReviewService reviewService, IMusicUnitService musicUnitService)        {            this.recommendationService = recommendationService;            this.userService = userService;            this.currentUserProvider = currentUserProvider;            this.reviewService = reviewService;            this.musicUnitService = musicUnitService;        }        public Dictionary<MusicUnitDTO, string> Recommendations { get; private set; }        public List<MusicUnitDTO> HighestRatedUnits { get; private set; }        public async Task OnGet()
         {
             Recommendations = new Dictionary<MusicUnitDTO, string>();
             string? id = currentUserProvider.GetCurrentUserId();
             if (id != null)            {                List<MusicUnit> recommendations = await recommendationService.GetRecommendationsForUser(userService.GetUserById(id), 10);                foreach (MusicUnit musicUnit in recommendations)                {                    string body = reviewService.GetDescriptionOfHighestRatedReviewForMusicUnit(musicUnit);                    MusicUnitDTO dto = MusicUnitDTO.FromMusicUnit(musicUnit);                    Recommendations.Add(dto, body);                }                    
+            }
+            else            {
+                HighestRatedUnits = musicUnitService.GetHighestRatedMusicUnits(10).Select(u => MusicUnitDTO.FromMusicUnit(u)).ToList();
             }
         }
 

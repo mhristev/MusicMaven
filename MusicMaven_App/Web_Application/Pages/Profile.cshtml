@@ -93,7 +93,7 @@
                     @foreach (var unit in Model.LastReviewedMusicUnits)
                     {
                         <div class="card">
-                            <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleArtist" asp-route-id="@unit.Id">
+                            <a class="text-decoration-none text-dark" asp-page-handler="GoToMusicUnit" asp-route-id="@unit.Id" asp-route-unitType="@unit.Type">
                                 <div class="row no-gutters">
 
                                     <div class="col-md-4">

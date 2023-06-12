@@ -30,7 +30,6 @@ namespace Web_Application.Pages
             {
                 try
                 {
-
                     string hashedPassword = BCrypt.Net.BCrypt.HashPassword(RegisterModel.Password);
                     User user = new User(Guid.NewGuid().ToString(), RegisterModel.Username, RegisterModel.Email, hashedPassword , new List<User>(), new List<User>(), USER_TYPE.NORMAL, "NONE");
                     _userService.CreateUser(user);

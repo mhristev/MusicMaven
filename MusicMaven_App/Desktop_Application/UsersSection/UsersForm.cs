@@ -91,5 +91,36 @@ namespace Desktop_Application.UsersSection
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchKeyword = txtboxSearch.Text;
+
+            if (string.IsNullOrEmpty(searchKeyword))
+            {
+                return;
+            }
+            flowLayoutPanelUsers.Controls.Clear();
+            List<User> users = userService.GetAllUsers();
+            List<User> filtered = users.Where(u => u.Username.Contains(searchKeyword)).ToList();
+            List<DefaultUserControl> components = new List<DefaultUserControl>();
+            foreach (User user in filtered)
+            {
+                components.Add(new DefaultUserControl(userService, user));
+
+            }
+
+            foreach (DefaultUserControl auc in components)
+            {
+                flowLayoutPanelUsers.Controls.Add(auc);
+            }
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtboxSearch.Text = string.Empty;
+            FillUsers();
+        }
     }
 }

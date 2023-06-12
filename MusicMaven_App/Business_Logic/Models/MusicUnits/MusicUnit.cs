@@ -92,6 +92,6 @@ namespace Business_Logic.Models.MusicUnits
                     this.type = value;
                 }
             }
-        }
+        }        public override bool Equals(object obj)        {            if (obj == null || GetType() != obj.GetType())            {                return false;            }            return Equals(obj as MusicUnit);        }        public bool Equals(MusicUnit other)        {            if (other == null)            {                return false;            }            // Compare the relevant properties for equality            return Id == other.Id && Name == other.Name && AvrgRating == other.AvrgRating && Type == other.Type;        }
     }
 }

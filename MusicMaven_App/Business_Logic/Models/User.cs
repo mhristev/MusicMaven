@@ -60,7 +60,7 @@ namespace Business_Logic.Models
             get => password;
             set
             {
-                if (string.IsNullOrEmpty(value))                {
+                if (string.IsNullOrEmpty(value) || value.Length < 5)                {
                     throw new ArgumentException(ExceptionMessages.InvalidPassword);
                 }
                 password = value;

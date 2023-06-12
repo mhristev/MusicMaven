@@ -28,6 +28,11 @@ namespace Desktop_Application
             lblRating.Text = _musicUnit.AvrgRating.ToString();
         }
 
+        public string GetUnitsName()
+        {
+            return _musicUnit.Name;
+        }
+
         private void DefaultMusicControl_Click(object sender, EventArgs e)
         {
             MusicForm? parent = this.FindForm() as MusicForm;

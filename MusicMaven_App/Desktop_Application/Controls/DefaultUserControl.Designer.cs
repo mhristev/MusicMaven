@@ -71,10 +71,10 @@
             Controls.Add(lblType);
             Controls.Add(lblEmail);
             Controls.Add(lblUsername);
-            MaximumSize = new Size(950, 50);
-            MinimumSize = new Size(950, 50);
+            MaximumSize = new Size(930, 50);
+            MinimumSize = new Size(930, 50);
             Name = "DefaultUserControl";
-            Size = new Size(950, 50);
+            Size = new Size(930, 50);
             Click += DefaultUserControl_Click;
             ResumeLayout(false);
             PerformLayout();

@@ -81,24 +81,24 @@ else
             <div>
                 @foreach (var album in Model.NewAlbums)
                 {
-        <div class="card">
-            <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleAlbum" asp-route-id="@album.Id">
-                <div class="row no-gutters">
+                    <div class="card">
+                        <a class="text-decoration-none text-dark" asp-page="@PageRoutes.SingleAlbum" asp-route-id="@album.Id">
+                            <div class="row no-gutters">
 
-                    <div class="col-md-4">
-                        <img src="@album.Image" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">@album.Name</h5>
-                            <p class="card-text">@album.Genre</p>
-                        </div>
-                    </div>
+                                <div class="col-md-4">
+                                    <img src="@album.Image" class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@album.Name</h5>
+                                        <p class="card-text">@album.Genre</p>
+                                    </div>
+                                </div>
 
-                </div>
-            </a>
-        </div>
-                          }
+                            </div>
+                        </a>
+                    </div>
+                 }
 
             </div>
 

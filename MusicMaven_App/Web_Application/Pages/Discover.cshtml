@@ -10,23 +10,43 @@
     <hr>
 
     <div class="row">
-        
-        @foreach (var unit in Model.Recommendations)
-        {
-    <div class="col-md-6">
-        <div class="card" style="width: 100%;">
-            <a class="text-decoration-none text-dark" asp-page-handler="RedirectToMusicUnit" asp-route-id="@unit.Key.Id" asp-route-unitType="@unit.Key.Type">
-                <img src="@unit.Key.Image" class="card-img-top" alt="Image">
-                <div class="card-body">
-                    <h3 class="card-title">@unit.Key.Name</h3>
-                    <h4 class="card-title">@unit.Key.AvrgRating</h4>
-                    <h5 class="card-text">@unit.Key.Type</h5>
-                    <p class="card-text">@unit.Value</p>
+        @if (User.Identity.IsAuthenticated)
+        { 
+            @foreach (var unit in Model.Recommendations)
+            {
+                <div class="col-md-6">
+                    <div class="card" style="width: 100%;">
+                        <a class="text-decoration-none text-dark" asp-page-handler="RedirectToMusicUnit" asp-route-id="@unit.Key.Id" asp-route-unitType="@unit.Key.Type">
+                            <img src="@unit.Key.Image" class="card-img-top" alt="Image">
+                            <div class="card-body">
+                                <h3 class="card-title">@unit.Key.Name</h3>
+                                <h4 class="card-title">@unit.Key.AvrgRating</h4>
+                                <h5 class="card-text">@unit.Key.Type</h5>
+                                <p class="card-text">@unit.Value</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </a>
-        </div>
-    </div>
-                      }
+           }
+        }
+        else
+        {
+            @foreach (var unit in Model.HighestRatedUnits)
+            {
+                <div class="col-md-6">
+                    <div class="card" style="width: 100%;">
+                        <a class="text-decoration-none text-dark" asp-page-handler="RedirectToMusicUnit" asp-route-id="@unit.Id" asp-route-unitType="@unit.Type">
+                            <img src="@unit.Image" class="card-img-top" alt="Image">
+                            <div class="card-body">
+                                <h3 class="card-title">@unit.Name</h3>
+                                <h4 class="card-title">@unit.AvrgRating</h4>
+                                <h5 class="card-text">@unit.Type</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+             }
+        }
     </div>
   
 </div>

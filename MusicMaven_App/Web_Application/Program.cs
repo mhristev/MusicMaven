@@ -53,7 +53,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LogoutPath = new PathString("/Logout");
         options.AccessDeniedPath = new PathString("/LikeReview");
         options.AccessDeniedPath = new PathString("/CreateReview");
-        options.AccessDeniedPath = new PathString("/Discover");
     });
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>{    options.DefaultRequestCulture = new RequestCulture(CultureInfo.CurrentCulture);});

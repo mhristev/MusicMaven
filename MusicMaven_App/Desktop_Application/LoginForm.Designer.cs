@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             panel1 = new Panel();
             label1 = new Label();
             txtBoxEmail = new TextBox();
@@ -37,6 +38,8 @@
             // 
             // panel1
             // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Zoom;
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -46,10 +49,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(356, 154);
+            label1.Font = new Font("Yu Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(356, 144);
             label1.Name = "label1";
-            label1.Size = new Size(250, 31);
+            label1.Size = new Size(305, 38);
             label1.TabIndex = 1;
             label1.Text = "Login to your account";
             // 
@@ -68,13 +72,16 @@
             // 
             // btnLogin
             // 
+            btnLogin.BackColor = Color.FromArgb(24, 137, 149);
+            btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Yu Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(356, 306);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(187, 37);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
             // txtBoxPassword
@@ -94,6 +101,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(78, 71, 108);
             ClientSize = new Size(873, 529);
             Controls.Add(txtBoxPassword);
             Controls.Add(btnLogin);

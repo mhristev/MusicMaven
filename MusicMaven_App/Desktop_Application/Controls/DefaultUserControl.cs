@@ -31,12 +31,15 @@ namespace Desktop_Application.Controls
             this.lblType.Text = user.Type.ToString();
         }
 
+        public string GetUsername()
+        { return user.Username; }
+
         private void DefaultUserControl_Click(object sender, EventArgs e)
         {
             UsersForm? parent = this.FindForm() as UsersForm;
             if (parent != null)
             {
-                parent.OpenChildForm(new UsersSingleForm(user, userService), sender);   
+                parent.OpenChildForm(new UsersSingleForm(user, userService), sender);
             }
             else
             {
